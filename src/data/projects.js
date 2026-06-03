@@ -12,6 +12,7 @@ const projects = [
     status: 'Production Live',
     uptime: '99.999% SLA',
     systemId: 'X-INFRA-2024-01',
+    github: 'https://github.com/praisegeorgewill/48-hour-mastery',
     challenge: 'A legacy monolith handling $2B in daily transactions suffered from cascading database locks and unmonitored security drift. The system reached a terminal state where updates were impossible without total service collapse.',
     challenges: [
       { icon: 'warning', title: 'Systemic Fragility', desc: 'Downtime spikes of up to 45 minutes during peak European trading hours due to inefficient load balancing.', severity: 'error' },
@@ -56,6 +57,7 @@ const projects = [
     status: 'Production Live',
     uptime: '99.9%',
     systemId: 'X-INFRA-2024-02',
+    github: 'https://github.com/praisegeorgewill/edge-computing-mesh',
     challenge: 'A global logistics provider faced crippling backhaul congestion as their IoT telemetry volume grew 400% year-over-year. Centralized processing created latency issues that impacted real-time tracking accuracy and delayed critical shipment notifications.',
     challenges: [
       { icon: 'warning', title: 'Bandwidth Saturation', desc: 'Centralized data processing created network bottlenecks, with 65% of bandwidth consumed by redundant telemetry streams.', severity: 'error' },
@@ -100,6 +102,7 @@ const projects = [
     status: 'Production Live',
     uptime: '99.99%',
     systemId: 'X-INFRA-2024-03',
+    github: 'https://github.com/praisegeorgewill/cloud-native-core-migration',
     challenge: 'A national insurance provider was running on a 15-year-old monolithic core that could not scale to meet modern digital demands. Deployment cycles took weeks, and the system experienced cascading failures during peak enrollment periods.',
     challenges: [
       { icon: 'warning', title: 'Deployment Paralysis', desc: 'Release cycles took 3-4 weeks due to monolithic dependency chains and manual testing requirements.', severity: 'error' },
@@ -144,6 +147,7 @@ const projects = [
     status: 'Production Live',
     uptime: '99.999%',
     systemId: 'X-INFRA-2024-04',
+    github: 'https://github.com/praisegeorgewill/high-availability-auth',
     challenge: 'A rapidly growing fintech platform experienced authentication failures during peak trading hours. Their legacy OAuth provider could not scale beyond 5k RPS and had a single point of failure in us-east-1.',
     challenges: [
       { icon: 'warning', title: 'Single-Region Risk', desc: 'The entire auth infrastructure was deployed in a single AWS region with no cross-region failover capability.', severity: 'error' },
@@ -188,6 +192,7 @@ const projects = [
     status: 'Production Live',
     uptime: '99.99%',
     systemId: 'X-INFRA-2024-05',
+    github: 'https://github.com/praisegeorgewill/zero-trust-network-mesh',
     challenge: 'A decentralized data provider with 4,000+ nodes across 30 countries needed to implement granular identity and access management without centralized authority. Their existing peer-to-peer architecture had no authentication layer.',
     challenges: [
       { icon: 'warning', title: 'No Authentication Layer', desc: 'The peer-to-peer network had no identity verification, allowing any node to impersonate any other node.', severity: 'error' },
@@ -232,6 +237,7 @@ const projects = [
     status: 'Production Live',
     uptime: '99.999%',
     systemId: 'X-INFRA-2024-06',
+    github: 'https://github.com/praisegeorgewill/post-quantum-database',
     challenge: 'A defense technology company needed to future-proof their data storage against quantum computing threats. Their existing encryption infrastructure was vulnerable to "harvest now, decrypt later" attacks targeting classified research data.',
     challenges: [
       { icon: 'warning', title: 'Quantum Vulnerability', desc: 'Existing RSA-2048 and ECC encryption could be broken by quantum computers within 5-7 years.', severity: 'error' },
@@ -276,6 +282,7 @@ const projects = [
     status: 'Production Live',
     uptime: '99.99%',
     systemId: 'X-INFRA-2024-07',
+    github: 'https://github.com/praisegeorgewill/auto-scaling-optimizer',
     challenge: 'A high-growth e-commerce platform was experiencing unpredictable cloud costs, with monthly bills fluctuating by 40%+. Their reactive scaling approach led to either over-provisioning (waste) or under-provisioning (performance degradation) during traffic spikes.',
     challenges: [
       { icon: 'warning', title: 'Cost Volatility', desc: 'Monthly cloud costs fluctuated 40%+ due to reactive scaling, making financial planning impossible.', severity: 'error' },

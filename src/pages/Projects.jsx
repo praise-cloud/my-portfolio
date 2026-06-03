@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import StackOpsModal from '../components/StackOpsModal'
 
 export default function Projects() {
+  const [stackModalOpen, setStackModalOpen] = useState(false)
   return (
     <div>
       <style>{`
@@ -65,10 +68,16 @@ export default function Projects() {
                     </div>
                   </div>
                   <div className="flex justify-between items-center pt-lg border-t border-outline-variant/20">
-                    <span className="flex items-center gap-sm bg-primary text-on-primary px-lg py-sm rounded-lg font-code-label text-sm group-hover/btn:brightness-110 transition-all">
-                      VIEW CASE STUDY
-                      <span className="material-symbols-outlined text-base">arrow_forward</span>
-                    </span>
+                    <div className="flex gap-sm">
+                      <span className="flex items-center gap-sm bg-primary text-on-primary px-lg py-sm rounded-lg font-code-label text-sm group-hover/btn:brightness-110 transition-all">
+                        VIEW CASE STUDY
+                        <span className="material-symbols-outlined text-base">arrow_forward</span>
+                      </span>
+                      <a href="https://github.com/praisegeorgewill/48-hour-mastery" target="_blank" rel="noopener noreferrer" className="flex items-center gap-sm px-lg py-sm rounded-lg border border-outline-variant/30 font-code-label text-sm text-on-surface hover:border-primary/50 hover:bg-surface-variant transition-all">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        <span className="hidden sm:inline">GitHub</span>
+                      </a>
+                    </div>
                     <div className="text-right">
                       <span className="block font-technical-sm text-[10px] text-outline uppercase">Infrastructure Status</span>
                       <span className="font-technical-sm text-xs text-secondary-fixed flex items-center gap-1 justify-end">
@@ -92,12 +101,12 @@ export default function Projects() {
           {/* Project Grid - each card is clickable */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
             {[
-              { slug: 'edge-computing-mesh', id: 'EM-202', title: 'Edge-Computing Mesh', icon: 'hub', desc: 'Decentralized compute layer for real-time telemetry processing. Reduced backhaul congestion by 65% across 200+ global edge points.', metric: '99.9% UPTIME' },
-              { slug: 'cloud-native-core-migration', id: 'CN-441', title: 'Cloud-Native Core Migration', icon: 'cloud_sync', desc: 'Transitioning monolithic legacy insurance cores to K8s-orchestrated microservices. Zero-downtime cutover achieved for 12M users.', metric: 'K8S_OPTIMIZED' },
-              { slug: 'high-availability-auth', id: 'HA-882', title: 'High-Availability Auth Service', icon: 'security', desc: 'Global identity provider architecture with multi-region failover. Handles 50k requests/second with <10ms p99 latency.', metric: '50K_RPS_LOAD' },
-              { slug: 'zero-trust-network-mesh', id: 'ZT-109', title: 'Zero-Trust Network Mesh', icon: 'lock', desc: 'Implementation of granular IAM policies across distributed infrastructure nodes using micro-segmentation.', metric: 'SEC_LEVEL_04' },
-              { slug: 'post-quantum-database', id: 'QM-773', title: 'Post-Quantum Database', icon: 'database', desc: 'Large-scale data migration to PQC-hardened storage volumes. Verified data integrity through automated audit cycles.', metric: 'QUANTUM_READY' },
-              { slug: 'auto-scaling-optimizer', id: 'AO-332', title: 'Auto-Scaling Optimizer', icon: 'trending_up', desc: 'AI-driven resource allocation logic for multi-cloud deployments. Reduced monthly compute costs by 28%.', metric: '-28%_OPEX' },
+              { slug: 'edge-computing-mesh', id: 'EM-202', title: 'Edge-Computing Mesh', icon: 'hub', desc: 'Decentralized compute layer for real-time telemetry processing. Reduced backhaul congestion by 65% across 200+ global edge points.', metric: '99.9% UPTIME', github: 'edge-computing-mesh' },
+              { slug: 'cloud-native-core-migration', id: 'CN-441', title: 'Cloud-Native Core Migration', icon: 'cloud_sync', desc: 'Transitioning monolithic legacy insurance cores to K8s-orchestrated microservices. Zero-downtime cutover achieved for 12M users.', metric: 'K8S_OPTIMIZED', github: 'cloud-native-core-migration' },
+              { slug: 'high-availability-auth', id: 'HA-882', title: 'High-Availability Auth Service', icon: 'security', desc: 'Global identity provider architecture with multi-region failover. Handles 50k requests/second with <10ms p99 latency.', metric: '50K_RPS_LOAD', github: 'high-availability-auth' },
+              { slug: 'zero-trust-network-mesh', id: 'ZT-109', title: 'Zero-Trust Network Mesh', icon: 'lock', desc: 'Implementation of granular IAM policies across distributed infrastructure nodes using micro-segmentation.', metric: 'SEC_LEVEL_04', github: 'zero-trust-network-mesh' },
+              { slug: 'post-quantum-database', id: 'QM-773', title: 'Post-Quantum Database', icon: 'database', desc: 'Large-scale data migration to PQC-hardened storage volumes. Verified data integrity through automated audit cycles.', metric: 'QUANTUM_READY', github: 'post-quantum-database' },
+              { slug: 'auto-scaling-optimizer', id: 'AO-332', title: 'Auto-Scaling Optimizer', icon: 'trending_up', desc: 'AI-driven resource allocation logic for multi-cloud deployments. Reduced monthly compute costs by 28%.', metric: '-28%_OPEX', github: 'auto-scaling-optimizer' },
             ].map((p) => (
               <Link key={p.id} to={`/project/${p.slug}`} className="bg-surface-container-low border border-outline-variant/40 p-lg rounded-lg flex flex-col hover:border-primary/30 transition-all group">
                 <div className="mb-lg flex justify-between items-start">
@@ -112,9 +121,20 @@ export default function Projects() {
                 <p className="text-on-surface-variant font-body-md mb-lg leading-relaxed flex-grow">{p.desc}</p>
                 <div className="pt-md border-t border-outline-variant/30 flex justify-between items-center">
                   <div className="font-technical-sm text-[11px] text-primary font-bold tracking-widest">{p.metric}</div>
-                  <span className="px-md py-sm rounded border border-outline-variant group-hover:border-primary/50 flex items-center gap-2 group-hover:bg-primary-container transition-all text-sm font-code-label">
-                    SPECS <span className="material-symbols-outlined text-xs">arrow_outward</span>
-                  </span>
+                  <div className="flex items-center gap-sm">
+                    <a
+                      href={`https://github.com/praisegeorgewill/${p.github}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="w-8 h-8 rounded border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-all"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <span className="px-md py-sm rounded border border-outline-variant group-hover:border-primary/50 flex items-center gap-2 group-hover:bg-primary-container transition-all text-sm font-code-label">
+                      SPECS <span className="material-symbols-outlined text-xs">arrow_outward</span>
+                    </span>
+                  </div>
                 </div>
               </Link>
             ))}
@@ -186,12 +206,25 @@ export default function Projects() {
               Apply for a technical audit of your current stack. We identify bottlenecks and security vulnerabilities before they become liabilities.
             </p>
             <div className="flex flex-col md:flex-row gap-md justify-center">
-              <Link to="/services" className="bg-primary text-on-primary px-xl py-base rounded-lg font-code-label text-sm hover:brightness-110 transition-all shadow-[0_0_20px_rgba(185,199,228,0.3)]">REQUEST SYSTEM AUDIT</Link>
-              <button className="border border-outline-variant text-on-surface px-xl py-base rounded-lg font-code-label text-sm hover:bg-surface-variant transition-all">VIEW STACK OPS</button>
+              <button
+                data-cal-link="praise-georgewill/discovery-meeting"
+                data-cal-config='{"theme":"dark"}'
+                className="bg-primary text-on-primary px-xl py-base rounded-lg font-code-label text-sm hover:brightness-110 transition-all shadow-[0_0_20px_rgba(185,199,228,0.3)] cursor-pointer"
+              >
+                REQUEST SYSTEM AUDIT
+              </button>
+              <button
+                onClick={() => setStackModalOpen(true)}
+                className="border border-outline-variant text-on-surface px-xl py-base rounded-lg font-code-label text-sm hover:bg-surface-variant transition-all cursor-pointer"
+              >
+                VIEW STACK OPS
+              </button>
             </div>
           </div>
         </div>
       </section>
+
+      <StackOpsModal isOpen={stackModalOpen} onClose={() => setStackModalOpen(false)} />
     </div>
   )
 }
