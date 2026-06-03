@@ -17,13 +17,13 @@ export default function EmailModal({ isOpen, onClose }) {
       })
       const json = await res.json()
       if (res.ok && json.ok) {
-        setState({ status: 'success', message: 'Message sent successfully. I\'ll get back to you soon.' })
+        setState({ status: 'success', message: 'Message transmitted successfully. Expect a response within 24 hours.' })
         e.target.reset()
       } else {
-        setState({ status: 'error', message: json.error || 'Something went wrong. Please try again.' })
+        setState({ status: 'error', message: json.error || 'Transmission failed. Please try again.' })
       }
     } catch {
-      setState({ status: 'error', message: 'Network error. Please check your connection and try again.' })
+      setState({ status: 'error', message: 'Network error. Verify connection and retransmit.' })
     }
   }
 
@@ -33,95 +33,163 @@ export default function EmailModal({ isOpen, onClose }) {
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-md" onClick={onClose}>
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
       <div
-        className="relative z-10 w-full max-w-lg bg-surface-container border border-outline-variant/30 rounded-2xl p-xl shadow-2xl animate-[fadeIn_0.2s_ease-out]"
+        className="relative z-10 w-full max-w-lg bg-surface-container border border-outline-variant/20 rounded-2xl shadow-2xl animate-[fadeIn_0.2s_ease-out] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between mb-lg">
-          <h2 className="font-headline-md text-on-surface">Send a Message</h2>
-          <button
-            onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center rounded-full border border-outline-variant/30 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-all"
-          >
-            <span className="material-symbols-outlined text-lg">close</span>
-          </button>
-        </div>
+        {/* Corner accents */}
+        <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-primary/30"></div>
+        <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-primary/30"></div>
+        <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-primary/30"></div>
+        <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-primary/30"></div>
 
-        {state.status === 'success' ? (
-          <div className="text-center py-xl space-y-md">
-            <span className="material-symbols-outlined text-6xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
-            <p className="font-body-lg text-on-surface">{state.message}</p>
+        {/* Header */}
+        <div className="relative px-xl pt-xl pb-lg border-b border-outline-variant/10">
+          <div className="flex items-center justify-between">
+            <div className="space-y-xs">
+              <div className="flex items-center gap-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                <span className="font-code-label text-[10px] text-primary uppercase tracking-[0.3em]">SYSTEM_MESSAGE</span>
+              </div>
+              <h2 className="font-headline-md text-on-surface">Send a Transmission</h2>
+            </div>
             <button
               onClick={onClose}
-              className="bg-primary text-on-primary px-xl py-sm rounded-lg font-headline-md hover:opacity-90 transition-all"
+              className="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant/20 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface hover:border-primary/30 transition-all"
             >
-              Close
+              <span className="material-symbols-outlined text-lg">close</span>
             </button>
           </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-lg">
-            <div>
-              <label htmlFor="name" className="font-code-label text-sm text-on-surface-variant block mb-sm">Name</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                placeholder="Your name"
-                className="w-full bg-background border border-outline-variant/30 rounded-lg px-md py-sm font-body-md text-on-surface placeholder:text-outline-variant/60 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all"
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="font-code-label text-sm text-on-surface-variant block mb-sm">Email</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                placeholder="your@email.com"
-                className="w-full bg-background border border-outline-variant/30 rounded-lg px-md py-sm font-body-md text-on-surface placeholder:text-outline-variant/60 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all"
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="font-code-label text-sm text-on-surface-variant block mb-sm">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={5}
-                placeholder="Tell me about your infrastructure needs..."
-                className="w-full bg-background border border-outline-variant/30 rounded-lg px-md py-sm font-body-md text-on-surface placeholder:text-outline-variant/60 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all resize-none"
-              />
-            </div>
+        </div>
 
-            {state.status === 'error' && (
-              <div className="p-md rounded-lg bg-error-container/10 border border-error/30 text-error text-sm">{state.message}</div>
-            )}
-
-            <div className="flex gap-md pt-sm">
+        {/* Body */}
+        <div className="p-xl">
+          {state.status === 'success' ? (
+            <div className="text-center py-lg space-y-md">
+              <div className="w-16 h-16 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto">
+                <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+              </div>
+              <div className="space-y-xs">
+                <p className="font-headline-md text-on-surface">Transmission Sent</p>
+                <p className="font-body-md text-on-surface-variant max-w-sm mx-auto">{state.message}</p>
+              </div>
               <button
-                type="submit"
-                disabled={state.status === 'sending'}
-                className="flex-1 bg-primary text-on-primary py-sm rounded-lg font-headline-md hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-sm"
-              >
-                {state.status === 'sending' ? (
-                  <>
-                    <span className="w-4 h-4 border-2 border-on-primary border-t-transparent rounded-full animate-spin"></span>
-                    Sending...
-                  </>
-                ) : (
-                  'Send Message'
-                )}
-              </button>
-              <button
-                type="button"
                 onClick={onClose}
-                className="px-xl py-sm rounded-lg border border-outline-variant/30 font-headline-md text-on-surface-variant hover:bg-surface-variant transition-all"
+                className="bg-primary text-on-primary px-xl py-sm rounded-lg font-headline-md hover:shadow-[0_0_20px_rgba(185,199,228,0.3)] transition-all"
               >
-                Cancel
+                Close Channel
               </button>
             </div>
-          </form>
-        )}
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-lg">
+              {/* Name */}
+              <div className="group">
+                <label htmlFor="name" className="font-code-label text-[11px] text-outline uppercase tracking-widest block mb-sm">Full Name</label>
+                <div className="relative">
+                  <span className="absolute left-md top-1/2 -translate-y-1/2 text-outline/40 group-focus-within:text-primary/60 transition-colors">
+                    <span className="material-symbols-outlined text-lg">person</span>
+                  </span>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="Enter your name"
+                    className="w-full bg-background border border-outline-variant/20 rounded-lg pl-xl pr-md py-[14px] font-body-md text-on-surface placeholder:text-outline-variant/40 focus:outline-none focus:border-primary/50 focus:shadow-[0_0_12px_-4px_rgba(185,199,228,0.15)] transition-all"
+                  />
+                </div>
+              </div>
+
+              {/* Email */}
+              <div className="group">
+                <label htmlFor="email" className="font-code-label text-[11px] text-outline uppercase tracking-widest block mb-sm">Email Address</label>
+                <div className="relative">
+                  <span className="absolute left-md top-1/2 -translate-y-1/2 text-outline/40 group-focus-within:text-primary/60 transition-colors">
+                    <span className="material-symbols-outlined text-lg">mail</span>
+                  </span>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="your@email.com"
+                    className="w-full bg-background border border-outline-variant/20 rounded-lg pl-xl pr-md py-[14px] font-body-md text-on-surface placeholder:text-outline-variant/40 focus:outline-none focus:border-primary/50 focus:shadow-[0_0_12px_-4px_rgba(185,199,228,0.15)] transition-all"
+                  />
+                </div>
+              </div>
+
+              {/* Contact */}
+              <div className="group">
+                <label htmlFor="contact" className="font-code-label text-[11px] text-outline uppercase tracking-widest block mb-sm">Contact Number</label>
+                <div className="relative">
+                  <span className="absolute left-md top-1/2 -translate-y-1/2 text-outline/40 group-focus-within:text-primary/60 transition-colors">
+                    <span className="material-symbols-outlined text-lg">call</span>
+                  </span>
+                  <input
+                    id="contact"
+                    name="contact"
+                    type="tel"
+                    placeholder="+44 7XXX XXXXXX"
+                    className="w-full bg-background border border-outline-variant/20 rounded-lg pl-xl pr-md py-[14px] font-body-md text-on-surface placeholder:text-outline-variant/40 focus:outline-none focus:border-primary/50 focus:shadow-[0_0_12px_-4px_rgba(185,199,228,0.15)] transition-all"
+                  />
+                </div>
+              </div>
+
+              {/* Message */}
+              <div className="group">
+                <label htmlFor="message" className="font-code-label text-[11px] text-outline uppercase tracking-widest block mb-sm">Message</label>
+                <div className="relative">
+                  <span className="absolute left-md top-3 text-outline/40 group-focus-within:text-primary/60 transition-colors">
+                    <span className="material-symbols-outlined text-lg">description</span>
+                  </span>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={4}
+                    placeholder="Describe your infrastructure requirements..."
+                    className="w-full bg-background border border-outline-variant/20 rounded-lg pl-xl pr-md py-[14px] font-body-md text-on-surface placeholder:text-outline-variant/40 focus:outline-none focus:border-primary/50 focus:shadow-[0_0_12px_-4px_rgba(185,199,228,0.15)] transition-all resize-none"
+                  />
+                </div>
+              </div>
+
+              {/* Error */}
+              {state.status === 'error' && (
+                <div className="flex items-center gap-sm p-md rounded-lg bg-error-container/10 border border-error/20">
+                  <span className="material-symbols-outlined text-error text-sm">error</span>
+                  <span className="font-body-md text-sm text-error">{state.message}</span>
+                </div>
+              )}
+
+              {/* Actions */}
+              <div className="flex gap-md pt-sm">
+                <button
+                  type="submit"
+                  disabled={state.status === 'sending'}
+                  className="flex-1 bg-primary text-on-primary py-[14px] rounded-lg font-headline-md hover:shadow-[0_0_20px_rgba(185,199,228,0.25)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-sm active:scale-[0.98]"
+                >
+                  {state.status === 'sending' ? (
+                    <>
+                      <span className="w-4 h-4 border-2 border-on-primary border-t-transparent rounded-full animate-spin"></span>
+                      Transmitting...
+                    </>
+                  ) : (
+                    <>
+                      Send Transmission
+                      <span className="material-symbols-outlined text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>arrow_right_alt</span>
+                    </>
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="px-xl py-[14px] rounded-lg border border-outline-variant/20 font-headline-md text-on-surface-variant hover:bg-surface-variant hover:border-primary/30 transition-all"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
       </div>
     </div>
   )
