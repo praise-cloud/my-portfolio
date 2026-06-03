@@ -34,12 +34,14 @@ export default function Navbar() {
             )
           })}
         </div>
-        <Link
-          to="/services"
+        <a
+          href="https://cal.com/praise-georgewill/infrastructure-aduit"
+          target="_blank"
+          rel="noopener noreferrer"
           className="bg-primary text-on-primary px-md py-sm rounded font-code-label text-code-label hover:opacity-90 transition-all active:scale-95"
         >
           Book Audit
-        </Link>
+        </a>
       </div>
     </nav>
   )

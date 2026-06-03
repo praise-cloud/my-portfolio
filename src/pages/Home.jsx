@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import EmailModal from '../components/EmailModal'
 
 const terminalLines = [
   "[INFO] Initiating global load distribution...",
@@ -18,6 +19,7 @@ export default function Home() {
   const terminalRef = useRef(null)
   const [socialPosts, setSocialPosts] = useState({ linkedin: null, instagram: null, threads: null, tiktok: null })
   const [backendOnline, setBackendOnline] = useState(null)
+  const [emailModalOpen, setEmailModalOpen] = useState(false)
 
   useEffect(() => {
     const endpoints = { linkedin: '/api/linkedin/recent', instagram: '/api/instagram/recent', threads: '/api/threads/recent', tiktok: '/api/tiktok/recent' }
@@ -197,10 +199,10 @@ export default function Home() {
               I architect resilient, high-availability systems for UK SaaS teams. Scaling your core infrastructure with zero-downtime environments, hardening security, and optimizing for mission-critical observability.
             </p>
             <div className="flex flex-col sm:flex-row gap-md pt-md">
-              <Link to="/services" className="bg-primary text-on-primary px-xl py-md rounded-xl font-headline-md font-bold btn-glow transition-all flex items-center justify-center gap-sm">
-                Book Infrastructure Audit
-                <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>arrow_right_alt</span>
-              </Link>
+                <a href="https://cal.com/praise-georgewill/infrastructure-aduit" target="_blank" rel="noopener noreferrer" className="bg-primary text-on-primary px-xl py-md rounded-xl font-headline-md font-bold btn-glow transition-all flex items-center justify-center gap-sm">
+                  Book Infrastructure Audit
+                  <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>arrow_right_alt</span>
+                </a>
               <Link to="/projects" className="border border-outline-variant/30 text-on-surface px-xl py-md rounded-xl font-headline-md font-medium hover:bg-surface-variant hover:border-primary/50 transition-all backdrop-blur-sm">
                 View Systems
               </Link>
@@ -508,13 +510,13 @@ export default function Home() {
             Stop firefighting infrastructure and start engineering products. Build a foundation designed for the next million users.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-md">
-            <Link to="/services" className="bg-primary text-on-primary px-xl py-md rounded-xl font-headline-md font-bold flex items-center justify-center gap-sm btn-glow transition-all">
+            <a href="https://cal.com/praise-georgewill/discovery-meeting" target="_blank" rel="noopener noreferrer" className="bg-primary text-on-primary px-xl py-md rounded-xl font-headline-md font-bold flex items-center justify-center gap-sm btn-glow transition-all">
               Book Discovery Call
               <span className="material-symbols-outlined">calendar_today</span>
-            </Link>
-            <Link to="/about" className="border border-primary/30 text-primary-fixed px-xl py-md rounded-xl font-headline-md font-medium hover:bg-white/5 transition-all">
+            </a>
+            <button onClick={() => setEmailModalOpen(true)} className="border border-primary/30 text-primary-fixed px-xl py-md rounded-xl font-headline-md font-medium hover:bg-white/5 transition-all cursor-pointer">
               Email Inquiries
-            </Link>
+            </button>
           </div>
           <div className="mt-xl flex flex-wrap justify-center items-center gap-xl text-on-primary-container/60 font-code-label text-xs uppercase tracking-widest">
             <span className="flex items-center gap-xs"><span className="w-1 h-1 rounded-full bg-primary tech-pulse"></span> UK Architecture</span>
@@ -523,6 +525,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <EmailModal isOpen={emailModalOpen} onClose={() => setEmailModalOpen(false)} />
     </div>
   )
 }

@@ -140,9 +140,9 @@ export default function Services() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-lg">
             {[
-              { name: 'Deep Audit', price: '$4,900', unit: '/flat fee', tag: 'Foundation', features: ['Tech Stack Inventory', 'Bottleneck Identification', 'SLA Risk Assessment', 'Security Vector Analysis'], cta: 'Select Tier', featured: false },
-              { name: 'Full Optimization', price: '$12,500', unit: '/module', tag: 'Accelerate', features: ['Auto-Scaling Config', 'IaC Foundation', 'Database Performance Tuning', 'Shield V1 Integration'], cta: 'Select Tier', featured: true },
-              { name: 'Grand Slam Shield', price: 'Custom', unit: '/tailored', tag: 'The Shield', features: ['24/7 Incident Response', 'Zero-Trust Migration', 'Compliance Hardening (ISO/SOC2)', 'Full Risk Shield Guarantee'], cta: 'Request Quote', featured: false },
+              { name: 'Deep Audit', price: '$4,900', unit: '/flat fee', tag: 'Foundation', features: ['Tech Stack Inventory', 'Bottleneck Identification', 'SLA Risk Assessment', 'Security Vector Analysis'], cta: 'Select Tier', url: 'https://cal.com/praise-georgewill/infrastructure-aduit', featured: false },
+              { name: 'Full Optimization', price: '$12,500', unit: '/module', tag: 'Accelerate', features: ['Auto-Scaling Config', 'IaC Foundation', 'Database Performance Tuning', 'Shield V1 Integration'], cta: 'Select Tier', url: 'https://cal.com/praise-georgewill/infrastructure-aduit', featured: true },
+              { name: 'Grand Slam Shield', price: 'Custom', unit: '/tailored', tag: 'The Shield', features: ['24/7 Incident Response', 'Zero-Trust Migration', 'Compliance Hardening (ISO/SOC2)', 'Full Risk Shield Guarantee'], cta: 'Request Quote', url: 'https://cal.com/praise-georgewill/discovery-meeting', featured: false },
             ].map((tier) => (
               <div key={tier.name} className={`${tier.featured ? 'bg-primary-container border-2 border-primary shadow-[0_20px_50px_rgba(10,25,47,0.5)]' : 'bg-surface border border-outline-variant/30 shadow-xl'} rounded-lg p-lg flex flex-col relative bg-gradient-to-b ${tier.featured ? 'from-primary-container to-primary-container/40' : 'from-surface to-surface-container'}`}>
                 {tier.featured && (
@@ -164,9 +164,9 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-                <Link to="/services" className={`mt-xl w-full py-sm rounded transition-all block text-center ${tier.featured ? 'bg-primary text-on-primary hover:opacity-90' : 'border border-outline-variant hover:bg-surface-variant'}`}>
+                <a href={tier.url} target="_blank" rel="noopener noreferrer" className={`mt-xl w-full py-sm rounded transition-all block text-center ${tier.featured ? 'bg-primary text-on-primary hover:opacity-90' : 'border border-outline-variant hover:bg-surface-variant'}`}>
                   {tier.cta}
-                </Link>
+                </a>
               </div>
             ))}
           </div>
@@ -209,9 +209,9 @@ export default function Services() {
           <h2 className="font-display-xl text-display-xl-mobile md:text-display-xl">Ready to secure your future?</h2>
           <p className="font-body-lg text-on-surface-variant">Let's build a system that grows as fast as your ambitions without breaking under the pressure.</p>
           <div className="pt-lg">
-            <Link to="/services" className="bg-primary text-on-primary px-xl py-md rounded-lg font-headline-md hover:scale-105 transition-transform shadow-lg inline-block">
+            <a href="https://cal.com/praise-georgewill/discovery-meeting" target="_blank" rel="noopener noreferrer" className="bg-primary text-on-primary px-xl py-md rounded-lg font-headline-md hover:scale-105 transition-transform shadow-lg inline-block">
               Schedule Technical Discovery
-            </Link>
+            </a>
           </div>
         </div>
       </section>
