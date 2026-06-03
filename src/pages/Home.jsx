@@ -22,7 +22,13 @@ export default function Home() {
   const [emailModalOpen, setEmailModalOpen] = useState(false)
 
   useEffect(() => {
-    const endpoints = { linkedin: '/api/linkedin/recent', instagram: '/api/instagram/recent', threads: '/api/threads/recent', tiktok: '/api/tiktok/recent' }
+    const apiBase = import.meta.env.VITE_API_BASE || ''
+    const endpoints = {
+      linkedin: `${apiBase}${import.meta.env.VITE_LINKEDIN_ENDPOINT || '/api/linkedin/recent'}`,
+      instagram: `${apiBase}${import.meta.env.VITE_INSTAGRAM_ENDPOINT || '/api/instagram/recent'}`,
+      threads: `${apiBase}${import.meta.env.VITE_THREADS_ENDPOINT || '/api/threads/recent'}`,
+      tiktok: `${apiBase}${import.meta.env.VITE_TIKTOK_ENDPOINT || '/api/tiktok/recent'}`,
+    }
 
     Promise.allSettled(Object.entries(endpoints).map(async ([key, url]) => {
       const res = await fetch(url)
