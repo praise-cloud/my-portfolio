@@ -389,7 +389,13 @@ export default function ProjectDetail() {
             <h2 className="font-display-xl-mobile text-display-xl-mobile mb-md">Ready for a System Overhaul?</h2>
             <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-lg">Don't let legacy debt dictate your growth trajectory. Let's architect a high-integrity solution built for the next decade of scale.</p>
             <div className="flex flex-col md:flex-row gap-md justify-center">
-              <a href="https://cal.com/praise-georgewill/infrastructure-aduit" target="_blank" rel="noopener noreferrer" className="bg-primary text-on-primary px-xl py-md rounded-lg font-headline-md hover:scale-105 active:scale-95 transition-all shadow-[0_10px_30px_rgba(185,199,228,0.2)] inline-block">Schedule Infrastructure Audit</a>
+              <button
+                data-cal-link="praise-georgewill/infrastructure-aduit"
+                data-cal-config='{"theme":"dark"}'
+                className="bg-primary text-on-primary px-xl py-md rounded-lg font-headline-md hover:scale-105 active:scale-95 transition-all shadow-[0_10px_30px_rgba(185,199,228,0.2)] cursor-pointer"
+              >
+                Schedule Infrastructure Audit
+              </button>
               <Link to="/projects" className="border border-primary/30 text-primary px-xl py-md rounded-lg font-headline-md hover:bg-primary/5 transition-all">View All Case Studies</Link>
             </div>
           </div>

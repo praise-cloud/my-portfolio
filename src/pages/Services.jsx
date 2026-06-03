@@ -164,9 +164,13 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-                <a href={tier.url} target="_blank" rel="noopener noreferrer" className={`mt-xl w-full py-sm rounded transition-all block text-center ${tier.featured ? 'bg-primary text-on-primary hover:opacity-90' : 'border border-outline-variant hover:bg-surface-variant'}`}>
+                <button
+                  data-cal-link={tier.url.replace('https://cal.com/', '')}
+                  data-cal-config='{"theme":"dark"}'
+                  className={`mt-xl w-full py-sm rounded transition-all cursor-pointer ${tier.featured ? 'bg-primary text-on-primary hover:opacity-90' : 'border border-outline-variant hover:bg-surface-variant'}`}
+                >
                   {tier.cta}
-                </a>
+                </button>
               </div>
             ))}
           </div>
@@ -209,9 +213,13 @@ export default function Services() {
           <h2 className="font-display-xl text-display-xl-mobile md:text-display-xl">Ready to secure your future?</h2>
           <p className="font-body-lg text-on-surface-variant">Let's build a system that grows as fast as your ambitions without breaking under the pressure.</p>
           <div className="pt-lg">
-            <a href="https://cal.com/praise-georgewill/discovery-meeting" target="_blank" rel="noopener noreferrer" className="bg-primary text-on-primary px-xl py-md rounded-lg font-headline-md hover:scale-105 transition-transform shadow-lg inline-block">
+            <button
+              data-cal-link="praise-georgewill/discovery-meeting"
+              data-cal-config='{"theme":"dark"}'
+              className="bg-primary text-on-primary px-xl py-md rounded-lg font-headline-md hover:scale-105 transition-transform shadow-lg cursor-pointer"
+            >
               Schedule Technical Discovery
-            </a>
+            </button>
           </div>
         </div>
       </section>

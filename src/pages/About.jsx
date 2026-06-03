@@ -131,9 +131,13 @@ export default function About() {
               Your infrastructure deserves an architect who understands the stakes. Let us review your current state and design a system built for the next century.
             </p>
             <div className="flex flex-col md:flex-row gap-md justify-center pt-md">
-              <a href="https://cal.com/praise-georgewill/infrastructure-aduit" target="_blank" rel="noopener noreferrer" className="bg-primary text-on-primary px-xl py-md rounded-lg font-code-label text-code-label hover:opacity-90 transition-all shadow-lg shadow-primary/20 inline-block text-center">
+              <button
+                data-cal-link="praise-georgewill/infrastructure-aduit"
+                data-cal-config='{"theme":"dark"}'
+                className="bg-primary text-on-primary px-xl py-md rounded-lg font-code-label text-code-label hover:opacity-90 transition-all shadow-lg shadow-primary/20 cursor-pointer"
+              >
                 Request Audit
-              </a>
+              </button>
               <Link to="/projects" className="border border-primary/30 text-primary px-xl py-md rounded-lg font-code-label text-code-label hover:bg-primary/10 transition-all inline-block text-center">
                 View System Logs
               </Link>

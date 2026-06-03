@@ -34,14 +34,13 @@ export default function Navbar() {
             )
           })}
         </div>
-        <a
-          href="https://cal.com/praise-georgewill/infrastructure-aduit"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          data-cal-link="praise-georgewill/infrastructure-aduit"
+          data-cal-config='{"theme":"dark"}'
           className="bg-primary text-on-primary px-md py-sm rounded font-code-label text-code-label hover:opacity-90 transition-all active:scale-95"
         >
           Book Audit
-        </a>
+        </button>
       </div>
     </nav>
   )

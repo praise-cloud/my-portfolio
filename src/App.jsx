@@ -1,4 +1,6 @@
+import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { getCalApi } from '@calcom/embed-react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -8,6 +10,16 @@ import ProjectDetail from './pages/ProjectDetail'
 import Services from './pages/Services'
 
 export default function App() {
+  useEffect(() => {
+    (async () => {
+      const cal = await getCalApi({ namespace: 'portfolio' })
+      cal('ui', {
+        styles: { branding: { brandColor: '#b9c7e4' } },
+        hideEventTypeDetails: false,
+      })
+    })()
+  }, [])
+
   return (
     <div className="bg-background text-on-surface font-body-md selection:bg-primary selection:text-primary-container min-h-screen">
       <Navbar />

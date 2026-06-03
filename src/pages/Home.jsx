@@ -199,10 +199,14 @@ export default function Home() {
               I architect resilient, high-availability systems for UK SaaS teams. Scaling your core infrastructure with zero-downtime environments, hardening security, and optimizing for mission-critical observability.
             </p>
             <div className="flex flex-col sm:flex-row gap-md pt-md">
-                <a href="https://cal.com/praise-georgewill/infrastructure-aduit" target="_blank" rel="noopener noreferrer" className="bg-primary text-on-primary px-xl py-md rounded-xl font-headline-md font-bold btn-glow transition-all flex items-center justify-center gap-sm">
+                <button
+                  data-cal-link="praise-georgewill/infrastructure-aduit"
+                  data-cal-config='{"theme":"dark"}'
+                  className="bg-primary text-on-primary px-xl py-md rounded-xl font-headline-md font-bold btn-glow transition-all flex items-center justify-center gap-sm cursor-pointer"
+                >
                   Book Infrastructure Audit
                   <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>arrow_right_alt</span>
-                </a>
+                </button>
               <Link to="/projects" className="border border-outline-variant/30 text-on-surface px-xl py-md rounded-xl font-headline-md font-medium hover:bg-surface-variant hover:border-primary/50 transition-all backdrop-blur-sm">
                 View Systems
               </Link>
@@ -510,10 +514,14 @@ export default function Home() {
             Stop firefighting infrastructure and start engineering products. Build a foundation designed for the next million users.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-md">
-            <a href="https://cal.com/praise-georgewill/discovery-meeting" target="_blank" rel="noopener noreferrer" className="bg-primary text-on-primary px-xl py-md rounded-xl font-headline-md font-bold flex items-center justify-center gap-sm btn-glow transition-all">
+            <button
+              data-cal-link="praise-georgewill/discovery-meeting"
+              data-cal-config='{"theme":"dark"}'
+              className="bg-primary text-on-primary px-xl py-md rounded-xl font-headline-md font-bold flex items-center justify-center gap-sm btn-glow transition-all cursor-pointer"
+            >
               Book Discovery Call
               <span className="material-symbols-outlined">calendar_today</span>
-            </a>
+            </button>
             <button onClick={() => setEmailModalOpen(true)} className="border border-primary/30 text-primary-fixed px-xl py-md rounded-xl font-headline-md font-medium hover:bg-white/5 transition-all cursor-pointer">
               Email Inquiries
             </button>
