@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
+import { CAL_AUDIT } from '../data/cal'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -35,7 +36,7 @@ export default function Navbar() {
           })}
         </div>
         <button
-          data-cal-link="praise-georgewill/infrastructure-aduit"
+          data-cal-link={CAL_AUDIT}
           data-cal-config='{"theme":"dark"}'
           className="bg-primary text-on-primary px-md py-sm rounded font-code-label text-code-label hover:opacity-90 transition-all active:scale-95"
         >

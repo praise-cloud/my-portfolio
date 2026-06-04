@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import { CAL_AUDIT } from '../data/cal'
 import { getProject } from '../data/projects'
 
 export default function ProjectDetail() {
@@ -403,7 +404,7 @@ export default function ProjectDetail() {
             <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-lg">Don't let legacy debt dictate your growth trajectory. Let's architect a high-integrity solution built for the next decade of scale.</p>
             <div className="flex flex-col md:flex-row gap-md justify-center">
               <button
-                data-cal-link="praise-georgewill/infrastructure-aduit"
+                data-cal-link={CAL_AUDIT}
                 data-cal-config='{"theme":"dark"}'
                 className="bg-primary text-on-primary px-xl py-md rounded-lg font-headline-md hover:scale-105 active:scale-95 transition-all shadow-[0_10px_30px_rgba(185,199,228,0.2)] cursor-pointer"
               >

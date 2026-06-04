@@ -1,4 +1,6 @@
 import { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
+import { CAL_AUDIT } from '../data/cal'
 
 export default function About() {
   const gridRef = useRef(null)
@@ -99,18 +101,20 @@ export default function About() {
 
       {/* Timeline */}
       <section className="py-xl px-margin-mobile md:px-xl max-w-container-max mx-auto overflow-hidden">
-        <h2 className="font-headline-lg text-headline-lg text-on-surface text-center mb-xl">The Evolution of the Protocol</h2>
+        <h2 className="font-headline-lg text-headline-lg text-on-surface text-center mb-xl">The Execution Roadmap</h2>
         <div className="relative max-w-4xl mx-auto pl-md md:pl-0">
           <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[1px] bg-outline-variant/30 transform md:-translate-x-1/2"></div>
           {[
-            { year: '2018', label: 'INITIALIZATION', title: 'The Blueprint Phase', desc: 'Establishing the core mathematical frameworks for high-trust digital environments and risk-aware architecture.', align: 'left' },
-            { year: '2021', label: 'SCALE', title: 'Infrastructure Hardening', desc: 'Deployment of the primary resilient nodes across international data centers, achieving 99.999% theoretical uptime.', align: 'right' },
-            { year: '2024', label: 'PRESENT', title: "The Architect's Guild", desc: 'Opening the system to curated high-stakes partners to co-create the next generation of sovereign infrastructure.', align: 'left' },
+            { label: 'PHASE I', title: 'Discovery & Diagnosis', desc: 'We immerse ourselves in your current reality — untangling the confusion, mapping every pain point, auditing your infrastructure, and identifying what is broken, fragile, or blocking your growth.', align: 'left' },
+            { label: 'PHASE II', title: 'Strategic Architecture', desc: 'We design a tailored blueprint that eliminates your issues at the root. Every decision — from network topology to deployment strategy — is engineered to get you exactly where you need to be.', align: 'right' },
+            { label: 'PHASE III', title: 'Build & Deploy', desc: 'We execute with precision. Infrastructure is provisioned, systems are migrated, and the solution is deployed into production — with zero downtime and full observability from day one.', align: 'left' },
+            { label: 'PHASE IV', title: 'Harden & Optimize', desc: 'Security hardening, performance tuning, and resilience testing. We pressure-test every layer so your system withstands real-world traffic, threats, and failure scenarios.', align: 'right' },
+            { label: 'PHASE V', title: 'Launch & Empower', desc: 'We hand over a battle-ready system with complete documentation, runbooks, and knowledge transfer. Your team is empowered, your infrastructure is stable, and you finally have what you set out to build.', align: 'left' },
           ].map((item, i) => (
-            <div key={i} className={`timeline-item relative mb-xl ${item.align === 'right' ? 'md:w-1/2 md:ml-auto md:pl-xl' : 'md:w-1/2 md:pr-xl md:text-right'}`}>
-              <div className={`absolute left-[-12px] md:left-auto top-0 w-6 h-6 rounded-full bg-background border-2 border-primary z-10 ${item.align === 'right' ? 'md:left-[-12px]' : 'md:right-[-12px]'}`}></div>
+            <div key={i} className={`timeline-item relative mb-xl ${i % 2 === 1 ? 'md:w-1/2 md:ml-auto md:pl-xl' : 'md:w-1/2 md:pr-xl md:text-right'}`}>
+              <div className={`absolute left-[-12px] md:left-auto top-0 w-6 h-6 rounded-full bg-background border-2 border-primary z-10 ${i % 2 === 1 ? 'md:left-[-12px]' : 'md:right-[-12px]'}`}></div>
               <div className="bg-surface-container-high p-md rounded-lg border border-outline-variant/10 hover:border-primary/30 transition-all">
-                <span className="font-technical-sm text-technical-sm text-primary">{item.year} &mdash; {item.label}</span>
+                <span className="font-technical-sm text-technical-sm text-primary">{item.label}</span>
                 <h4 className="font-headline-md text-headline-md mt-xs">{item.title}</h4>
                 <p className="text-on-surface-variant mt-sm">{item.desc}</p>
               </div>
@@ -132,7 +136,7 @@ export default function About() {
             </p>
             <div className="flex flex-col md:flex-row gap-md justify-center pt-md">
               <button
-                data-cal-link="praise-georgewill/infrastructure-aduit"
+                data-cal-link={CAL_AUDIT}
                 data-cal-config='{"theme":"dark"}'
                 className="bg-primary text-on-primary px-xl py-md rounded-lg font-code-label text-code-label hover:opacity-90 transition-all shadow-lg shadow-primary/20 cursor-pointer"
               >

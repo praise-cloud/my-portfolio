@@ -12,7 +12,7 @@ import Services from './pages/Services'
 export default function App() {
   useEffect(() => {
     (async () => {
-      const cal = await getCalApi({ namespace: 'portfolio' })
+      const cal = await getCalApi()
       cal('ui', {
         styles: { branding: { brandColor: '#b9c7e4' } },
         hideEventTypeDetails: false,

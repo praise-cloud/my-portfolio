@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { CAL_DISCOVERY } from '../data/cal'
 import StackOpsModal from '../components/StackOpsModal'
 
 export default function Projects() {
@@ -207,7 +208,7 @@ export default function Projects() {
             </p>
             <div className="flex flex-col md:flex-row gap-md justify-center">
               <button
-                data-cal-link="praise-georgewill/discovery-meeting"
+                data-cal-link={CAL_DISCOVERY}
                 data-cal-config='{"theme":"dark"}'
                 className="bg-primary text-on-primary px-xl py-base rounded-lg font-code-label text-sm hover:brightness-110 transition-all shadow-[0_0_20px_rgba(185,199,228,0.3)] cursor-pointer"
               >

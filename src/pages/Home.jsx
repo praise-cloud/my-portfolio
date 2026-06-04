@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { CAL_AUDIT, CAL_DISCOVERY } from '../data/cal'
 import EmailModal from '../components/EmailModal'
 
 const terminalLines = [
@@ -206,7 +207,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-md pt-md">
                 <button
-                  data-cal-link="praise-georgewill/infrastructure-aduit"
+                  data-cal-link={CAL_AUDIT}
                   data-cal-config='{"theme":"dark"}'
                   className="bg-primary text-on-primary px-xl py-md rounded-xl font-headline-md font-bold btn-glow transition-all flex items-center justify-center gap-sm cursor-pointer"
                 >
@@ -530,7 +531,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-md">
             <button
-              data-cal-link="praise-georgewill/discovery-meeting"
+              data-cal-link={CAL_DISCOVERY}
               data-cal-config='{"theme":"dark"}'
               className="bg-primary text-on-primary px-xl py-md rounded-xl font-headline-md font-bold flex items-center justify-center gap-sm btn-glow transition-all cursor-pointer"
             >

@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import ServiceModal from '../components/ServiceModal'
+import { CAL_DISCOVERY, CAL_DISCOVERY_URL, CAL_AUDIT_URL } from '../data/cal'
 
 const auditData = {
   label: 'AUDIT_SCOPE',
   title: 'Audit Scope Breakdown',
   icon: 'query_stats',
-  calLink: 'praise-georgewill/discovery-meeting',
+  calLink: CAL_DISCOVERY,
   process: [
     { title: 'Tech Stack Inventory', desc: 'Comprehensive mapping of your entire technology stack — every service, dependency, and integration catalogued with versioning and configuration state.' },
     { title: 'Bottleneck Identification', desc: 'Load testing and profiling to pinpoint performance ceilings, database lock contention, and network saturation points across all environments.' },
@@ -32,7 +33,7 @@ const optimizationData = {
   label: 'OPT_FRAMEWORK',
   title: 'Optimization Framework',
   icon: 'bolt',
-  calLink: 'praise-georgewill/discovery-meeting',
+  calLink: CAL_DISCOVERY,
   process: [
     { title: 'Baseline Performance Analysis', desc: 'Establishing current-state benchmarks for CPU, memory, disk I/O, network throughput, and application response times under varying loads.' },
     { title: 'Auto-Scaling Configuration', desc: 'Implementing predictive and reactive auto-scaling rules tailored to your traffic patterns, with pre-warming for flash traffic events.' },
@@ -59,7 +60,7 @@ const deployData = {
   label: 'DEPLOY_ROADMAP',
   title: 'Full System Deployment Roadmap',
   icon: 'deployed_code',
-  calLink: 'praise-georgewill/discovery-meeting',
+  calLink: CAL_DISCOVERY,
   process: [
     { title: 'Weeks 1-2: Discovery & Assessment', desc: 'Deep-dive into your current architecture, business goals, traffic patterns, and pain points. Stakeholder interviews and technical workshops.' },
     { title: 'Weeks 3-4: Architecture Design', desc: 'High-level and low-level architecture blueprints. Technology selection, network topology, security model, and migration strategy documented and reviewed.' },
@@ -104,9 +105,13 @@ export default function Services() {
                 A definitive systems architecture framework designed for high-stakes digital environments. Zero downtime. Infinite scale. Guaranteed security.
               </p>
               <div className="flex flex-wrap gap-md pt-md">
-                <Link to="/services" className="bg-primary text-on-primary px-lg py-sm rounded-lg font-headline-md hover:shadow-[0_0_20px_rgba(185,199,228,0.4)] transition-all inline-block">
+                <button
+                  data-cal-link={CAL_DISCOVERY}
+                  data-cal-config='{"theme":"dark"}'
+                  className="bg-primary text-on-primary px-lg py-sm rounded-lg font-headline-md hover:shadow-[0_0_20px_rgba(185,199,228,0.4)] transition-all inline-block cursor-pointer"
+                >
                   Initialize Audit
-                </Link>
+                </button>
                 <Link to="/about" className="border border-outline-variant text-on-surface px-lg py-sm rounded-lg font-headline-md hover:border-primary hover:text-primary transition-all inline-block">
                   View Roadmap
                 </Link>
@@ -224,9 +229,9 @@ export default function Services() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-lg">
             {[
-              { name: 'Deep Audit', price: '$4,900', unit: '/flat fee', tag: 'Foundation', features: ['Tech Stack Inventory', 'Bottleneck Identification', 'SLA Risk Assessment', 'Security Vector Analysis'], cta: 'Select Tier', url: 'https://cal.com/praise-georgewill/infrastructure-aduit', featured: false },
-              { name: 'Full Optimization', price: '$12,500', unit: '/module', tag: 'Accelerate', features: ['Auto-Scaling Config', 'IaC Foundation', 'Database Performance Tuning', 'Shield V1 Integration'], cta: 'Select Tier', url: 'https://cal.com/praise-georgewill/infrastructure-aduit', featured: true },
-              { name: 'Grand Slam Shield', price: 'Custom', unit: '/tailored', tag: 'The Shield', features: ['24/7 Incident Response', 'Zero-Trust Migration', 'Compliance Hardening (ISO/SOC2)', 'Full Risk Shield Guarantee'], cta: 'Request Quote', url: 'https://cal.com/praise-georgewill/discovery-meeting', featured: false },
+              { name: 'Deep Audit', price: '$4,900', unit: '/flat fee', tag: 'Foundation', features: ['Tech Stack Inventory', 'Bottleneck Identification', 'SLA Risk Assessment', 'Security Vector Analysis'], cta: 'Select Tier', url: CAL_AUDIT_URL, featured: false },
+              { name: 'Full Optimization', price: '$12,500', unit: '/module', tag: 'Accelerate', features: ['Auto-Scaling Config', 'IaC Foundation', 'Database Performance Tuning', 'Shield V1 Integration'], cta: 'Select Tier', url: CAL_AUDIT_URL, featured: true },
+              { name: 'Grand Slam Shield', price: 'Custom', unit: '/tailored', tag: 'The Shield', features: ['24/7 Incident Response', 'Zero-Trust Migration', 'Compliance Hardening (ISO/SOC2)', 'Full Risk Shield Guarantee'], cta: 'Request Quote', url: CAL_DISCOVERY_URL, featured: false },
             ].map((tier) => (
               <div key={tier.name} className={`${tier.featured ? 'bg-primary-container border-2 border-primary shadow-[0_20px_50px_rgba(10,25,47,0.5)]' : 'bg-surface border border-outline-variant/30 shadow-xl'} rounded-lg p-lg flex flex-col relative bg-gradient-to-b ${tier.featured ? 'from-primary-container to-primary-container/40' : 'from-surface to-surface-container'}`}>
                 {tier.featured && (
@@ -298,7 +303,7 @@ export default function Services() {
           <p className="font-body-lg text-on-surface-variant">Let's build a system that grows as fast as your ambitions without breaking under the pressure.</p>
           <div className="pt-lg">
             <button
-              data-cal-link="praise-georgewill/discovery-meeting"
+              data-cal-link={CAL_DISCOVERY}
               data-cal-config='{"theme":"dark"}'
               className="bg-primary text-on-primary px-xl py-md rounded-lg font-headline-md hover:scale-105 transition-transform shadow-lg cursor-pointer"
             >

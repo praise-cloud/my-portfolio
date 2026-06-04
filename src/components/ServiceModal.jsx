@@ -84,9 +84,9 @@ export default function ServiceModal({ isOpen, onClose, label, title, icon, proc
               <span className="material-symbols-outlined text-primary">analytics</span>
               <h3 className="font-headline-md text-on-surface">Business Impact</h3>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-md">
+            <div className="flex flex-col gap-md">
               {impact.map((im, i) => (
-                <div key={i} className="text-center p-md rounded-lg bg-surface-container-low border border-outline-variant/10">
+                <div key={i} className=" p-md rounded-lg bg-surface-container-low border border-outline-variant/10">
                   <div className="font-display-xl text-display-xl-mobile text-primary font-black tracking-tighter">{im.value}</div>
                   <div className="font-code-label text-[10px] text-outline uppercase tracking-wider mt-xs">{im.label}</div>
                   <p className="font-body-md text-xs text-on-surface-variant mt-sm">{im.desc}</p>
@@ -101,6 +101,7 @@ export default function ServiceModal({ isOpen, onClose, label, title, icon, proc
           <button
             data-cal-link={calLink}
             data-cal-config='{"theme":"dark"}'
+            onClick={onClose}
             className="w-full bg-primary text-on-primary py-[14px] rounded-lg font-headline-md hover:shadow-[0_0_20px_rgba(185,199,228,0.25)] transition-all active:scale-[0.98] flex items-center justify-center gap-sm cursor-pointer"
           >
             Book Discovery Call
