@@ -1,29 +1,28 @@
 const tools = [
-  { name: 'AWS', icon: 'cloud', category: 'Cloud' },
-  { name: 'Linux', icon: 'terminal', category: 'OS' },
-  { name: 'Bash', icon: 'terminal', category: 'Scripting' },
-  { name: 'Go', icon: 'code', category: 'Languages' },
-  { name: 'Python', icon: 'code', category: 'Languages' },
-  { name: 'Terraform', icon: 'deployed_code', category: 'IaC' },
-  { name: 'Docker', icon: 'view_in_ar', category: 'Containers' },
-  { name: 'Kubernetes', icon: 'hub', category: 'Containers' },
-  { name: 'Figma', icon: 'draw', category: 'Design' },
-  { name: 'Notion', icon: 'description', category: 'Productivity' },
-  { name: 'Prometheus', icon: 'monitoring', category: 'Observability' },
-  { name: 'Grafana', icon: 'monitoring', category: 'Observability' },
-  { name: 'PostgreSQL', icon: 'database', category: 'Databases' },
-  { name: 'CI/CD', icon: 'cycle', category: 'Automation' },
-  { name: 'Git', icon: 'commit', category: 'Version Control' },
-  { name: 'Tailwind CSS', icon: 'style', category: 'Frontend' },
-  { name: 'React', icon: 'code', category: 'Frontend' },
-  { name: 'Vite', icon: 'bolt', category: 'Frontend' },
-]
+  { name: "AWS", icon: "cloud", category: "Cloud" },
+  { name: "Linux", icon: "terminal", category: "OS" },
+  { name: "Bash", icon: "terminal", category: "Scripting" },
+  { name: "Go", icon: "code", category: "Languages" },
+  { name: "Python", icon: "code", category: "Languages" },
+  { name: "Terraform", icon: "deployed_code", category: "IaC" },
+  { name: "Docker", icon: "view_in_ar", category: "Containers" },
+  { name: "Kubernetes", icon: "hub", category: "Containers" },
+  { name: "Notion", icon: "description", category: "Productivity" },
+  { name: "Prometheus", icon: "monitoring", category: "Observability" },
+  { name: "Grafana", icon: "monitoring", category: "Observability" },
+  { name: "PostgreSQL", icon: "database", category: "Databases" },
+  { name: "CI/CD", icon: "cycle", category: "Automation" },
+  { name: "Git", icon: "commit", category: "Version Control" },
+];
 
 export default function StackOpsModal({ isOpen, onClose }) {
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-md" onClick={onClose}>
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-md"
+      onClick={onClose}
+    >
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
       <div
         className="relative z-10 w-full max-w-2xl bg-surface-container border border-outline-variant/20 rounded-2xl shadow-2xl animate-[fadeIn_0.2s_ease-out] overflow-hidden"
@@ -40,9 +39,13 @@ export default function StackOpsModal({ isOpen, onClose }) {
             <div className="space-y-xs">
               <div className="flex items-center gap-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-                <span className="font-code-label text-[10px] text-primary uppercase tracking-[0.3em]">STACK_INVENTORY</span>
+                <span className="font-code-label text-[10px] text-primary uppercase tracking-[0.3em]">
+                  STACK_INVENTORY
+                </span>
               </div>
-              <h2 className="font-headline-md text-on-surface">Tooling &amp; Technology Stack</h2>
+              <h2 className="font-headline-md text-on-surface">
+                Tooling &amp; Technology Stack
+              </h2>
             </div>
             <button
               onClick={onClose}
@@ -54,7 +57,7 @@ export default function StackOpsModal({ isOpen, onClose }) {
         </div>
 
         {/* Body */}
-        <div className="p-xl max-h-[60vh] overflow-y-auto">
+        <div className="p-md max-h-[60vh] overflow-y-auto">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-md">
             {tools.map((t) => (
               <div
@@ -62,11 +65,17 @@ export default function StackOpsModal({ isOpen, onClose }) {
                 className="flex items-center gap-sm p-sm rounded-lg border border-outline-variant/10 bg-surface-container-low hover:border-primary/30 hover:bg-surface-container transition-all group"
               >
                 <div className="w-8 h-8 rounded border border-outline-variant/20 bg-surface flex items-center justify-center flex-shrink-0 group-hover:border-primary/30 transition-colors">
-                  <span className="material-symbols-outlined text-primary text-base">{t.icon}</span>
+                  <span className="material-symbols-outlined text-primary text-base">
+                    {t.icon}
+                  </span>
                 </div>
                 <div className="min-w-0">
-                  <div className="font-code-label text-sm text-on-surface truncate">{t.name}</div>
-                  <div className="font-technical-sm text-[10px] text-outline uppercase tracking-wider">{t.category}</div>
+                  <div className="font-code-label text-sm text-on-surface truncate">
+                    {t.name}
+                  </div>
+                  <div className="font-technical-sm text-[10px] text-outline uppercase tracking-wider truncate">
+                    {t.category}
+                  </div>
                 </div>
               </div>
             ))}
@@ -74,11 +83,12 @@ export default function StackOpsModal({ isOpen, onClose }) {
 
           <div className="mt-xl pt-lg border-t border-outline-variant/10 text-center">
             <span className="font-technical-sm text-[10px] text-outline uppercase tracking-widest">
-              Total: <span className="text-primary">{tools.length}</span> tools &mdash; Continuously evolving
+              Total: <span className="text-primary">{tools.length}</span> tools
+              &mdash; Continuously evolving
             </span>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

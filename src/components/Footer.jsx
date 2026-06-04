@@ -16,12 +16,11 @@ export default function Footer() {
           <Link className="text-on-surface-variant font-technical-sm text-technical-sm hover:text-primary underline decoration-primary/30 transition-all" to="/services">Security</Link>
           <Link className="text-on-surface-variant font-technical-sm text-technical-sm hover:text-primary underline decoration-primary/30 transition-all" to="/about">Risk Management</Link>
         </div>
-        <div className="flex flex-col gap-xs">
+        {/* <div className="flex flex-col gap-xs">
           <div className="font-code-label text-code-label text-on-surface mb-sm">Governance</div>
           <span className="text-on-surface-variant font-technical-sm text-technical-sm hover:text-primary underline decoration-primary/30 transition-all cursor-pointer">Privacy</span>
-          <span className="text-on-surface-variant font-technical-sm text-technical-sm hover:text-primary underline decoration-primary/30 transition-all cursor-pointer">Terms</span>
-          <span className="text-on-surface-variant font-technical-sm text-technical-sm hover:text-primary underline decoration-primary/30 transition-all cursor-pointer">API</span>
-        </div>
+          <span className="text-on-surface-variant font-technical-sm text-technical-sm hover:text-primary underline decoration-primary/30 transition-all cursor-pointer">Terms</span> */}
+        {/* </div> */}
       </div>
     </footer>
   )
