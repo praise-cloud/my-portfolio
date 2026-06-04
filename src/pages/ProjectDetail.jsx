@@ -202,7 +202,7 @@ export default function ProjectDetail() {
                     {phase.steps.map((step, j) => (
                       <div key={j}>
                         <div className={`absolute ${j === 0 ? 'top-0' : j === phase.steps.length - 1 ? 'bottom-0' : 'top-1/2'} -left-1.5 w-3 h-3 ${j === 0 ? 'bg-primary rounded-full' : 'bg-primary/30 border border-primary rounded-full'}`}></div>
-                        <div className="pl-8" style={{ paddingTop: j === 0 ? '0' : j === 1 ? '4rem' : '8rem' }}>
+                        <div className="pl-8" style={{ paddingTop: j === 0 ? '0' : j === 1 ? '5rem' : '4rem' }}>
                           <div className="text-technical-sm text-on-surface-variant opacity-60">{step}</div>
                         </div>
                       </div>
@@ -410,7 +410,7 @@ export default function ProjectDetail() {
               >
                 Schedule Infrastructure Audit
               </button>
-              <Link to="/projects" className="border border-primary/30 text-primary px-xl py-md rounded-lg font-headline-md hover:bg-primary/5 transition-all">View All Case Studies</Link>
+              <Link to="/projects#extended-deployment-inventory" className="border border-primary/30 text-primary px-xl py-md rounded-lg font-headline-md hover:bg-primary/5 transition-all">View All Case Studies</Link>
             </div>
           </div>
         </div>

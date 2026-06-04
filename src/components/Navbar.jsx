@@ -1,12 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { CAL_AUDIT } from '../data/cal'
-
-const links = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
-  { to: '/projects', label: 'Projects' },
-  { to: '/services', label: 'Services' },
-]
+import links from '../data/navigation'
 
 export default function Navbar() {
   const { pathname } = useLocation()

@@ -1,10 +1,21 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { CAL_DISCOVERY } from '../data/cal'
 import StackOpsModal from '../components/StackOpsModal'
+import { projectGridCards, metricBars } from '../data/projectsGrid'
 
 export default function Projects() {
+  const { hash } = useLocation()
   const [stackModalOpen, setStackModalOpen] = useState(false)
+
+  useEffect(() => {
+    if (hash) {
+      const el = document.querySelector(hash)
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100)
+      }
+    }
+  }, [hash])
   return (
     <div>
       <style>{`
@@ -100,15 +111,8 @@ export default function Projects() {
           </div>
 
           {/* Project Grid - each card is clickable */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
-            {[
-              { slug: 'edge-computing-mesh', id: 'EM-202', title: 'Edge-Computing Mesh', icon: 'hub', desc: 'Decentralized compute layer for real-time telemetry processing. Reduced backhaul congestion by 65% across 200+ global edge points.', metric: '99.9% UPTIME', github: 'edge-computing-mesh' },
-              { slug: 'cloud-native-core-migration', id: 'CN-441', title: 'Cloud-Native Core Migration', icon: 'cloud_sync', desc: 'Transitioning monolithic legacy insurance cores to K8s-orchestrated microservices. Zero-downtime cutover achieved for 12M users.', metric: 'K8S_OPTIMIZED', github: 'cloud-native-core-migration' },
-              { slug: 'high-availability-auth', id: 'HA-882', title: 'High-Availability Auth Service', icon: 'security', desc: 'Global identity provider architecture with multi-region failover. Handles 50k requests/second with <10ms p99 latency.', metric: '50K_RPS_LOAD', github: 'high-availability-auth' },
-              { slug: 'zero-trust-network-mesh', id: 'ZT-109', title: 'Zero-Trust Network Mesh', icon: 'lock', desc: 'Implementation of granular IAM policies across distributed infrastructure nodes using micro-segmentation.', metric: 'SEC_LEVEL_04', github: 'zero-trust-network-mesh' },
-              { slug: 'post-quantum-database', id: 'QM-773', title: 'Post-Quantum Database', icon: 'database', desc: 'Large-scale data migration to PQC-hardened storage volumes. Verified data integrity through automated audit cycles.', metric: 'QUANTUM_READY', github: 'post-quantum-database' },
-              { slug: 'auto-scaling-optimizer', id: 'AO-332', title: 'Auto-Scaling Optimizer', icon: 'trending_up', desc: 'AI-driven resource allocation logic for multi-cloud deployments. Reduced monthly compute costs by 28%.', metric: '-28%_OPEX', github: 'auto-scaling-optimizer' },
-            ].map((p) => (
+          <div id="extended-deployment-inventory" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg scroll-mt-20">
+            {projectGridCards.map((p) => (
               <Link key={p.id} to={`/project/${p.slug}`} className="bg-surface-container-low border border-outline-variant/40 p-lg rounded-lg flex flex-col hover:border-primary/30 transition-all group">
                 <div className="mb-lg flex justify-between items-start">
                   <div>
@@ -165,11 +169,7 @@ export default function Projects() {
             </div>
           </div>
           <div className="space-y-xl mt-lg">
-            {[
-              { label: 'Auto-Scaling Latency', icon: 'speed', current: '120ms (Current)', legacy: '850ms (Legacy)', width: '15%' },
-              { label: 'Compute Efficiency', icon: 'memory', current: '94.2% [PEAK_LOAD]', legacy: 'Legacy: 42%', width: '94%' },
-              { label: 'Security Surface', icon: 'security', current: 'Reduced -92.4% Area', legacy: 'MINIMIZED_EXPOSURE', width: '8%' },
-            ].map((m) => (
+            {metricBars.map((m) => (
               <div key={m.label} className="grid grid-cols-1 md:grid-cols-4 gap-md items-center group">
                 <div className="font-code-label text-xs uppercase text-on-surface-variant flex items-center gap-2">
                   <span className="material-symbols-outlined text-sm opacity-50">{m.icon}</span>

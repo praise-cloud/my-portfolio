@@ -10,12 +10,12 @@ export default function Footer() {
             &copy; 2024 PRAISE GEORGEWILL. ARCHITECTURAL INTEGRITY GUARANTEED.
           </div>
         </div>
-        <div className="flex flex-col gap-xs">
+        {/* <div className="flex flex-col gap-xs">
           <div className="font-code-label text-code-label text-on-surface mb-sm">Protocol</div>
           <Link className="text-on-surface-variant font-technical-sm text-technical-sm hover:text-primary underline decoration-primary/30 transition-all" to="/">Infrastructure</Link>
           <Link className="text-on-surface-variant font-technical-sm text-technical-sm hover:text-primary underline decoration-primary/30 transition-all" to="/services">Security</Link>
           <Link className="text-on-surface-variant font-technical-sm text-technical-sm hover:text-primary underline decoration-primary/30 transition-all" to="/about">Risk Management</Link>
-        </div>
+        </div> */}
         {/* <div className="flex flex-col gap-xs">
           <div className="font-code-label text-code-label text-on-surface mb-sm">Governance</div>
           <span className="text-on-surface-variant font-technical-sm text-technical-sm hover:text-primary underline decoration-primary/30 transition-all cursor-pointer">Privacy</span>

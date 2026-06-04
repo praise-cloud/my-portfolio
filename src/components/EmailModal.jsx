@@ -33,7 +33,7 @@ export default function EmailModal({ isOpen, onClose }) {
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-md" onClick={onClose}>
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
       <div
-        className="relative z-10 w-full max-w-lg bg-surface-container border border-outline-variant/20 rounded-2xl shadow-2xl animate-[fadeIn_0.2s_ease-out] overflow-hidden"
+        className="relative z-10 w-full max-w-xl bg-surface-container border border-outline-variant/20 rounded-2xl shadow-2xl animate-[fadeIn_0.2s_ease-out] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Corner accents */}
@@ -62,9 +62,9 @@ export default function EmailModal({ isOpen, onClose }) {
         </div>
 
         {/* Body */}
-        <div className="p-xl">
+        <div className="p-lg ">
           {state.status === 'success' ? (
-            <div className="text-center py-lg space-y-md">
+            <div className="text-center py-md space-y-sm">
               <div className="w-16 h-16 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto">
                 <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
               </div>

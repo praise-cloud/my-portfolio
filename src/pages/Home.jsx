@@ -2,19 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CAL_AUDIT, CAL_DISCOVERY } from '../data/cal'
 import EmailModal from '../components/EmailModal'
-
-const terminalLines = [
-  "[INFO] Initiating global load distribution...",
-  "[SYNC] Syncing Database Clusters: [10/10] NODES READY",
-  "[SEC] Hardening Layer 7: WAF RULES INJECTED",
-  "[MON] Egress Traffic: 1.2 GB/s - STABLE",
-  "[AUTH] Verified Access Token: PRD_CLUSTER_ADMIN",
-  "[OPT] Auto-scaling group: SPINNING UP REGION_EU_WEST_1",
-  "[LOG] Latency check: 12ms average across London/Dublin",
-  "[ALERT] Potential anomalous traffic detected... Filtered.",
-  "[SYSTEM] Re-routing traffic to redundant nodes.",
-  "[STATUS] High availability protocol: ACTIVE"
-]
+import { terminalLines, vulnerabilityCards, methodologyCards, performanceBars } from '../data/home'
 
 export default function Home() {
   const terminalRef = useRef(null)
@@ -236,11 +224,7 @@ export default function Home() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-            {[
-              { vuln: 'VULNERABILITY_01', title: 'Unstable Uptime', icon: 'cloud_off', desc: 'Monolithic bottlenecks create single points of failure. Every millisecond of downtime translates to direct revenue erosion.', metric: '99.0%', metricClass: 'text-error/80', metricLabel: 'SLA_CURRENT' },
-              { vuln: 'VULNERABILITY_02', title: 'Data Exposure', icon: 'encrypted', desc: 'Loose permissions and unencrypted PII pipelines failing to meet GDPR/ISO compliance during rapid user acquisition.', metric: '42%', metricClass: 'text-on-surface', metricLabel: 'RISK_FACTOR' },
-              { vuln: 'VULNERABILITY_03', title: 'Cloud Bloat', icon: 'payments', desc: 'Inefficient resource allocation and unmonitored egress costs draining margins without contributing to system performance.', metric: '3.2x', metricClass: 'text-primary', metricLabel: 'COST_OVERRUN' },
-            ].map((card) => (
+            {vulnerabilityCards.map((card) => (
               <div key={card.vuln} className="reveal dashboard-card p-lg rounded-2xl group transition-all relative">
                 <div className="absolute top-md right-md text-primary/20 group-hover:text-primary transition-colors">
                   <span className="material-symbols-outlined text-4xl tech-pulse">{card.icon}</span>
@@ -273,11 +257,7 @@ export default function Home() {
             <h2 className="font-display-xl text-display-xl-mobile md:text-headline-lg text-on-surface">Precision Systems Engineering.</h2>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-xl mb-xl">
-            {[
-              { icon: 'architecture', title: '01 / Architect', desc: 'Building blue-printed infrastructure that abstracts complexity and allows for 10x horizontal scaling with zero architectural debt.' },
-              { icon: 'verified_user', title: '02 / Shield', desc: 'Implementing multi-layer defense-in-depth, automated secret management, and immutable audit trails across your entire stack.' },
-              { icon: 'trending_up', title: '03 / Scale', desc: 'Codifying infrastructure via Terraform/CDK. Deployment cycles become predictable, repeatable, and human-error resistant.' },
-            ].map((m) => (
+            {methodologyCards.map((m) => (
               <div key={m.title} className="reveal flex flex-col items-center text-center group">
                 <div className="w-24 h-24 rounded-full border border-primary/20 bg-primary/5 flex items-center justify-center mb-md glow-premium group-hover:border-primary/50 transition-all duration-500 relative">
                   <span className="material-symbols-outlined text-primary text-4xl tech-pulse">{m.icon}</span>
@@ -301,11 +281,7 @@ export default function Home() {
                   <h4 className="font-code-label text-on-surface uppercase tracking-widest text-sm">Target System Performance</h4>
                 </div>
                 <div className="space-y-md">
-                  {[
-                    { label: 'SYSTEM_RESILIENCE', value: '98% OPTIMIZED', cls: 'resilience' },
-                    { label: 'SEC_LATENCY_THRESHOLD', value: '12ms AVERAGE', cls: 'latency' },
-                    { label: 'COMPUTE_EFFICIENCY', value: '92% UTILIZATION', cls: 'efficiency' },
-                  ].map((bar) => (
+                  {performanceBars.map((bar) => (
                     <div key={bar.cls}>
                       <div className="flex justify-between font-code-label text-[10px] mb-xs tracking-widest text-outline">
                         <span>{bar.label}</span>

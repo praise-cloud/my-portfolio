@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { CAL_AUDIT } from '../data/cal'
+import { philosophyCards, timelineItems } from '../data/about'
 
 export default function About() {
   const gridRef = useRef(null)
@@ -60,11 +61,11 @@ export default function About() {
             </p>
           </div>
           <div className="md:col-span-5 relative mt-lg md:mt-0">
-            <div className="aspect-[4/5] rounded-lg overflow-hidden border border-outline-variant/30 bg-surface-container-high relative">
-              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/10 to-surface-container-high">
-                <span className="material-symbols-outlined text-primary/30 text-8xl">person</span>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+            <div className="aspect-[4/5] rounded-lg overflow-hidden border border-primary/20 bg-surface-container-high relative group">
+              <img src="/praise.jpg" alt="Praise Georgewill" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+              <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(185,199,228,0.5) 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 shadow-[inset_0_0_40px_rgba(185,199,228,0.1)] pointer-events-none"></div>
             </div>
             <div className="absolute -top-4 -right-4 w-24 h-24 border-t border-r border-primary/40"></div>
             <div className="absolute -bottom-4 -left-4 font-technical-sm text-technical-sm text-primary/40 rotate-90 origin-left">SYSTEM_BUILDER_V2.04</div>
@@ -82,11 +83,7 @@ export default function About() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-          {[
-            { icon: 'architecture', title: 'Architectural Integrity', id: '001_INTEGRITY', desc: 'Every node, every line of code, and every process must serve the whole. We reject technical debt in favor of structural soundness that scales infinitely.' },
-            { icon: 'security', title: 'Operational Resilience', id: '002_RESILIENCE', desc: 'True strength is measured in crisis. Our systems are engineered to fail gracefully, recover autonomously, and withstand the unexpected with quiet authority.' },
-            { icon: 'visibility', title: 'Long-Term Vision', id: '003_VISION', desc: 'We do not build for the current quarter. We architect systems that remain relevant, secure, and robust for the next decade of technological evolution.' },
-          ].map((p) => (
+          {philosophyCards.map((p) => (
             <div key={p.id} className="group p-md border border-outline-variant/20 bg-surface-container hover:border-primary/50 transition-all duration-500 rounded-lg">
               <div className="mb-lg">
                 <span className="material-symbols-outlined text-primary text-4xl mb-sm">{p.icon}</span>
@@ -100,19 +97,13 @@ export default function About() {
       </section>
 
       {/* Timeline */}
-      <section className="py-xl px-margin-mobile md:px-xl max-w-container-max mx-auto overflow-hidden">
+      <section className="py-xl px-margin-mobile md:px-xl max-w-container-max mx-auto">
         <h2 className="font-headline-lg text-headline-lg text-on-surface text-center mb-xl">The Execution Roadmap</h2>
         <div className="relative max-w-4xl mx-auto pl-md md:pl-0">
           <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[1px] bg-outline-variant/30 transform md:-translate-x-1/2"></div>
-          {[
-            { label: 'PHASE I', title: 'Discovery & Diagnosis', desc: 'We immerse ourselves in your current reality — untangling the confusion, mapping every pain point, auditing your infrastructure, and identifying what is broken, fragile, or blocking your growth.', align: 'left' },
-            { label: 'PHASE II', title: 'Strategic Architecture', desc: 'We design a tailored blueprint that eliminates your issues at the root. Every decision — from network topology to deployment strategy — is engineered to get you exactly where you need to be.', align: 'right' },
-            { label: 'PHASE III', title: 'Build & Deploy', desc: 'We execute with precision. Infrastructure is provisioned, systems are migrated, and the solution is deployed into production — with zero downtime and full observability from day one.', align: 'left' },
-            { label: 'PHASE IV', title: 'Harden & Optimize', desc: 'Security hardening, performance tuning, and resilience testing. We pressure-test every layer so your system withstands real-world traffic, threats, and failure scenarios.', align: 'right' },
-            { label: 'PHASE V', title: 'Launch & Empower', desc: 'We hand over a battle-ready system with complete documentation, runbooks, and knowledge transfer. Your team is empowered, your infrastructure is stable, and you finally have what you set out to build.', align: 'left' },
-          ].map((item, i) => (
+          {timelineItems.map((item, i) => (
             <div key={i} className={`timeline-item relative mb-xl ${i % 2 === 1 ? 'md:w-1/2 md:ml-auto md:pl-xl' : 'md:w-1/2 md:pr-xl md:text-right'}`}>
-              <div className={`absolute left-[-12px] md:left-auto top-0 w-6 h-6 rounded-full bg-background border-2 border-primary z-10 ${i % 2 === 1 ? 'md:left-[-12px]' : 'md:right-[-12px]'}`}></div>
+              <div className={`absolute top-0 w-6 h-6 rounded-full bg-background border-2 border-primary z-10 ${i % 2 === 1 ? '-left-3' : '-left-3 md:left-auto md:-right-3'}`}></div>
               <div className="bg-surface-container-high p-md rounded-lg border border-outline-variant/10 hover:border-primary/30 transition-all">
                 <span className="font-technical-sm text-technical-sm text-primary">{item.label}</span>
                 <h4 className="font-headline-md text-headline-md mt-xs">{item.title}</h4>
@@ -142,7 +133,7 @@ export default function About() {
               >
                 Request Audit
               </button>
-              <Link to="/projects" className="border border-primary/30 text-primary px-xl py-md rounded-lg font-code-label text-code-label hover:bg-primary/10 transition-all inline-block text-center">
+              <Link to="/project/48-hour-mastery" className="border border-primary/30 text-primary px-xl py-md rounded-lg font-code-label text-code-label hover:bg-primary/10 transition-all inline-block text-center">
                 View System Logs
               </Link>
             </div>
