@@ -10,7 +10,7 @@ export default function StackOpsModal({ isOpen, onClose }) {
     >
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
       <div
-        className="relative z-10 w-full max-w-2xl bg-surface-container border border-outline-variant/20 rounded-2xl shadow-2xl animate-[fadeIn_0.2s_ease-out] overflow-hidden"
+        className="relative z-10 w-full max-w-2xl bg-surface-container border border-outline-variant/20 rounded-2xl shadow-2xl animate-[fadeIn_0.2s_ease-out] overflow-hidden mx-sm md:mx-0"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-primary/30"></div>
@@ -19,7 +19,7 @@ export default function StackOpsModal({ isOpen, onClose }) {
         <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-primary/30"></div>
 
         {/* Header */}
-        <div className="relative px-xl pt-xl pb-lg border-b border-outline-variant/10">
+        <div className="relative px-lg md:px-xl pt-xl pb-lg border-b border-outline-variant/10">
           <div className="flex items-center justify-between">
             <div className="space-y-xs">
               <div className="flex items-center gap-sm">

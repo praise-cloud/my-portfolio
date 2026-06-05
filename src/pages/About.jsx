@@ -46,7 +46,7 @@ export default function About() {
       `}</style>
 
       {/* Hero */}
-      <section className="relative min-h-[819px] flex items-center overflow-hidden px-margin-mobile md:px-xl max-w-container-max mx-auto">
+      <section className="relative min-h-[60vh] md:min-h-[819px] flex items-center overflow-hidden px-margin-mobile md:px-xl max-w-container-max mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter w-full">
           <div className="md:col-span-7 flex flex-col justify-center z-10 space-y-md">
             <div className="flex items-center gap-sm">

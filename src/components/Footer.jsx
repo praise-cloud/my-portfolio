@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export default function Footer() {
   return (
     <footer className="bg-surface-container-lowest border-t border-outline-variant/20">
-      <div className="grid grid-cols-2 md:flex md:justify-between items-start py-lg px-margin-mobile md:px-xl max-w-container-max mx-auto">
+      <div className="flex flex-col md:flex-row md:justify-between items-start gap-lg py-lg px-margin-mobile md:px-xl max-w-container-max mx-auto">
         <div className="col-span-2 md:col-span-1 mb-lg md:mb-0">
           <div className="font-headline-md text-headline-md text-on-surface mb-sm">PRAISE GEORGEWILL</div>
           <div className="font-technical-sm text-technical-sm text-surface-tint">

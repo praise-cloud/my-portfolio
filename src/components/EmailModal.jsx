@@ -33,7 +33,7 @@ export default function EmailModal({ isOpen, onClose }) {
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-md" onClick={onClose}>
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
       <div
-        className="relative z-10 w-full max-w-xl bg-surface-container border border-outline-variant/20 rounded-2xl shadow-2xl animate-[fadeIn_0.2s_ease-out] overflow-hidden"
+        className="relative z-10 w-full max-w-xl bg-surface-container border border-outline-variant/20 rounded-2xl shadow-2xl animate-[fadeIn_0.2s_ease-out] overflow-hidden mx-sm md:mx-0"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Corner accents */}
@@ -43,7 +43,7 @@ export default function EmailModal({ isOpen, onClose }) {
         <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-primary/30"></div>
 
         {/* Header */}
-        <div className="relative px-xl pt-xl pb-lg border-b border-outline-variant/10">
+        <div className="relative px-lg md:px-xl pt-xl pb-lg border-b border-outline-variant/10">
           <div className="flex items-center justify-between">
             <div className="space-y-xs">
               <div className="flex items-center gap-sm">
@@ -62,7 +62,7 @@ export default function EmailModal({ isOpen, onClose }) {
         </div>
 
         {/* Body */}
-        <div className="p-lg ">
+        <div className="p-lg md:p-xl">
           {state.status === 'success' ? (
             <div className="text-center py-md space-y-sm">
               <div className="w-16 h-16 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto">
@@ -161,7 +161,7 @@ export default function EmailModal({ isOpen, onClose }) {
               )}
 
               {/* Actions */}
-              <div className="flex gap-md pt-sm">
+              <div className="flex flex-col sm:flex-row gap-md pt-sm">
                 <button
                   type="submit"
                   disabled={state.status === 'sending'}

@@ -103,7 +103,7 @@ export default function ProjectDetail() {
       `}</style>
 
       {/* Hero */}
-      <section className="relative min-h-[921px] flex flex-col justify-center px-margin-mobile md:px-xl max-w-container-max mx-auto overflow-hidden">
+      <section className="relative min-h-[60vh] md:min-h-[921px] flex flex-col justify-center px-margin-mobile md:px-xl max-w-container-max mx-auto overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-10 pointer-events-none"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-lg items-end">
@@ -115,7 +115,7 @@ export default function ProjectDetail() {
             <h1 className="font-display-xl-mobile md:font-display-xl text-display-xl-mobile md:text-display-xl max-w-4xl text-on-surface">{project.title}</h1>
             <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">{project.shortDesc}</p>
           </div>
-          <div className="md:col-span-4 glass-panel p-md rounded-xl space-y-md">
+          <div className="md:col-span-4 glass-panel p-md rounded-xl space-y-md mt-lg md:mt-0">
             <div className="grid grid-cols-2 gap-md border-b border-outline-variant/30 pb-md">
               <div><p className="font-technical-sm text-technical-sm text-outline uppercase">Client</p><p className="font-body-md text-body-md text-on-surface">{project.client}</p></div>
               <div><p className="font-technical-sm text-technical-sm text-outline uppercase">Sector</p><p className="font-body-md text-body-md text-on-surface">{project.sector}</p></div>
@@ -262,18 +262,18 @@ export default function ProjectDetail() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 bg-surface-container text-[10px] font-technical-sm text-primary uppercase border border-primary/20 rounded-full z-10">Cloudfront WAF</div>
               </div>
               <div className="flex flex-col items-center gap-lg">
-                <div className="p-8 border border-primary/40 rounded-2xl bg-primary/5 relative">
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-surface px-4 py-1 border border-primary/40 rounded-full text-[10px] font-technical-sm text-primary uppercase">EKS Cluster v1.28</div>
-                  <div className="flex gap-md">
+                <div className="p-4 md:p-8 border border-primary/40 rounded-2xl bg-primary/5 relative">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-surface px-4 py-1 border border-primary/40 rounded-full text-[10px] font-technical-sm text-primary uppercase whitespace-nowrap">EKS Cluster v1.28</div>
+                  <div className="flex gap-2 md:gap-md">
                     {['token', 'account_balance', 'sync_alt'].map((icon) => (
-                      <div key={icon} className="w-20 h-20 border border-outline-variant/30 rounded flex flex-col items-center justify-center gap-xs">
-                        <span className="material-symbols-outlined text-outline">{icon}</span>
-                        <span className="text-[10px] font-technical-sm uppercase">{icon === 'token' ? 'Auth Node' : icon === 'account_balance' ? 'Ledger' : 'Broker'}</span>
+                      <div key={icon} className="w-14 h-14 md:w-20 md:h-20 border border-outline-variant/30 rounded flex flex-col items-center justify-center gap-xs">
+                        <span className="material-symbols-outlined text-outline text-lg md:text-2xl">{icon}</span>
+                        <span className="text-[8px] md:text-[10px] font-technical-sm uppercase">{icon === 'token' ? 'Auth' : icon === 'account_balance' ? 'Ledger' : 'Broker'}</span>
                       </div>
                     ))}
                   </div>
                 </div>
-                <span className="font-code-label text-on-surface">Compute Mesh (Istio)</span>
+                <span className="font-code-label text-on-surface text-sm md:text-base">Compute Mesh (Istio)</span>
               </div>
               <div className="hidden md:block flex-1 relative h-8">
                 <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 20">
@@ -375,7 +375,7 @@ export default function ProjectDetail() {
       <section className="scroll-reveal py-xl px-margin-mobile md:px-xl max-w-container-max mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-lg">
           <div className="md:col-span-4">
-            <div className="sticky top-24">
+            <div className="md:sticky md:top-24">
               <span className="font-technical-sm text-primary uppercase tracking-widest block mb-xs">Professional Commentary</span>
               <h2 className="font-headline-lg text-headline-lg">Architectural Insights</h2>
               <p className="text-on-surface-variant mt-md">Critical reflections on the migration strategy and long-term system evolution.</p>
