@@ -18,46 +18,61 @@ export default function DirectionSection() {
   ]
 
   return (
-    <section id="direction" className="py-24 md:py-32 bg-paper text-text-on-light border-b border-hairline-light relative overflow-hidden">
-      <div className="max-w-container mx-auto px-4 md:px-8">
-        {/* Editorial Section Header */}
-        <div className="flex items-center gap-3 mb-6">
-          <span className="font-mono text-xs text-blue-600 tracking-mono font-bold">006 // DIRECTION</span>
-          <span className="w-8 h-px bg-hairline-light"></span>
-          <span className="font-mono text-xs text-muted-on-light uppercase tracking-mono">
-            PHILOSOPHY &bull; TRAJECTORY
-          </span>
-        </div>
-
-        {/* Central Editorial Statement */}
-        <div className="max-w-4xl mb-16 md:mb-20">
-          <blockquote className="font-display font-medium text-2xl sm:text-4xl md:text-[2.65rem] leading-[1.25] text-navy-900 tracking-tight">
-            “Everything I care about is a system: infrastructure, teams, companies, economies. I’m starting where I can build proof, in cloud and DevOps, and documenting what I learn about how systems are designed, scaled and operated. The long-term aim is to apply those lessons to building organizations that create <span className="font-serif italic font-normal text-blue-600">lasting value</span>.”
-          </blockquote>
-          
-          <div className="mt-8 flex flex-wrap items-center gap-4 text-xs font-mono text-muted-on-light">
-            <span className="text-navy-900 font-semibold uppercase tracking-mono">— Praise Georgewill</span>
-            <span>&bull;</span>
-            <span>DEVOPS &amp; CLOUD SYSTEMS ENGINEER</span>
-            <span>&bull;</span>
-            <span className="px-2 py-0.5 rounded bg-blue-50 border border-blue-200 text-blue-700">PORTFOLIO OPERATING PHILOSOPHY</span>
+    <section id="direction" className="py-24 md:py-32 bg-paper text-navy-900 border-b-2 border-navy-900 relative select-none">
+      <div className="max-w-container mx-auto px-4 md:px-8 space-y-16">
+        {/* Section Header with Brutalist Stamp */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b-2 border-navy-900">
+          <div className="flex items-center gap-3 font-mono text-xs">
+            <span className="bg-navy-900 text-white font-black px-2 py-0.5 shadow-[2px_2px_0px_#2563EB]">
+              006 // DIRECTION
+            </span>
+            <span className="uppercase tracking-mono font-bold text-navy-900">
+              PHILOSOPHY &bull; TRAJECTORY
+            </span>
+          </div>
+          <div className="font-mono text-xs uppercase text-muted-on-light">
+            [ OPERATING THESIS: SYSTEMS OVER NOISE ]
           </div>
         </div>
 
-        {/* 3 Structural Pillars */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-10 border-t border-hairline-light">
+        {/* Central Brutalist Statement */}
+        <div className="relative bg-white border-2 border-navy-900 shadow-[6px_6px_0px_#0A192F] p-8 md:p-14">
+          {/* Corner Crosshairs */}
+          <span className="absolute -top-3 -left-3 font-mono text-navy-900 font-black text-lg select-none">+</span>
+          <span className="absolute -top-3 -right-3 font-mono text-navy-900 font-black text-lg select-none">+</span>
+          <span className="absolute -bottom-3 -left-3 font-mono text-navy-900 font-black text-lg select-none">+</span>
+          <span className="absolute -bottom-3 -right-3 font-mono text-navy-900 font-black text-lg select-none">+</span>
+
+          <blockquote className="font-display font-black text-2xl sm:text-4xl md:text-5xl leading-[1.12] text-navy-900 tracking-[-0.03em] uppercase">
+            “EVERYTHING I CARE ABOUT IS A SYSTEM: INFRASTRUCTURE, TEAMS, COMPANIES, ECONOMIES. I’M STARTING WHERE I CAN BUILD PROOF, IN CLOUD AND DEVOPS, AND DOCUMENTING WHAT I LEARN ABOUT HOW SYSTEMS ARE DESIGNED, SCALED AND OPERATED. THE LONG-TERM AIM IS TO APPLY THOSE LESSONS TO BUILDING ORGANIZATIONS THAT CREATE{' '}
+            <span className="bg-blue-600 text-white px-2 py-0.5 border border-navy-900 shadow-[3px_3px_0px_#0A192F] inline-block font-serif italic lowercase font-normal">
+              lasting value
+            </span>.”
+          </blockquote>
+
+          <div className="mt-8 pt-6 border-t-2 border-navy-900 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-navy-900 font-bold uppercase">
+            <span>— PRAISE GEORGEWILL // SYSTEMS BUILDER</span>
+            <span className="text-blue-600">[ INDIAN OCEAN / REMOTE GLOBAL ]</span>
+          </div>
+        </div>
+
+        {/* 3 Brutalist Pillar Blocks */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {pillars.map((pillar) => (
             <div
               key={pillar.num}
-              className="bg-white rounded-2xl p-6 md:p-8 border border-hairline-light shadow-xs hover:border-blue-600/40 hover:shadow-sm transition-all"
+              className="bg-white border-2 border-navy-900 p-6 md:p-8 shadow-[5px_5px_0px_#0A192F] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[7px_7px_0px_#0A192F] transition-all relative"
             >
-              <div className="font-mono text-xs font-bold text-blue-600 mb-3">
-                {pillar.num} //
+              <div className="flex justify-between items-center mb-4">
+                <span className="font-mono text-xs font-black text-white bg-blue-600 px-2 py-0.5 border border-navy-900 shadow-[2px_2px_0px_#0A192F]">
+                  PILLAR {pillar.num}
+                </span>
+                <span className="font-mono text-xs text-navy-900 font-bold">&nearr;</span>
               </div>
-              <h3 className="font-display font-bold text-lg md:text-xl text-navy-900 mb-2">
+              <h3 className="font-display font-black text-xl text-navy-900 uppercase tracking-tight mb-2">
                 {pillar.title}
               </h3>
-              <p className="font-body text-sm text-slate-700 leading-relaxed">
+              <p className="font-body text-sm text-slate-700 leading-relaxed font-medium">
                 {pillar.desc}
               </p>
             </div>

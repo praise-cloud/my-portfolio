@@ -44,70 +44,79 @@ export default function ProofOfWorkSection({ onOpenDrawer }) {
   const getStatusBadge = (status) => {
     switch (status) {
       case 'Building':
-        return 'text-amber-400 bg-amber-400/10 border-amber-400/30'
+        return 'text-amber-400 bg-amber-400/10 border-2 border-amber-400 shadow-[2px_2px_0px_#D97706]'
       case 'Deployed':
       case 'Published':
-        return 'text-emerald-400 bg-emerald-400/10 border-emerald-400/30'
+        return 'text-emerald-400 bg-emerald-400/10 border-2 border-emerald-400 shadow-[2px_2px_0px_#059669]'
       default:
-        return 'text-muted-on-dark bg-navy-950 border-hairline-dark'
+        return 'text-muted-on-dark bg-navy-900 border border-white/20'
     }
   }
 
   return (
-    <section id="proof-of-work" className="py-20 md:py-28 bg-navy-900 text-text-on-dark border-b border-hairline-dark relative">
+    <section id="proof-of-work" className="py-20 md:py-28 bg-navy-900 text-white border-b-2 border-white/10 relative select-none">
       <div className="max-w-container mx-auto px-4 md:px-8 space-y-16">
-        {/* Section Header */}
-        <div>
-          <div className="flex items-center gap-3 mb-2">
-            <span className="font-mono text-xs text-blue-400 tracking-mono font-bold">004 // PROOF OF WORK</span>
-            <span className="w-8 h-px bg-hairline-dark"></span>
-            <span className="font-mono text-xs text-muted-on-dark uppercase tracking-mono">
-              SYSTEMS REGISTRY &bull; VERIFIED IMPLEMENTATION
-            </span>
+        {/* Section Header with Brutalist Stamp */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/15">
+          <div>
+            <div className="flex items-center gap-3 mb-2 font-mono text-xs">
+              <span className="bg-blue-600 text-white font-black px-2 py-0.5 shadow-[2px_2px_0px_#060F1D]">
+                004 // PROOF
+              </span>
+              <span className="uppercase tracking-mono font-bold text-blue-400">
+                SYSTEMS REGISTRY &bull; VERIFIED IMPLEMENTATION
+              </span>
+            </div>
+            <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-[-0.03em] uppercase">
+              Production Architectures &amp; Roadmap
+            </h2>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
-            Production Architectures &amp; Roadmap
-          </h2>
-          <p className="font-body text-base text-muted-on-dark mt-2 max-w-xl">
-            Strict verification: status reflects reality. Only deployed systems carry live verified endpoints.
-          </p>
+          <div className="font-mono text-xs uppercase text-muted-on-dark max-w-sm">
+            [ ZERO INVENTED FACTS: ONLY DEPLOYED SYSTEMS CARRY LIVE ENDPOINTS ]
+          </div>
         </div>
 
-        {/* Entry 00 & Roadmap Index List (Ref 4 / Ref 5 Editorial Style) */}
-        <div className="rounded-2xl border border-hairline-dark bg-navy-950/60 backdrop-blur-xl overflow-hidden divide-y divide-hairline-dark">
-          <div className="p-4 bg-navy-950 font-mono text-[11px] text-muted-on-dark uppercase tracking-mono flex justify-between items-center">
-            <span>ROADMAP LOG // ACTIVE BUILDS</span>
-            <span>STATUS CRITERIA: ZERO INVENTED FACTS</span>
+        {/* Roadmap Table: Brutalist Box with Hard Grid & Crosshairs */}
+        <div className="relative bg-navy-950 border-2 border-white/20 shadow-[6px_6px_0px_#2563EB] overflow-hidden">
+          {/* Corner Crosshairs */}
+          <span className="absolute top-1 left-2 font-mono text-blue-400 font-black text-xs select-none">+</span>
+          <span className="absolute top-1 right-2 font-mono text-blue-400 font-black text-xs select-none">+</span>
+
+          <div className="p-4 bg-navy-900 border-b-2 border-white/10 font-mono text-xs text-white uppercase tracking-mono flex flex-wrap justify-between items-center gap-2">
+            <span className="font-bold">[ ROADMAP REGISTRY // ACTIVE AND PLANNED BUILDS ]</span>
+            <span className="text-muted-on-dark text-[10px]">VERIFICATION CRITERIA: PRODUCTION TESTED</span>
           </div>
 
-          {roadmapEntries.map((item) => (
-            <div
-              key={item.id}
-              className="p-5 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors group"
-            >
-              <div className="flex items-start md:items-center gap-4 min-w-0">
-                <span className="font-mono text-xs text-blue-400 font-bold px-2 py-0.5 rounded bg-blue-600/10 border border-blue-400/20">
-                  {item.id}
-                </span>
-                <div className="min-w-0">
-                  <h3 className="font-display font-bold text-base md:text-lg text-white group-hover:text-blue-400 transition-colors">
-                    {item.title}
-                  </h3>
-                  <div
-                    className="font-mono text-xs text-muted-on-dark mt-0.5 truncate"
-                    dangerouslySetInnerHTML={{ __html: item.stack }}
-                  />
+          <div className="divide-y-2 divide-white/10">
+            {roadmapEntries.map((item) => (
+              <div
+                key={item.id}
+                className="p-5 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-white/[0.03] transition-colors group"
+              >
+                <div className="flex items-start md:items-center gap-4 min-w-0">
+                  <span className="font-mono text-xs text-white font-black px-2.5 py-1 bg-blue-600 border border-white/40 shadow-[2px_2px_0px_#060F1D]">
+                    {item.id}
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="font-display font-black text-lg md:text-xl text-white group-hover:text-blue-400 transition-colors uppercase tracking-tight">
+                      {item.title}
+                    </h3>
+                    <div
+                      className="font-mono text-xs text-muted-on-dark mt-1 truncate"
+                      dangerouslySetInnerHTML={{ __html: item.stack }}
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 self-start md:self-auto shrink-0">
+                  <span className="font-mono text-xs text-muted-on-dark font-bold">[ {item.year} ]</span>
+                  <span className={`px-3 py-1 font-mono text-[11px] uppercase font-black ${getStatusBadge(item.status)}`}>
+                    {item.status}
+                  </span>
                 </div>
               </div>
-
-              <div className="flex items-center gap-4 self-start md:self-auto">
-                <span className="font-mono text-xs text-muted-on-dark">{item.year}</span>
-                <span className={`px-2.5 py-0.5 rounded-full font-mono text-[10px] uppercase font-bold border ${getStatusBadge(item.status)}`}>
-                  {item.status}
-                </span>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* 3-Mode Interactive Project Showcase System */}
@@ -118,10 +127,10 @@ export default function ProofOfWorkSection({ onOpenDrawer }) {
         {/* Interactive Topology & Chaos Failover Simulator */}
         <div className="pt-6">
           <div className="mb-6 space-y-1">
-            <span className="font-mono text-xs text-blue-400 uppercase tracking-mono">
-              INTERACTIVE RESILIENCE SIMULATION
+            <span className="font-mono text-xs text-blue-400 uppercase tracking-mono font-bold">
+              [ SIMULATION 01 // RESILIENCE TESTING ]
             </span>
-            <h3 className="font-display font-bold text-2xl text-white">
+            <h3 className="font-display font-black text-2xl md:text-3xl text-white uppercase tracking-tight">
               Autonomous Failover &amp; Auto-Healing Topology
             </h3>
           </div>

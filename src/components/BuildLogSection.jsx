@@ -67,36 +67,34 @@ export default function BuildLogSection() {
   }
 
   return (
-    <section id="build-log" className="py-20 md:py-28 bg-paper text-text-on-light border-b border-hairline-light relative">
+    <section id="build-log" className="py-20 md:py-28 bg-paper text-navy-900 border-b-2 border-navy-900 select-none">
       <div className="max-w-container mx-auto px-4 md:px-8 space-y-12">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-hairline-light">
+        {/* Section Header with Brutalist Stamp */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b-2 border-navy-900">
           <div>
-            <div className="flex items-center gap-3 mb-2">
-              <span className="font-mono text-xs text-blue-600 tracking-mono font-bold">005 // BUILD LOG</span>
-              <span className="w-8 h-px bg-hairline-light"></span>
-              <span className="font-mono text-xs text-muted-on-light uppercase tracking-mono">
-                ENGINEERING NOTES &bull; 4-BLOCK POST-MORTEMS
+            <div className="flex items-center gap-3 mb-2 font-mono text-xs">
+              <span className="bg-navy-900 text-white font-black px-2 py-0.5 shadow-[2px_2px_0px_#2563EB]">
+                005 // LOG
+              </span>
+              <span className="uppercase tracking-mono font-bold text-navy-900">
+                POST-MORTEMS &bull; 4-BLOCK OPERATIONAL RECORDS
               </span>
             </div>
-            <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-navy-900 tracking-tight">
+            <h2 className="font-display font-black text-3xl sm:text-5xl text-navy-900 tracking-[-0.03em] uppercase">
               Operational Notes &amp; Decisive Lessons
             </h2>
-            <p className="font-body text-base text-muted-on-light mt-2 max-w-2xl">
-              Strict 4-block format: What I built, what broke, how I fixed it, and the lasting engineering lesson.
-            </p>
           </div>
 
-          {/* Filter Pills */}
+          {/* Brutalist Filter Buttons */}
           <div className="flex flex-wrap items-center gap-2">
             {tags.map((tag) => (
               <button
                 key={tag}
                 onClick={() => handleTagClick(tag)}
-                className={`px-3 py-1.5 rounded-full font-mono text-xs transition-all ${
+                className={`px-3 py-1.5 font-mono text-xs uppercase font-bold border-2 border-navy-900 transition-all ${
                   selectedTag === tag
-                    ? 'bg-navy-900 text-white shadow-sm font-semibold'
-                    : 'bg-white text-muted-on-light border border-hairline-light hover:border-navy-900/40 hover:text-navy-900'
+                    ? 'bg-navy-900 text-white shadow-[3px_3px_0px_#2563EB]'
+                    : 'bg-white text-navy-900 shadow-[2px_2px_0px_#0A192F] hover:bg-slate-100'
                 }`}
               >
                 {tag}
@@ -105,7 +103,7 @@ export default function BuildLogSection() {
           </div>
         </div>
 
-        {/* 4-Block Editorial Cards */}
+        {/* 4-Block Editorial Cards in Brutalist Style */}
         <div className="space-y-6">
           {filteredArticles.map((article) => {
             const isExpanded = expandedId === article.id
@@ -113,71 +111,60 @@ export default function BuildLogSection() {
             return (
               <div
                 key={article.id}
-                className="bg-white rounded-2xl border border-hairline-light p-6 md:p-8 transition-all hover:shadow-md hover:border-blue-600/30"
+                className="bg-white border-2 border-navy-900 shadow-[6px_6px_0px_#0A192F] p-6 md:p-8 transition-all hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[8px_8px_0px_#0A192F] relative"
               >
+                {/* Corner Crosshairs */}
+                <span className="absolute top-1 left-2 font-mono text-navy-900 font-black text-xs select-none">+</span>
+                <span className="absolute top-1 right-2 font-mono text-navy-900 font-black text-xs select-none">+</span>
+
                 {/* Article Header Row */}
                 <div
                   onClick={() => handleToggle(article.id)}
-                  className="cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4"
+                  className="cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b-2 border-navy-900/10"
                 >
                   <div className="flex items-start md:items-center gap-4">
-                    <span className="font-mono text-sm font-bold text-blue-600 bg-blue-50 border border-blue-200 px-2.5 py-1 rounded-md">
+                    <span className="font-mono text-sm font-black text-white bg-blue-600 border-2 border-navy-900 px-3 py-1 shadow-[2px_2px_0px_#0A192F]">
                       {article.id}
                     </span>
                     <div>
-                      <div className="flex items-center gap-3">
-                        <span className="font-mono text-[11px] uppercase tracking-mono text-muted-on-light font-medium">
-                          {article.tag}
-                        </span>
-                        <span className="text-hairline-light">&bull;</span>
-                        <span className="font-mono text-[11px] text-muted-on-light font-medium">
-                          {article.date}
-                        </span>
-                        <span className="text-hairline-light">&bull;</span>
-                        <span className="font-mono text-[11px] text-muted-on-light">
-                          {article.readTime}
-                        </span>
+                      <div className="flex items-center gap-3 font-mono text-[11px] uppercase font-bold text-muted-on-light">
+                        <span className="text-blue-600">[ {article.tag} ]</span>
+                        <span>&bull;</span>
+                        <span>{article.date}</span>
+                        <span>&bull;</span>
+                        <span>{article.readTime}</span>
                       </div>
-                      <h3 className="font-display font-bold text-xl md:text-2xl text-navy-900 mt-1 hover:text-blue-600 transition-colors">
+                      <h3 className="font-display font-black text-xl md:text-2xl text-navy-900 mt-1 uppercase tracking-tight hover:text-blue-600 transition-colors">
                         {article.title}
                       </h3>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-xs text-blue-600 font-semibold hidden md:inline">
-                      {isExpanded ? 'COLLAPSE RECORD' : 'VIEW 4-BLOCK POST-MORTEM'}
+                    <span className="font-mono text-xs uppercase font-bold text-navy-900 border border-navy-900 px-2 py-1 bg-paper shadow-[2px_2px_0px_#0A192F] hidden md:inline">
+                      {isExpanded ? '[ COLLAPSE RECORD ]' : '[ INSPECT 4-BLOCK RECORD ]'}
                     </span>
                     <button
                       aria-label="Toggle post-mortem"
-                      className="w-8 h-8 rounded-full border border-hairline-light flex items-center justify-center bg-paper text-navy-900 transition-transform duration-300"
+                      className="w-9 h-9 border-2 border-navy-900 flex items-center justify-center bg-paper text-navy-900 font-black shadow-[2px_2px_0px_#0A192F]"
                     >
-                      <svg
-                        className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
+                      {isExpanded ? '−' : '+'}
                     </button>
                   </div>
                 </div>
 
-                <p className="font-body text-sm text-slate-700 max-w-3xl pt-2">
+                <p className="font-body text-sm text-slate-700 max-w-3xl pt-3 font-medium">
                   {article.summary}
                 </p>
 
-                {/* 4-Block Breakdown (Editorial Grid) */}
+                {/* 4-Block Breakdown (Brutalist Grid) */}
                 {isExpanded && (
-                  <div className="mt-6 pt-6 border-t border-hairline-light grid grid-cols-1 md:grid-cols-2 gap-4 animate-fadeIn">
+                  <div className="mt-6 pt-6 border-t-2 border-navy-900 grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Block 1: What I built */}
-                    <div className="p-4 rounded-xl bg-paper border border-hairline-light">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-                        <span className="font-mono text-xs uppercase font-bold text-navy-900 tracking-mono">
-                          01. WHAT I BUILT
-                        </span>
+                    <div className="p-5 bg-paper border-2 border-navy-900 shadow-[3px_3px_0px_#0A192F]">
+                      <div className="flex items-center gap-2 mb-2 font-mono text-xs font-black uppercase tracking-mono text-navy-900">
+                        <span className="w-2.5 h-2.5 bg-blue-600 border border-navy-900"></span>
+                        <span>01 // WHAT I BUILT</span>
                       </div>
                       <p className="font-body text-sm text-slate-700 leading-relaxed">
                         {article.blocks.built}
@@ -185,12 +172,10 @@ export default function BuildLogSection() {
                     </div>
 
                     {/* Block 2: What broke */}
-                    <div className="p-4 rounded-xl bg-rose-50/60 border border-rose-200">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="w-2 h-2 rounded-full bg-rose-600"></span>
-                        <span className="font-mono text-xs uppercase font-bold text-rose-900 tracking-mono">
-                          02. WHAT BROKE
-                        </span>
+                    <div className="p-5 bg-rose-50 border-2 border-rose-600 shadow-[3px_3px_0px_#E11D48]">
+                      <div className="flex items-center gap-2 mb-2 font-mono text-xs font-black uppercase tracking-mono text-rose-900">
+                        <span className="w-2.5 h-2.5 bg-rose-600 border border-navy-900"></span>
+                        <span>02 // WHAT BROKE</span>
                       </div>
                       <p className="font-body text-sm text-slate-700 leading-relaxed">
                         {article.blocks.broke}
@@ -198,12 +183,10 @@ export default function BuildLogSection() {
                     </div>
 
                     {/* Block 3: How I fixed it */}
-                    <div className="p-4 rounded-xl bg-emerald-50/60 border border-emerald-200">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
-                        <span className="font-mono text-xs uppercase font-bold text-emerald-900 tracking-mono">
-                          03. HOW I FIXED IT
-                        </span>
+                    <div className="p-5 bg-emerald-50 border-2 border-emerald-600 shadow-[3px_3px_0px_#059669]">
+                      <div className="flex items-center gap-2 mb-2 font-mono text-xs font-black uppercase tracking-mono text-emerald-900">
+                        <span className="w-2.5 h-2.5 bg-emerald-600 border border-navy-900"></span>
+                        <span>03 // HOW I FIXED IT</span>
                       </div>
                       <p className="font-body text-sm text-slate-700 leading-relaxed">
                         {article.blocks.fixed}
@@ -211,14 +194,12 @@ export default function BuildLogSection() {
                     </div>
 
                     {/* Block 4: Lesson */}
-                    <div className="p-4 rounded-xl bg-blue-50/60 border border-blue-200">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-                        <span className="font-mono text-xs uppercase font-bold text-blue-900 tracking-mono">
-                          04. THE LESSON
-                        </span>
+                    <div className="p-5 bg-blue-50 border-2 border-blue-600 shadow-[3px_3px_0px_#2563EB]">
+                      <div className="flex items-center gap-2 mb-2 font-mono text-xs font-black uppercase tracking-mono text-blue-900">
+                        <span className="w-2.5 h-2.5 bg-blue-600 border border-navy-900"></span>
+                        <span>04 // THE LESSON</span>
                       </div>
-                      <p className="font-body text-sm text-slate-800 font-medium leading-relaxed">
+                      <p className="font-body text-sm text-slate-800 font-semibold leading-relaxed">
                         {article.blocks.lesson}
                       </p>
                     </div>

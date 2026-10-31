@@ -33,6 +33,78 @@ body {
 ::-webkit-scrollbar-thumb { background: #1E3A6B; border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: #2563EB; }
 
+/* Neo-Brutalist & Engineering Brutalism Utilities */
+.brutal-box {
+  border: 2px solid #0A192F;
+  box-shadow: 4px 4px 0px 0px #0A192F;
+  transition: all 0.15s ease-out;
+}
+.brutal-box:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0px 0px #0A192F;
+}
+
+.brutal-box-dark {
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 4px 4px 0px 0px #2563EB;
+  transition: all 0.15s ease-out;
+}
+.brutal-box-dark:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0px 0px #3B82F6;
+}
+
+.brutal-btn {
+  border: 2px solid #0A192F;
+  box-shadow: 3px 3px 0px 0px #0A192F;
+  transition: all 0.1s ease;
+}
+.brutal-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px 0px #0A192F;
+}
+.brutal-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px 0px #0A192F;
+}
+
+.brutal-btn-dark {
+  border: 2px solid #60A5FA;
+  box-shadow: 3px 3px 0px 0px #2563EB;
+  transition: all 0.1s ease;
+}
+.brutal-btn-dark:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px 0px #60A5FA;
+}
+.brutal-btn-dark:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px 0px #2563EB;
+}
+
+/* Technical Crosshairs & Crop Marks */
+.crosshair-corner {
+  position: relative;
+}
+.crosshair-corner::before,
+.crosshair-corner::after {
+  content: '+';
+  position: absolute;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  line-height: 1;
+  color: #60A5FA;
+  pointer-events: none;
+}
+.crosshair-corner::before {
+  top: -8px;
+  left: -8px;
+}
+.crosshair-corner::after {
+  bottom: -8px;
+  right: -8px;
+}
+
 /* Subtle Paper Texture / Hairline rules */
 .hairline-b-dark {
   border-bottom: 1px solid rgba(148, 163, 184, 0.18);

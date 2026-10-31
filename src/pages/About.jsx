@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { CAL_AUDIT, CAL_DISCOVERY } from '../data/cal'
+import { CAL_DISCOVERY } from '../data/cal'
 import { playTechClick } from '../utils/sound'
 
 const verifiedStack = [
@@ -50,70 +50,88 @@ const methodologySteps = [
 ]
 
 export default function About() {
-  const gridRef = useRef(null)
-
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
   return (
     <div className="w-full flex flex-col bg-paper text-navy-900 select-none">
-      {/* 001 // THE ENGINEER - Hero Section */}
-      <section className="relative pt-12 pb-20 md:py-28 border-b border-hairline-light bg-navy-900 text-white overflow-hidden">
+      {/* 001 // THE ENGINEER - Brutalist Hero Section */}
+      <section className="relative pt-12 pb-20 md:py-28 border-b-2 border-white/10 bg-navy-900 text-white overflow-hidden">
         <div
           className="absolute inset-0 opacity-10 pointer-events-none"
           style={{
             backgroundImage:
-              'linear-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(148, 163, 184, 0.15) 1px, transparent 1px)',
-            backgroundSize: '48px 48px',
+              'linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px)',
+            backgroundSize: '40px 40px',
           }}
         />
 
         <div className="max-w-container mx-auto px-4 md:px-8 relative z-10">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="font-mono text-xs text-blue-400 tracking-mono font-bold">ABOUT // PRAISE GEORGEWILL</span>
-            <span className="w-8 h-px bg-hairline-dark"></span>
-            <span className="font-mono text-xs text-muted-on-dark uppercase tracking-mono">
-              SYSTEMS BUILDER &bull; DEVOPS &amp; CLOUD ENGINEER
-            </span>
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 border-b border-white/15 font-mono text-xs">
+            <div className="flex items-center gap-3">
+              <span className="bg-blue-600 text-white font-black px-2 py-0.5 shadow-[2px_2px_0px_#060F1D]">
+                ABOUT // 01
+              </span>
+              <span className="text-white font-bold tracking-mono uppercase">
+                PRAISE GEORGEWILL &bull; SYSTEMS ARCHITECT &amp; DEVOPS
+              </span>
+            </div>
+
+            <div className="flex items-center gap-4 text-muted-on-dark text-[11px]">
+              <span>LOCATION: MAURITIUS (GMT+4)</span>
+              <span>&bull;</span>
+              <span className="text-blue-400 font-bold">[ SPECIFICATION DOSSIER ]</span>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 space-y-6">
-              <h1 className="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-[1.08]">
-                Designing systems built for{' '}
-                <span className="font-serif italic font-normal text-blue-400">permanence</span> and quiet reliability.
+              <h1 className="font-display font-black text-4xl sm:text-6xl md:text-7xl text-white tracking-[-0.04em] uppercase leading-[0.95]">
+                DESIGNING SYSTEMS FOR{' '}
+                <span className="text-blue-400 font-serif italic lowercase font-normal block sm:inline">
+                  permanence
+                </span>{' '}
+                AND QUIET RELIABILITY.
               </h1>
 
-              <p className="font-body text-base md:text-lg text-muted-on-dark leading-relaxed max-w-2xl">
+              <p className="font-body text-base md:text-lg text-muted-on-dark leading-relaxed max-w-2xl border-l-2 border-blue-500 pl-4">
                 Infrastructure is the silent skeletal structure that supports all digital value. I design, automate, and operate cloud environments where failure modes are isolated, rollouts are zero-downtime, and recovery is deterministic.
               </p>
 
-              <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-muted-on-dark">
-                <span className="flex items-center gap-1.5 text-emerald-400">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  OPEN TO REMOTE ROLES &bull; CONSULTING
+              <div className="pt-2 flex flex-wrap items-center gap-3 text-xs font-mono">
+                <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-3 py-1 font-bold flex items-center gap-1.5">
+                  <span className="w-2 h-2 bg-emerald-400 animate-pulse"></span>
+                  OPEN TO CONTRACTS &bull; REMOTE ROLES
                 </span>
-                <span>&bull;</span>
-                <span>LOCATION: MAURITIUS (GMT+4)</span>
-                <span>&bull;</span>
-                <span className="text-blue-400">AWS CERTIFIED FOCUS</span>
+                <span className="bg-navy-950 text-muted-on-dark border border-white/20 px-3 py-1">
+                  AWS INFRASTRUCTURE
+                </span>
+                <span className="bg-navy-950 text-blue-400 border border-blue-500/40 px-3 py-1 font-bold">
+                  TERRAFORM &bull; K8S
+                </span>
               </div>
             </div>
 
-            {/* Portrait Card */}
+            {/* Brutalist Portrait Card */}
             <div className="lg:col-span-5 relative">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-hairline-dark bg-navy-950 relative shadow-2xl group">
+              <div className="aspect-[4/5] border-2 border-white/30 bg-navy-950 relative shadow-[8px_8px_0px_#2563EB]">
+                {/* Corner Crosshairs */}
+                <span className="absolute -top-3 -left-3 font-mono text-blue-400 font-black text-lg select-none">+</span>
+                <span className="absolute -top-3 -right-3 font-mono text-blue-400 font-black text-lg select-none">+</span>
+                <span className="absolute -bottom-3 -left-3 font-mono text-blue-400 font-black text-lg select-none">+</span>
+                <span className="absolute -bottom-3 -right-3 font-mono text-blue-400 font-black text-lg select-none">+</span>
+
                 <img
                   src="/praise.jpg"
                   alt="Praise Georgewill"
-                  className="w-full h-full object-cover grayscale contrast-115 group-hover:scale-105 transition-transform duration-700 ease-out"
+                  className="w-full h-full object-cover grayscale contrast-125"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent"></div>
 
-                <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-navy-900/90 backdrop-blur-md border border-hairline-dark flex items-center justify-between font-mono text-xs">
-                  <span className="text-white font-semibold">PRAISE GEORGEWILL</span>
-                  <span className="text-blue-400">SYSTEMS BUILDER</span>
+                <div className="absolute bottom-4 left-4 right-4 p-3 bg-navy-900 border-2 border-white/20 flex items-center justify-between font-mono text-xs shadow-[2px_2px_0px_#060F1D]">
+                  <span className="text-white font-black uppercase">PRAISE GEORGEWILL</span>
+                  <span className="text-blue-400 font-bold">[ SYSTEMS BUILDER ]</span>
                 </div>
               </div>
             </div>
@@ -122,43 +140,55 @@ export default function About() {
       </section>
 
       {/* 002 // BACKGROUND & OPERATIONAL FOCUS (Paper) */}
-      <section className="py-20 md:py-28 bg-paper text-navy-900 border-b border-hairline-light">
+      <section className="py-20 md:py-28 bg-paper text-navy-900 border-b-2 border-navy-900">
         <div className="max-w-container mx-auto px-4 md:px-8 space-y-12">
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-xs text-blue-600 tracking-mono font-bold">002 // BACKGROUND</span>
-            <span className="w-8 h-px bg-hairline-light"></span>
-            <span className="font-mono text-xs text-muted-on-light uppercase tracking-mono">
-              ENGINEERING TRAJECTORY
-            </span>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b-2 border-navy-900">
+            <div className="flex items-center gap-3 font-mono text-xs">
+              <span className="bg-navy-900 text-white font-black px-2 py-0.5 shadow-[2px_2px_0px_#2563EB]">
+                002 // BACKGROUND
+              </span>
+              <span className="uppercase tracking-mono font-bold text-navy-900">
+                ENGINEERING TRAJECTORY &bull; CORE DOSSIER
+              </span>
+            </div>
+            <div className="font-mono text-xs uppercase text-muted-on-light">
+              [ THE ARCHITECTURAL NARRATIVE ]
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 md:p-8 rounded-2xl bg-white border border-hairline-light space-y-4 shadow-xs">
-              <div className="font-mono text-xs font-bold text-blue-600">PARAGRAPH 01 // ORIGIN</div>
-              <h3 className="font-display font-bold text-xl text-navy-900">
+            <div className="p-6 md:p-8 bg-white border-2 border-navy-900 shadow-[6px_6px_0px_#0A192F] space-y-4 relative">
+              <div className="font-mono text-xs font-black text-blue-600 uppercase tracking-mono">
+                [ PARAGRAPH 01 // ORIGIN ]
+              </div>
+              <h3 className="font-display font-black text-xl text-navy-900 uppercase tracking-tight">
                 Grounding in Distributed Primitives
               </h3>
-              <p className="font-body text-sm text-slate-700 leading-relaxed">
+              <p className="font-body text-sm text-slate-700 leading-relaxed font-medium">
                 I began in software engineering and quickly recognized that application reliability is bounded by the quality of its underlying platform. Moving deep into cloud infrastructure and Linux internals, I built my approach around reproducibility, strict access control, and deterministic automation.
               </p>
             </div>
 
-            <div className="p-6 md:p-8 rounded-2xl bg-white border border-hairline-light space-y-4 shadow-xs">
-              <div className="font-mono text-xs font-bold text-blue-600">PARAGRAPH 02 // PRACTICE</div>
-              <h3 className="font-display font-bold text-xl text-navy-900">
+            <div className="p-6 md:p-8 bg-white border-2 border-navy-900 shadow-[6px_6px_0px_#0A192F] space-y-4 relative">
+              <div className="font-mono text-xs font-black text-blue-600 uppercase tracking-mono">
+                [ PARAGRAPH 02 // PRACTICE ]
+              </div>
+              <h3 className="font-display font-black text-xl text-navy-900 uppercase tracking-tight">
                 DevOps as Continuous Discipline
               </h3>
-              <p className="font-body text-sm text-slate-700 leading-relaxed">
+              <p className="font-body text-sm text-slate-700 leading-relaxed font-medium">
                 In production, hope is not an operational strategy. I build delivery pipelines using GitHub Actions with OIDC federation, multi-region AWS architectures, and Kubernetes platforms where releases are automated, rollbacks are immediate, and observability alerts strictly on user-facing SLOs.
               </p>
             </div>
 
-            <div className="p-6 md:p-8 rounded-2xl bg-white border border-hairline-light space-y-4 shadow-xs">
-              <div className="font-mono text-xs font-bold text-blue-600">PARAGRAPH 03 // ENGAGEMENT</div>
-              <h3 className="font-display font-bold text-xl text-navy-900">
+            <div className="p-6 md:p-8 bg-white border-2 border-navy-900 shadow-[6px_6px_0px_#0A192F] space-y-4 relative">
+              <div className="font-mono text-xs font-black text-blue-600 uppercase tracking-mono">
+                [ PARAGRAPH 03 // ENGAGEMENT ]
+              </div>
+              <h3 className="font-display font-black text-xl text-navy-900 uppercase tracking-tight">
                 What I Am Looking For
               </h3>
-              <p className="font-body text-sm text-slate-700 leading-relaxed">
+              <p className="font-body text-sm text-slate-700 leading-relaxed font-medium">
                 I am actively considering remote full-time infrastructure/DevOps roles, high-impact contract engineering, and cloud advisory engagements. I thrive in teams that prioritize structural integrity over short-term hacks and value engineers who document every architectural trade-off.
               </p>
             </div>
@@ -167,23 +197,24 @@ export default function About() {
       </section>
 
       {/* 003 // VERIFIED STACK & PRIMITIVES (Paper) */}
-      <section className="py-20 md:py-28 bg-white border-b border-hairline-light">
+      <section className="py-20 md:py-28 bg-white border-b-2 border-navy-900">
         <div className="max-w-container mx-auto px-4 md:px-8 space-y-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-hairline-light">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b-2 border-navy-900">
             <div>
-              <div className="flex items-center gap-3 mb-2">
-                <span className="font-mono text-xs text-blue-600 tracking-mono font-bold">003 // VERIFIED STACK</span>
-                <span className="w-8 h-px bg-hairline-light"></span>
-                <span className="font-mono text-xs text-muted-on-light uppercase tracking-mono">
+              <div className="flex items-center gap-3 mb-2 font-mono text-xs">
+                <span className="bg-navy-900 text-white font-black px-2 py-0.5 shadow-[2px_2px_0px_#2563EB]">
+                  003 // STACK
+                </span>
+                <span className="uppercase tracking-mono font-bold text-navy-900">
                   PRODUCTION-PROVEN PRIMITIVES
                 </span>
               </div>
-              <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-navy-900 tracking-tight">
+              <h2 className="font-display font-black text-3xl sm:text-4xl text-navy-900 tracking-[-0.03em] uppercase">
                 Tools &amp; Infrastructure Primitives
               </h2>
             </div>
-            <div className="font-mono text-xs text-muted-on-light">
-              STRICT VERIFICATION: ONLY TOOLS ACTIVELY OPERATED
+            <div className="font-mono text-xs uppercase text-muted-on-light font-bold">
+              [ STRICT VERIFICATION: ONLY TOOLS ACTIVELY OPERATED ]
             </div>
           </div>
 
@@ -191,15 +222,15 @@ export default function About() {
             {verifiedStack.map((cat, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-paper border border-hairline-light space-y-4 hover:border-blue-600/30 transition-all"
+                className="p-6 bg-paper border-2 border-navy-900 shadow-[5px_5px_0px_#0A192F] space-y-4 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[7px_7px_0px_#0A192F] transition-all"
               >
-                <div className="font-mono text-xs font-bold text-blue-600 uppercase tracking-mono">
-                  {cat.category}
+                <div className="font-mono text-xs font-black text-blue-600 uppercase tracking-mono border-b border-navy-900/20 pb-2">
+                  [ {cat.category} ]
                 </div>
                 <div className="space-y-2">
                   {cat.tools.map((tool, tIdx) => (
-                    <div key={tIdx} className="flex items-center gap-2 font-mono text-xs text-slate-700">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0"></span>
+                    <div key={tIdx} className="flex items-center gap-2 font-mono text-xs text-navy-900 font-bold">
+                      <span className="w-2 h-2 bg-blue-600 border border-navy-900 shrink-0"></span>
                       <span>{tool}</span>
                     </div>
                   ))}
@@ -211,17 +242,18 @@ export default function About() {
       </section>
 
       {/* 004 // BLUEPRINT METHODOLOGY (Navy-900) */}
-      <section className="py-20 md:py-28 bg-navy-900 text-white border-b border-hairline-dark">
+      <section className="py-20 md:py-28 bg-navy-900 text-white border-b-2 border-white/10">
         <div className="max-w-container mx-auto px-4 md:px-8 space-y-12">
-          <div className="space-y-2">
-            <div className="flex items-center gap-3">
-              <span className="font-mono text-xs text-blue-400 tracking-mono font-bold">004 // METHODOLOGY</span>
-              <span className="w-8 h-px bg-hairline-dark"></span>
-              <span className="font-mono text-xs text-muted-on-dark uppercase tracking-mono">
+          <div className="space-y-2 pb-6 border-b border-white/15">
+            <div className="flex items-center gap-3 font-mono text-xs">
+              <span className="bg-blue-600 text-white font-black px-2 py-0.5 shadow-[2px_2px_0px_#060F1D]">
+                004 // METHODOLOGY
+              </span>
+              <span className="uppercase tracking-mono font-bold text-blue-400">
                 THE EXECUTION BLUEPRINT
               </span>
             </div>
-            <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
+            <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-[-0.03em] uppercase">
               From Architectural Audit to Continuous Zero-Downtime Operation
             </h2>
           </div>
@@ -230,15 +262,15 @@ export default function About() {
             {methodologySteps.map((step) => (
               <div
                 key={step.num}
-                className="p-6 md:p-8 rounded-2xl bg-navy-950/80 border border-hairline-dark space-y-3 backdrop-blur-xl"
+                className="p-6 md:p-8 bg-navy-950 border-2 border-white/20 shadow-[6px_6px_0px_#2563EB] space-y-3 relative"
               >
-                <span className="font-mono text-xs font-bold text-blue-400 px-2 py-0.5 rounded bg-blue-600/10 border border-blue-400/20">
+                <span className="font-mono text-xs font-black text-white px-2.5 py-1 bg-blue-600 border border-white/40 shadow-[2px_2px_0px_#060F1D]">
                   PHASE {step.num}
                 </span>
-                <h3 className="font-display font-bold text-xl text-white">
+                <h3 className="font-display font-black text-xl text-white uppercase tracking-tight">
                   {step.title}
                 </h3>
-                <p className="font-body text-sm text-muted-on-dark leading-relaxed">
+                <p className="font-body text-sm text-muted-on-dark leading-relaxed font-medium">
                   {step.desc}
                 </p>
               </div>
@@ -248,15 +280,15 @@ export default function About() {
       </section>
 
       {/* 005 // ADVISORY INTAKE & SCHEDULING (Navy-950) */}
-      <section className="py-20 md:py-24 bg-navy-950 text-white">
+      <section className="py-20 md:py-28 bg-navy-950 text-white">
         <div className="max-w-3xl mx-auto px-4 text-center space-y-6">
-          <span className="font-mono text-xs text-blue-400 uppercase tracking-mono">
-            ENGAGEMENT // DIRECT ADVISORY
+          <span className="font-mono text-xs text-blue-400 uppercase tracking-mono font-bold">
+            [ ENGAGEMENT // DIRECT ADVISORY ]
           </span>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
+          <h2 className="font-display font-black text-3xl sm:text-5xl text-white uppercase tracking-tight">
             Ready to review your cloud topology?
           </h2>
-          <p className="font-body text-sm md:text-base text-muted-on-dark leading-relaxed max-w-xl mx-auto">
+          <p className="font-body text-sm md:text-base text-muted-on-dark leading-relaxed max-w-xl mx-auto border-l-2 border-blue-500 pl-4 text-left sm:text-center sm:border-l-0 sm:pl-0">
             Whether preparing for a migration, diagnosing recurring production incidents, or automating a CI/CD platform, let’s schedule a technical discovery call.
           </p>
 
@@ -266,17 +298,17 @@ export default function About() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={playTechClick}
-              className="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-mono text-xs font-bold uppercase tracking-mono transition-colors shadow-lg shadow-blue-600/20"
+              className="bg-blue-600 hover:bg-blue-500 text-white px-7 py-3.5 font-mono text-xs font-black uppercase tracking-mono border-2 border-white shadow-[4px_4px_0px_#060F1D] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all"
             >
-              Schedule 30-Min Discovery &rarr;
+              SCHEDULE 30-MIN DISCOVERY &rarr;
             </a>
 
             <Link
               to="/#contact"
               onClick={playTechClick}
-              className="px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 text-white border border-hairline-dark font-mono text-xs uppercase tracking-mono transition-colors"
+              className="bg-navy-900 hover:bg-navy-800 text-white px-7 py-3.5 font-mono text-xs font-bold uppercase tracking-mono border-2 border-white/20 shadow-[4px_4px_0px_rgba(255,255,255,0.15)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all"
             >
-              Direct Message
+              DIRECT MESSAGE
             </Link>
           </div>
         </div>

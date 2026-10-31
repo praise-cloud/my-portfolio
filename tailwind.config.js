@@ -44,6 +44,15 @@ export default {
         outline: "#64748B",
         "outline-variant": "rgba(148, 163, 184, 0.18)",
       },
+      boxShadow: {
+        'brutal-dark': '4px 4px 0px 0px #0A192F',
+        'brutal-light': '4px 4px 0px 0px #2563EB',
+        'brutal-white': '4px 4px 0px 0px #FFFFFF',
+        'brutal-sm': '2px 2px 0px 0px #0A192F',
+        'brutal-lg': '6px 6px 0px 0px #0A192F',
+        'brutal-blue': '4px 4px 0px 0px #60A5FA',
+        'brutal-neon': '4px 4px 0px 0px #3B82F6',
+      },
       borderRadius: {
         card: "24px",
         bento: "28px",
