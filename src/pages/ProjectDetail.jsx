@@ -1,5 +1,8 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import confetti from 'canvas-confetti'
+import SpotlightCard from '../components/SpotlightCard'
+import { useParallax } from '../hooks/useScrollProgress'
 import { CAL_AUDIT } from '../data/cal'
 import { getProject } from '../data/projects'
 
@@ -7,6 +10,8 @@ export default function ProjectDetail() {
   const { slug } = useParams()
   const project = getProject(slug)
   const hasCounterRun = useRef(false)
+  const [selectedNode, setSelectedNode] = useState(null)
+  const parallaxBg = useParallax(0.15)
 
   useEffect(() => {
     if (!project) return
@@ -47,17 +52,20 @@ export default function ProjectDetail() {
       })
     }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('opacity-100', 'translate-y-0')
-          entry.target.classList.remove('opacity-0', 'translate-y-8')
-          if (entry.target.querySelector('.counter')) animateCounters()
-          const bar = entry.target.querySelector('[data-width]')
-          if (bar) bar.style.width = bar.getAttribute('data-width')
-        }
-      })
-    }, { threshold: 0.1 })
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('opacity-100', 'translate-y-0')
+            entry.target.classList.remove('opacity-0', 'translate-y-8')
+            if (entry.target.querySelector('.counter')) animateCounters()
+            const bar = entry.target.querySelector('[data-width]')
+            if (bar) bar.style.width = bar.getAttribute('data-width')
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
 
     document.querySelectorAll('section.scroll-reveal').forEach((s, i) => {
       if (i > 0) {
@@ -75,13 +83,26 @@ export default function ProjectDetail() {
     }
   }, [project])
 
+  const triggerAuditCelebration = () => {
+    try {
+      confetti({
+        particleCount: 70,
+        spread: 60,
+        origin: { y: 0.7 },
+        colors: ['#b9c7e4', '#b4c5ff', '#ffffff'],
+      })
+    } catch {}
+  }
+
   if (!project) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] px-gutter text-center">
         <span className="material-symbols-outlined text-8xl text-primary/20">search_off</span>
         <h1 className="font-display-xl text-display-xl-mobile md:text-display-xl mt-md">Project Not Found</h1>
         <p className="text-on-surface-variant mt-md mb-lg">The project you're looking for doesn't exist.</p>
-        <Link to="/projects" className="bg-primary text-on-primary px-xl py-md rounded-lg font-headline-md">Back to Projects</Link>
+        <Link to="/projects" className="bg-primary text-on-primary px-xl py-md rounded-lg font-headline-md">
+          Back to Projects
+        </Link>
       </div>
     )
   }
@@ -102,27 +123,50 @@ export default function ProjectDetail() {
         .animate-fragility { animation: fragility-pulse 5s ease-in-out infinite; }
       `}</style>
 
-      {/* Hero */}
+      {/* Hero with Parallax */}
       <section className="relative min-h-[60vh] md:min-h-[921px] flex flex-col justify-center px-margin-mobile md:px-xl max-w-container-max mx-auto overflow-hidden">
-        <div className="absolute inset-0 grid-pattern opacity-10 pointer-events-none"></div>
+        <div
+          className="absolute inset-0 grid-pattern opacity-15 pointer-events-none will-change-transform"
+          style={{ transform: `translateY(${parallaxBg}px)` }}
+        ></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-lg items-end">
           <div className="md:col-span-8 space-y-md">
             <div className="flex items-center gap-sm">
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-              <span className="font-technical-sm text-technical-sm text-primary tracking-widest uppercase">Case Study: {project.id}</span>
+              <span className="w-2.5 h-2.5 bg-primary rounded-full animate-pulse"></span>
+              <span className="font-technical-sm text-technical-sm text-primary tracking-widest uppercase">
+                Case Study: {project.id}
+              </span>
             </div>
-            <h1 className="font-display-xl-mobile md:font-display-xl text-display-xl-mobile md:text-display-xl max-w-4xl text-on-surface">{project.title}</h1>
-            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">{project.shortDesc}</p>
+            <h1 className="font-display-xl-mobile md:font-display-xl text-display-xl-mobile md:text-display-xl max-w-4xl text-on-surface">
+              {project.title}
+            </h1>
+            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+              {project.shortDesc}
+            </p>
           </div>
-          <div className="md:col-span-4 glass-panel p-md rounded-xl space-y-md mt-lg md:mt-0">
+
+          <div className="md:col-span-4 glass-panel p-md rounded-2xl space-y-md mt-lg md:mt-0 shadow-2xl">
             <div className="grid grid-cols-2 gap-md border-b border-outline-variant/30 pb-md">
-              <div><p className="font-technical-sm text-technical-sm text-outline uppercase">Client</p><p className="font-body-md text-body-md text-on-surface">{project.client}</p></div>
-              <div><p className="font-technical-sm text-technical-sm text-outline uppercase">Sector</p><p className="font-body-md text-body-md text-on-surface">{project.sector}</p></div>
+              <div>
+                <p className="font-technical-sm text-technical-sm text-outline uppercase">Client</p>
+                <p className="font-body-md text-body-md text-on-surface">{project.client}</p>
+              </div>
+              <div>
+                <p className="font-technical-sm text-technical-sm text-outline uppercase">Sector</p>
+                <p className="font-body-md text-body-md text-on-surface">{project.sector}</p>
+              </div>
             </div>
             <div className="grid grid-cols-2 gap-md">
-              <div><p className="font-technical-sm text-technical-sm text-outline uppercase">Timeline</p><p className="font-body-md text-body-md text-on-surface">{project.timeline}</p></div>
-              <div><p className="font-technical-sm text-technical-sm text-outline uppercase">Status</p><p className="font-body-md text-body-md text-primary font-bold">{project.status}</p></div>
+              <div>
+                <p className="font-technical-sm text-technical-sm text-outline uppercase">Timeline</p>
+                <p className="font-body-md text-body-md text-on-surface">{project.timeline}</p>
+              </div>
+              <div>
+                <p className="font-technical-sm text-technical-sm text-outline uppercase">Status</p>
+                <p className="font-body-md text-body-md text-primary font-bold">{project.status}</p>
+              </div>
             </div>
             {project.github && (
               <div className="pt-md border-t border-outline-variant/30">
@@ -132,13 +176,16 @@ export default function ProjectDetail() {
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-sm w-full py-sm rounded-lg border border-outline-variant/30 font-code-label text-sm text-on-surface hover:border-primary/50 hover:bg-surface-variant transition-all"
                 >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                  </svg>
                   View on GitHub
                 </a>
               </div>
             )}
           </div>
         </div>
+
         <div className="mt-xl flex items-center justify-between border-t border-outline-variant/30 pt-md">
           <div className="flex gap-lg">
             <div className="flex flex-col">
@@ -158,25 +205,45 @@ export default function ProjectDetail() {
 
       {/* Challenge */}
       <section className="scroll-reveal py-xl px-margin-mobile md:px-xl max-w-container-max mx-auto relative animate-fragility">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
           <div>
             <h2 className="font-headline-lg text-headline-lg mb-md">The Critical Challenge</h2>
             <p className="font-body-lg text-body-lg text-on-surface-variant mb-lg">{project.challenge}</p>
             <div className="space-y-md">
               {project.challenges.map((c) => (
-                <div key={c.title} className={`flex gap-md p-md border ${c.severity === 'error' ? 'border-error/20 bg-error-container/5' : 'border-outline-variant/30 bg-surface-container-low'} rounded-lg`}>
-                  <span className={`material-symbols-outlined ${c.severity === 'error' ? 'text-error' : 'text-on-surface-variant'}`} style={c.severity === 'error' ? { fontVariationSettings: "'FILL' 1" } : {}}>{c.icon}</span>
+                <div
+                  key={c.title}
+                  className={`flex gap-md p-md border ${
+                    c.severity === 'error'
+                      ? 'border-error/20 bg-error-container/5'
+                      : 'border-outline-variant/30 bg-surface-container-low'
+                  } rounded-xl`}
+                >
+                  <span
+                    className={`material-symbols-outlined ${
+                      c.severity === 'error' ? 'text-error' : 'text-on-surface-variant'
+                    }`}
+                    style={c.severity === 'error' ? { fontVariationSettings: "'FILL' 1" } : {}}
+                  >
+                    {c.icon}
+                  </span>
                   <div>
-                    <h4 className={`font-headline-md text-headline-md ${c.severity === 'error' ? 'text-error' : 'text-on-surface'} mb-xs`}>{c.title}</h4>
-                    <p className="text-on-surface-variant">{c.desc}</p>
+                    <h4
+                      className={`font-headline-md text-headline-md ${
+                        c.severity === 'error' ? 'text-error' : 'text-on-surface'
+                      } mb-xs`}
+                    >
+                      {c.title}
+                    </h4>
+                    <p className="text-on-surface-variant text-sm">{c.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
           <div className="relative group">
-            <div className="absolute -inset-4 bg-primary/10 rounded-xl blur-xl group-hover:bg-primary/20 transition-all duration-500"></div>
-            <div className="relative h-full aspect-square md:aspect-auto rounded-xl overflow-hidden border border-outline-variant/30 bg-gradient-to-br from-primary/5 to-surface-container flex items-center justify-center">
+            <div className="absolute -inset-4 bg-primary/10 rounded-2xl blur-xl group-hover:bg-primary/20 transition-all duration-500"></div>
+            <div className="relative h-full aspect-square md:aspect-auto rounded-2xl overflow-hidden border border-outline-variant/30 bg-gradient-to-br from-primary/5 to-surface-container flex items-center justify-center p-xl">
               <span className="material-symbols-outlined text-primary/10 text-9xl">warning</span>
             </div>
           </div>
@@ -188,11 +255,18 @@ export default function ProjectDetail() {
         <div className="px-margin-mobile md:px-xl max-w-container-max mx-auto relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-xl">
             <h2 className="font-headline-lg text-headline-lg mb-md">Architectural Intervention</h2>
-            <p className="text-on-surface-variant">Deploying the 'Systems Builder' methodology: A clean-room infrastructure rebuild while maintaining live transaction states across legacy nodes.</p>
+            <p className="text-on-surface-variant">
+              Deploying the 'Systems Builder' methodology: A clean-room infrastructure rebuild while maintaining live transaction states across legacy nodes.
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-md perspective-1000">
             {project.phases.map((phase, i) => (
-              <div key={i} className={`glass-panel p-lg rounded-xl ${i === 1 ? 'border-primary/40 shadow-[0_0_40px_rgba(185,199,228,0.05)]' : 'border-primary/20'} tilt-card`}>
+              <div
+                key={i}
+                className={`glass-panel p-lg rounded-xl ${
+                  i === 1 ? 'border-primary/40 shadow-[0_0_40px_rgba(185,199,228,0.05)]' : 'border-primary/20'
+                } tilt-card`}
+              >
                 <div className="mb-lg">
                   <span className="font-technical-sm text-technical-sm text-primary mb-xs block">{phase.phase}</span>
                   <h3 className="font-headline-md text-headline-md">{phase.title}</h3>
@@ -201,7 +275,13 @@ export default function ProjectDetail() {
                   <div className="h-48 border-l border-primary/30 ml-2 relative">
                     {phase.steps.map((step, j) => (
                       <div key={j}>
-                        <div className={`absolute ${j === 0 ? 'top-0' : j === phase.steps.length - 1 ? 'bottom-0' : 'top-1/2'} -left-1.5 w-3 h-3 ${j === 0 ? 'bg-primary rounded-full' : 'bg-primary/30 border border-primary rounded-full'}`}></div>
+                        <div
+                          className={`absolute ${
+                            j === 0 ? 'top-0' : j === phase.steps.length - 1 ? 'bottom-0' : 'top-1/2'
+                          } -left-1.5 w-3 h-3 ${
+                            j === 0 ? 'bg-primary rounded-full' : 'bg-primary/30 border border-primary rounded-full'
+                          }`}
+                        ></div>
                         <div className="pl-8" style={{ paddingTop: j === 0 ? '0' : j === 1 ? '5rem' : '4rem' }}>
                           <div className="text-technical-sm text-on-surface-variant opacity-60">{step}</div>
                         </div>
@@ -211,7 +291,10 @@ export default function ProjectDetail() {
                 ) : phase.regions ? (
                   <div className="h-48 grid grid-cols-2 gap-sm">
                     {phase.regions.map((r) => (
-                      <div key={r.label} className="bg-surface-container-high rounded p-sm border border-outline-variant/30 flex flex-col justify-between">
+                      <div
+                        key={r.label}
+                        className="bg-surface-container-high rounded p-sm border border-outline-variant/30 flex flex-col justify-between"
+                      >
                         <span className="text-technical-sm opacity-50 uppercase">{r.label}</span>
                         <span className="text-headline-md text-primary">{r.value}</span>
                       </div>
@@ -220,8 +303,12 @@ export default function ProjectDetail() {
                 ) : (
                   <div className="flex flex-col items-center justify-center h-48 space-y-md">
                     <div className="w-full flex justify-between px-md">
-                      <div className="w-12 h-12 rounded border border-primary/50 flex items-center justify-center font-technical-sm">K8S</div>
-                      <div className="w-12 h-12 rounded border border-primary/50 flex items-center justify-center font-technical-sm">EKS</div>
+                      <div className="w-12 h-12 rounded border border-primary/50 flex items-center justify-center font-technical-sm">
+                        K8S
+                      </div>
+                      <div className="w-12 h-12 rounded border border-primary/50 flex items-center justify-center font-technical-sm">
+                        EKS
+                      </div>
                     </div>
                     <div className="w-24 h-24 rounded-full border-2 border-primary animate-pulse-slow flex items-center justify-center">
                       <span className="material-symbols-outlined text-primary text-4xl">shield</span>
@@ -236,18 +323,26 @@ export default function ProjectDetail() {
         </div>
       </section>
 
-      {/* Architecture Schematic - only for 48-hour mastery */}
+      {/* Architecture Schematic */}
       {slug === '48-hour-mastery' && (
         <section className="scroll-reveal py-xl px-margin-mobile md:px-xl max-w-container-max mx-auto">
           <div className="mb-lg">
             <h2 className="font-headline-lg text-headline-lg mb-sm">Technical Architecture</h2>
-            <p className="text-on-surface-variant max-w-2xl">A high-fidelity representation of the zero-trust, multi-region architecture deployed during the 48-hour sprint.</p>
+            <p className="text-on-surface-variant max-w-2xl">
+              A high-fidelity representation of the zero-trust, multi-region architecture deployed during the 48-hour sprint. Hover or select nodes to inspect telemetry.
+            </p>
           </div>
-          <div className="glass-panel p-lg md:p-xl rounded-2xl relative overflow-hidden bg-surface-container-lowest">
+          <div className="glass-panel p-lg md:p-xl rounded-2xl relative overflow-hidden bg-surface-container-lowest shadow-2xl">
             <div className="absolute inset-0 grid-pattern opacity-5"></div>
             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-xl">
-              <div className="flex flex-col items-center gap-md">
-                <div className="w-16 h-16 rounded-full border border-primary/30 flex items-center justify-center bg-primary/5">
+              {/* Route 53 */}
+              <div
+                className={`flex flex-col items-center gap-md cursor-pointer transition-transform hover:scale-105 ${
+                  selectedNode === 'dns' ? 'text-primary' : ''
+                }`}
+                onClick={() => setSelectedNode(selectedNode === 'dns' ? null : 'dns')}
+              >
+                <div className="w-16 h-16 rounded-full border border-primary/40 flex items-center justify-center bg-primary/10 shadow-lg">
                   <span className="material-symbols-outlined text-primary text-3xl">public</span>
                 </div>
                 <div className="text-center">
@@ -255,33 +350,57 @@ export default function ProjectDetail() {
                   <span className="block font-code-label text-on-surface">Global Route 53</span>
                 </div>
               </div>
+
+              {/* Piping */}
               <div className="hidden md:block flex-1 relative h-8">
                 <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 20">
                   <path className="piping-line" d="M0 10 L100 10" fill="none" stroke="#b9c7e4" strokeOpacity="0.4" strokeWidth="2"></path>
                 </svg>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 bg-surface-container text-[10px] font-technical-sm text-primary uppercase border border-primary/20 rounded-full z-10">Cloudfront WAF</div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 bg-surface-container text-[10px] font-technical-sm text-primary uppercase border border-primary/20 rounded-full z-10 shadow">
+                  Cloudfront WAF
+                </div>
               </div>
-              <div className="flex flex-col items-center gap-lg">
-                <div className="p-4 md:p-8 border border-primary/40 rounded-2xl bg-primary/5 relative">
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-surface px-4 py-1 border border-primary/40 rounded-full text-[10px] font-technical-sm text-primary uppercase whitespace-nowrap">EKS Cluster v1.28</div>
+
+              {/* Compute */}
+              <div
+                className={`flex flex-col items-center gap-lg cursor-pointer transition-transform hover:scale-105 ${
+                  selectedNode === 'eks' ? 'text-primary' : ''
+                }`}
+                onClick={() => setSelectedNode(selectedNode === 'eks' ? null : 'eks')}
+              >
+                <div className="p-4 md:p-8 border border-primary/40 rounded-2xl bg-primary/5 relative shadow-xl">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-surface px-4 py-1 border border-primary/40 rounded-full text-[10px] font-technical-sm text-primary uppercase whitespace-nowrap">
+                    EKS Cluster v1.28
+                  </div>
                   <div className="flex gap-2 md:gap-md">
                     {['token', 'account_balance', 'sync_alt'].map((icon) => (
-                      <div key={icon} className="w-14 h-14 md:w-20 md:h-20 border border-outline-variant/30 rounded flex flex-col items-center justify-center gap-xs">
+                      <div key={icon} className="w-14 h-14 md:w-20 md:h-20 border border-outline-variant/30 rounded-xl flex flex-col items-center justify-center gap-xs bg-surface/50">
                         <span className="material-symbols-outlined text-outline text-lg md:text-2xl">{icon}</span>
-                        <span className="text-[8px] md:text-[10px] font-technical-sm uppercase">{icon === 'token' ? 'Auth' : icon === 'account_balance' ? 'Ledger' : 'Broker'}</span>
+                        <span className="text-[8px] md:text-[10px] font-technical-sm uppercase">
+                          {icon === 'token' ? 'Auth' : icon === 'account_balance' ? 'Ledger' : 'Broker'}
+                        </span>
                       </div>
                     ))}
                   </div>
                 </div>
                 <span className="font-code-label text-on-surface text-sm md:text-base">Compute Mesh (Istio)</span>
               </div>
+
+              {/* Piping */}
               <div className="hidden md:block flex-1 relative h-8">
                 <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 20">
                   <path className="piping-line" d="M0 10 L100 10" fill="none" stroke="#b9c7e4" strokeOpacity="0.4" strokeWidth="2"></path>
                 </svg>
               </div>
-              <div className="flex flex-col items-center gap-md">
-                <div className="w-16 h-16 rounded border border-primary/30 flex items-center justify-center bg-primary/5 rotate-45">
+
+              {/* Aurora */}
+              <div
+                className={`flex flex-col items-center gap-md cursor-pointer transition-transform hover:scale-105 ${
+                  selectedNode === 'aurora' ? 'text-primary' : ''
+                }`}
+                onClick={() => setSelectedNode(selectedNode === 'aurora' ? null : 'aurora')}
+              >
+                <div className="w-16 h-16 rounded-xl border border-primary/40 flex items-center justify-center bg-primary/10 rotate-45 shadow-lg">
                   <span className="material-symbols-outlined text-primary text-3xl -rotate-45">database</span>
                 </div>
                 <div className="text-center">
@@ -294,29 +413,40 @@ export default function ProjectDetail() {
         </section>
       )}
 
-      {/* Impact */}
+      {/* Quantifiable Impact with Spotlight Cards */}
       <section className="scroll-reveal py-xl px-margin-mobile md:px-xl max-w-container-max mx-auto">
         <h2 className="font-headline-lg text-headline-lg mb-xl text-center">Quantifiable Impact</h2>
         <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-md h-auto md:h-[600px]">
           {project.impact.map((item, i) => {
             if (item.type === 'big') {
               return (
-                <div key={i} className="md:col-span-2 md:row-span-2 glass-panel p-xl rounded-xl flex flex-col justify-center border-l-4 border-l-primary">
-                  <span className="font-technical-sm text-technical-sm text-primary mb-md tracking-widest uppercase">{item.label}</span>
+                <SpotlightCard
+                  key={i}
+                  className="md:col-span-2 md:row-span-2 p-xl flex flex-col justify-center border-l-4 border-l-primary"
+                >
+                  <span className="font-technical-sm text-technical-sm text-primary mb-md tracking-widest uppercase">
+                    {item.label}
+                  </span>
                   <h3 className="font-display-xl text-primary text-display-xl-mobile md:text-display-xl mb-md">
-                    <span className="counter" data-target={item.value}>0</span>{item.suffix || ''}
+                    <span className="counter" data-target={item.value}>0</span>
+                    {item.suffix || ''}
                   </h3>
                   <p className="font-headline-md text-headline-md text-on-surface mb-sm">{item.desc}</p>
-                  <p className="text-on-surface-variant">{item.sub}</p>
-                </div>
+                  <p className="text-on-surface-variant text-sm">{item.sub}</p>
+                </SpotlightCard>
               )
             } else if (item.type === 'medium') {
               return (
-                <div key={i} className="md:col-span-2 glass-panel p-lg rounded-xl border-t border-outline-variant/30">
+                <SpotlightCard key={i} className="md:col-span-2 p-lg border-t border-outline-variant/30">
                   <div className="flex justify-between items-start">
                     <div>
-                      <span className="font-technical-sm text-technical-sm text-outline uppercase mb-xs block">{item.label}</span>
-                      <h3 className="font-headline-lg text-headline-lg text-on-surface"><span className="counter" data-target={item.value}>0</span>{item.suffix}</h3>
+                      <span className="font-technical-sm text-technical-sm text-outline uppercase mb-xs block">
+                        {item.label}
+                      </span>
+                      <h3 className="font-headline-lg text-headline-lg text-on-surface">
+                        <span className="counter" data-target={item.value}>0</span>
+                        {item.suffix}
+                      </h3>
                     </div>
                     <span className="material-symbols-outlined text-primary text-4xl">trending_up</span>
                   </div>
@@ -326,25 +456,36 @@ export default function ProjectDetail() {
                     </div>
                   )}
                   <p className="text-technical-sm mt-sm text-outline">{item.sub}</p>
-                </div>
+                </SpotlightCard>
               )
             } else if (item.type === 'small-accent') {
               return (
-                <div key={i} className="glass-panel p-lg rounded-xl border border-outline-variant/30 bg-primary-container">
-                  <span className="font-technical-sm text-technical-sm text-primary-fixed-dim uppercase mb-xs block">{item.label}</span>
+                <SpotlightCard key={i} className="p-lg bg-primary-container border-primary/30">
+                  <span className="font-technical-sm text-technical-sm text-primary-fixed-dim uppercase mb-xs block">
+                    {item.label}
+                  </span>
                   <h3 className="font-headline-md text-headline-md text-primary">
-                    {item.suffix ? <><span className="counter" data-target={item.value}>0</span>{item.suffix}</> : item.value}
+                    {item.suffix ? (
+                      <>
+                        <span className="counter" data-target={item.value}>0</span>
+                        {item.suffix}
+                      </>
+                    ) : (
+                      item.value
+                    )}
                   </h3>
                   <p className="text-technical-sm text-primary/70 mt-sm">{item.sub}</p>
-                </div>
+                </SpotlightCard>
               )
             }
             return (
-              <div key={i} className="glass-panel p-lg rounded-xl border border-outline-variant/30">
-                <span className="font-technical-sm text-technical-sm text-outline uppercase mb-xs block">{item.label}</span>
-                <h3 className="font-headline-md text-headline-md">{item.value}</h3>
+              <SpotlightCard key={i} className="p-lg">
+                <span className="font-technical-sm text-technical-sm text-outline uppercase mb-xs block">
+                  {item.label}
+                </span>
+                <h3 className="font-headline-md text-headline-md text-on-surface">{item.value}</h3>
                 <p className="text-technical-sm text-on-surface-variant mt-sm">{item.sub}</p>
-              </div>
+              </SpotlightCard>
             )
           })}
         </div>
@@ -354,19 +495,21 @@ export default function ProjectDetail() {
       <section className="scroll-reveal py-xl px-margin-mobile md:px-xl max-w-container-max mx-auto border-t border-outline-variant/10">
         <div className="mb-lg">
           <h2 className="font-headline-lg text-headline-lg mb-xs">Technical Foundation</h2>
-          <p className="text-on-surface-variant text-body-lg">Every component selected for its mathematical reliability and scalability profile.</p>
+          <p className="text-on-surface-variant text-body-lg">
+            Every component selected for its mathematical reliability and scalability profile.
+          </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
           {project.techStack.map((t) => (
-            <div key={t.title} className="tech-card glass-panel p-md rounded-xl border border-outline-variant/20 flex gap-md">
-              <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center border border-outline-variant/30 rounded bg-surface">
+            <SpotlightCard key={t.title} className="p-md flex gap-md group">
+              <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center border border-outline-variant/30 rounded-xl bg-surface group-hover:border-primary/50 transition-colors">
                 <span className="material-symbols-outlined text-2xl text-primary">{t.icon}</span>
               </div>
               <div>
                 <h4 className="font-code-label text-on-surface">{t.title}</h4>
-                <p className="text-[13px] text-on-surface-variant mt-1 leading-relaxed">{t.desc}</p>
+                <p className="text-[13px] text-on-surface-variant mt-1 leading-relaxed opacity-80">{t.desc}</p>
               </div>
-            </div>
+            </SpotlightCard>
           ))}
         </div>
       </section>
@@ -376,41 +519,57 @@ export default function ProjectDetail() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-lg">
           <div className="md:col-span-4">
             <div className="md:sticky md:top-24">
-              <span className="font-technical-sm text-primary uppercase tracking-widest block mb-xs">Professional Commentary</span>
+              <span className="font-technical-sm text-primary uppercase tracking-widest block mb-xs">
+                Professional Commentary
+              </span>
               <h2 className="font-headline-lg text-headline-lg">Architectural Insights</h2>
-              <p className="text-on-surface-variant mt-md">Critical reflections on the migration strategy and long-term system evolution.</p>
+              <p className="text-on-surface-variant mt-md text-sm leading-relaxed">
+                Critical reflections on the migration strategy and long-term system evolution.
+              </p>
             </div>
           </div>
           <div className="md:col-span-8 space-y-lg">
             {project.insights.map((insight) => (
-              <div key={insight.title} className="p-lg bg-surface-container-low border border-outline-variant/20 rounded-xl">
-                <h4 className="font-headline-md mb-sm flex items-center gap-2">
+              <SpotlightCard key={insight.title} className="p-lg">
+                <h4 className="font-headline-md mb-sm flex items-center gap-2 text-on-surface">
                   <span className="material-symbols-outlined text-primary">{insight.icon}</span>
                   {insight.title}
                 </h4>
-                <p className="text-body-md text-on-surface-variant">{insight.desc}</p>
-              </div>
+                <p className="text-body-md text-on-surface-variant text-sm leading-relaxed opacity-85">
+                  {insight.desc}
+                </p>
+              </SpotlightCard>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Conversion CTA */}
       <section className="scroll-reveal py-xl px-margin-mobile md:px-xl max-w-container-max mx-auto text-center">
-        <div className="glass-panel p-xl rounded-2xl border-primary/20 bg-gradient-to-br from-primary/10 via-background to-transparent relative overflow-hidden group">
+        <div className="glass-panel p-xl rounded-2xl border-primary/30 bg-gradient-to-br from-primary/10 via-background to-transparent relative overflow-hidden group shadow-2xl">
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl transition-all duration-700 group-hover:bg-primary/20"></div>
           <div className="relative z-10">
-            <h2 className="font-display-xl-mobile text-display-xl-mobile mb-md">Ready for a System Overhaul?</h2>
-            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-lg">Don't let legacy debt dictate your growth trajectory. Let's architect a high-integrity solution built for the next decade of scale.</p>
+            <h2 className="font-display-xl-mobile text-display-xl-mobile mb-md text-on-surface">
+              Ready for a System Overhaul?
+            </h2>
+            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-lg leading-relaxed">
+              Don't let legacy debt dictate your growth trajectory. Let's architect a high-integrity solution built for the next decade of scale.
+            </p>
             <div className="flex flex-col md:flex-row gap-md justify-center">
               <button
                 data-cal-link={CAL_AUDIT}
                 data-cal-config='{"theme":"dark"}'
-                className="bg-primary text-on-primary px-xl py-md rounded-lg font-headline-md hover:scale-105 active:scale-95 transition-all shadow-[0_10px_30px_rgba(185,199,228,0.2)] cursor-pointer"
+                onClick={triggerAuditCelebration}
+                className="bg-primary text-on-primary px-xl py-md rounded-xl font-headline-md hover:scale-105 active:scale-95 transition-all shadow-[0_10px_30px_rgba(185,199,228,0.2)] cursor-pointer"
               >
                 Schedule Infrastructure Audit
               </button>
-              <Link to="/projects#extended-deployment-inventory" className="border border-primary/30 text-primary px-xl py-md rounded-lg font-headline-md hover:bg-primary/5 transition-all">View All Case Studies</Link>
+              <Link
+                to="/projects#extended-deployment-inventory"
+                className="border border-primary/30 text-primary px-xl py-md rounded-xl font-headline-md hover:bg-primary/5 transition-all flex items-center justify-center"
+              >
+                View All Case Studies
+              </Link>
             </div>
           </div>
         </div>

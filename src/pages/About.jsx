@@ -1,142 +1,283 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { CAL_AUDIT } from '../data/cal'
-import { philosophyCards, timelineItems } from '../data/about'
+import { CAL_AUDIT, CAL_DISCOVERY } from '../data/cal'
+import { playTechClick } from '../utils/sound'
+
+const verifiedStack = [
+  {
+    category: 'Cloud & Compute',
+    tools: ['AWS (VPC, EC2, ECS, EKS, S3, CloudFront, Route53, IAM)', 'Docker Engine', 'Linux (Debian / Ubuntu / Alpine)'],
+  },
+  {
+    category: 'Infrastructure as Code',
+    tools: ['Terraform (HCL Modules, State Locking, Workspaces)', 'CloudFormation', 'Helm Charts'],
+  },
+  {
+    category: 'CI/CD & Delivery',
+    tools: ['GitHub Actions (OIDC, Reusable Workflows, Secrets Mgmt)', 'GitOps Workflows', 'ArgoCD'],
+  },
+  {
+    category: 'Observability & Reliability',
+    tools: ['Prometheus', 'Grafana', 'OpenTelemetry', 'Alertmanager (Burn-Rate SLOs)', 'CloudWatch'],
+  },
+  {
+    category: 'Networking & Security',
+    tools: ['TLS/mTLS', 'WAF / Anycast CDN', 'Zero-Trust IAM', 'VPC Peering & Transit Gateways', 'Secret Rotation'],
+  },
+]
+
+const methodologySteps = [
+  {
+    num: '01',
+    title: 'Architectural Discovery & Failure-Mode Analysis',
+    desc: 'Map every dependency, synchronous bottleneck, and single point of failure before modifying state. Model blast radiuses and define quantitative recovery objectives (RTO / RPO).',
+  },
+  {
+    num: '02',
+    title: 'Deterministic IaC & Environment Parity',
+    desc: 'Codify 100% of the target topology into declarative, version-controlled Terraform modules. Ban manual console modifications to eliminate configuration drift permanently.',
+  },
+  {
+    num: '03',
+    title: 'Automated CI/CD with Cryptographic OIDC',
+    desc: 'Build repeatable deployment pipelines that provision ephemeral test environments, run automated linting and security scans, and deploy with zero long-lived AWS keys.',
+  },
+  {
+    num: '04',
+    title: 'Telemetry-First Observability & Handover',
+    desc: 'Instrument distributed traces, error budget burn rates, and automated runbooks. Leave operations teams with self-healing clusters and actionable, low-noise alerts.',
+  },
+]
 
 export default function About() {
   const gridRef = useRef(null)
 
   useEffect(() => {
-    const handleMouse = (e) => {
-      if (gridRef.current) {
-        const moveX = (e.clientX - window.innerWidth / 2) / 50
-        const moveY = (e.clientY - window.innerHeight / 2) / 50
-        gridRef.current.style.backgroundPosition = `${moveX}px ${moveY}px`
-      }
-    }
-    document.addEventListener('mousemove', handleMouse)
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('opacity-100', 'translate-y-0')
-          entry.target.classList.remove('opacity-0', 'translate-y-10')
-        }
-      })
-    }, { threshold: 0.1 })
-
-    document.querySelectorAll('.timeline-item').forEach((item) => {
-      item.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10')
-      observer.observe(item)
-    })
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouse)
-      observer.disconnect()
-    }
+    window.scrollTo(0, 0)
   }, [])
 
   return (
-    <div className="technical-grid min-h-screen" ref={gridRef}>
-      <style>{`
-        .technical-grid {
-          background-size: 40px 40px;
-          background-image: radial-gradient(circle, rgba(185, 199, 228, 0.05) 1px, transparent 1px);
-        }
-      `}</style>
+    <div className="w-full flex flex-col bg-paper text-navy-900 select-none">
+      {/* 001 // THE ENGINEER - Hero Section */}
+      <section className="relative pt-12 pb-20 md:py-28 border-b border-hairline-light bg-navy-900 text-white overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-10 pointer-events-none"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(148, 163, 184, 0.15) 1px, transparent 1px)',
+            backgroundSize: '48px 48px',
+          }}
+        />
 
-      {/* Hero */}
-      <section className="relative min-h-[60vh] md:min-h-[819px] flex items-center overflow-hidden px-margin-mobile md:px-xl max-w-container-max mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter w-full">
-          <div className="md:col-span-7 flex flex-col justify-center z-10 space-y-md">
-            <div className="flex items-center gap-sm">
-              <span className="w-12 h-[1px] bg-primary"></span>
-              <span className="font-technical-sm text-technical-sm text-primary uppercase tracking-widest">Architectural Manifesto</span>
-            </div>
-            <h1 className="font-display-xl text-display-xl-mobile md:text-display-xl leading-tight">
-              The Architect's <span className="text-primary">Ethos</span>
-            </h1>
-            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
-              In an era of fleeting digital trends, we build for permanence. My philosophy merges high-level infrastructure design with the precision of a master architect.
-            </p>
+        <div className="max-w-container mx-auto px-4 md:px-8 relative z-10">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="font-mono text-xs text-blue-400 tracking-mono font-bold">ABOUT // PRAISE GEORGEWILL</span>
+            <span className="w-8 h-px bg-hairline-dark"></span>
+            <span className="font-mono text-xs text-muted-on-dark uppercase tracking-mono">
+              SYSTEMS BUILDER &bull; DEVOPS &amp; CLOUD ENGINEER
+            </span>
           </div>
-          <div className="md:col-span-5 relative mt-lg md:mt-0">
-            <div className="aspect-[4/5] rounded-lg overflow-hidden border border-primary/20 bg-surface-container-high relative group">
-              <img src="/praise.jpg" alt="Praise Georgewill" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
-              <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(185,199,228,0.5) 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 shadow-[inset_0_0_40px_rgba(185,199,228,0.1)] pointer-events-none"></div>
-            </div>
-            <div className="absolute -top-4 -right-4 w-24 h-24 border-t border-r border-primary/40"></div>
-            <div className="absolute -bottom-4 -left-4 font-technical-sm text-technical-sm text-primary/40 rotate-90 origin-left">SYSTEM_BUILDER_V2.04</div>
-          </div>
-        </div>
-      </section>
 
-      {/* Philosophy */}
-      <section className="py-xl px-margin-mobile md:px-xl max-w-container-max mx-auto bg-surface-container-lowest/50">
-        <div className="max-w-3xl mx-auto text-center space-y-md mb-xl">
-          <h2 className="font-headline-lg text-headline-lg text-on-surface">The Systems Builder Philosophy</h2>
-          <div className="h-1 w-20 bg-primary mx-auto"></div>
-          <p className="font-body-lg text-body-lg text-on-surface-variant">
-            Infrastructure is not merely code or concrete; it is the silent skeletal structure that supports the weight of human ambition. To build a system is to make a promise of reliability.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-          {philosophyCards.map((p) => (
-            <div key={p.id} className="group p-md border border-outline-variant/20 bg-surface-container hover:border-primary/50 transition-all duration-500 rounded-lg">
-              <div className="mb-lg">
-                <span className="material-symbols-outlined text-primary text-4xl mb-sm">{p.icon}</span>
-                <h3 className="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">{p.title}</h3>
-              </div>
-              <p className="font-body-md text-body-md text-on-surface-variant mb-md">{p.desc}</p>
-              <div className="font-technical-sm text-technical-sm text-primary/40 mt-auto">PRIN_ID: {p.id}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <h1 className="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-[1.08]">
+                Designing systems built for{' '}
+                <span className="font-serif italic font-normal text-blue-400">permanence</span> and quiet reliability.
+              </h1>
 
-      {/* Timeline */}
-      <section className="py-xl px-margin-mobile md:px-xl max-w-container-max mx-auto">
-        <h2 className="font-headline-lg text-headline-lg text-on-surface text-center mb-xl">The Execution Roadmap</h2>
-        <div className="relative max-w-4xl mx-auto pl-md md:pl-0">
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[1px] bg-outline-variant/30 transform md:-translate-x-1/2"></div>
-          {timelineItems.map((item, i) => (
-            <div key={i} className={`timeline-item relative mb-xl ${i % 2 === 1 ? 'md:w-1/2 md:ml-auto md:pl-xl' : 'md:w-1/2 md:pr-xl md:text-right'}`}>
-              <div className={`absolute top-0 w-6 h-6 rounded-full bg-background border-2 border-primary z-10 ${i % 2 === 1 ? '-left-3' : '-left-3 md:left-auto md:-right-3'}`}></div>
-              <div className="bg-surface-container-high p-md rounded-lg border border-outline-variant/10 hover:border-primary/30 transition-all">
-                <span className="font-technical-sm text-technical-sm text-primary">{item.label}</span>
-                <h4 className="font-headline-md text-headline-md mt-xs">{item.title}</h4>
-                <p className="text-on-surface-variant mt-sm">{item.desc}</p>
+              <p className="font-body text-base md:text-lg text-muted-on-dark leading-relaxed max-w-2xl">
+                Infrastructure is the silent skeletal structure that supports all digital value. I design, automate, and operate cloud environments where failure modes are isolated, rollouts are zero-downtime, and recovery is deterministic.
+              </p>
+
+              <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-muted-on-dark">
+                <span className="flex items-center gap-1.5 text-emerald-400">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  OPEN TO REMOTE ROLES &bull; CONSULTING
+                </span>
+                <span>&bull;</span>
+                <span>LOCATION: MAURITIUS (GMT+4)</span>
+                <span>&bull;</span>
+                <span className="text-blue-400">AWS CERTIFIED FOCUS</span>
               </div>
             </div>
-          ))}
+
+            {/* Portrait Card */}
+            <div className="lg:col-span-5 relative">
+              <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-hairline-dark bg-navy-950 relative shadow-2xl group">
+                <img
+                  src="/praise.jpg"
+                  alt="Praise Georgewill"
+                  className="w-full h-full object-cover grayscale contrast-115 group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent"></div>
+
+                <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-navy-900/90 backdrop-blur-md border border-hairline-dark flex items-center justify-between font-mono text-xs">
+                  <span className="text-white font-semibold">PRAISE GEORGEWILL</span>
+                  <span className="text-blue-400">SYSTEMS BUILDER</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-xl px-margin-mobile md:px-xl max-w-container-max mx-auto">
-        <div className="relative p-xl rounded-xl overflow-hidden border border-primary/20 bg-primary-container text-center group">
-          <div className="absolute inset-0 opacity-10 pointer-events-none group-hover:opacity-20 transition-opacity">
-            <div className="technical-grid h-full w-full"></div>
+      {/* 002 // BACKGROUND & OPERATIONAL FOCUS (Paper) */}
+      <section className="py-20 md:py-28 bg-paper text-navy-900 border-b border-hairline-light">
+        <div className="max-w-container mx-auto px-4 md:px-8 space-y-12">
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-xs text-blue-600 tracking-mono font-bold">002 // BACKGROUND</span>
+            <span className="w-8 h-px bg-hairline-light"></span>
+            <span className="font-mono text-xs text-muted-on-light uppercase tracking-mono">
+              ENGINEERING TRAJECTORY
+            </span>
           </div>
-          <div className="relative z-10 max-w-2xl mx-auto space-y-md">
-            <h2 className="font-display-xl text-display-xl-mobile md:text-headline-lg text-primary">Consult the Architect</h2>
-            <p className="font-body-lg text-body-lg text-on-primary-container">
-              Your infrastructure deserves an architect who understands the stakes. Let us review your current state and design a system built for the next century.
-            </p>
-            <div className="flex flex-col md:flex-row gap-md justify-center pt-md">
-              <button
-                data-cal-link={CAL_AUDIT}
-                data-cal-config='{"theme":"dark"}'
-                className="bg-primary text-on-primary px-xl py-md rounded-lg font-code-label text-code-label hover:opacity-90 transition-all shadow-lg shadow-primary/20 cursor-pointer"
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="p-6 md:p-8 rounded-2xl bg-white border border-hairline-light space-y-4 shadow-xs">
+              <div className="font-mono text-xs font-bold text-blue-600">PARAGRAPH 01 // ORIGIN</div>
+              <h3 className="font-display font-bold text-xl text-navy-900">
+                Grounding in Distributed Primitives
+              </h3>
+              <p className="font-body text-sm text-slate-700 leading-relaxed">
+                I began in software engineering and quickly recognized that application reliability is bounded by the quality of its underlying platform. Moving deep into cloud infrastructure and Linux internals, I built my approach around reproducibility, strict access control, and deterministic automation.
+              </p>
+            </div>
+
+            <div className="p-6 md:p-8 rounded-2xl bg-white border border-hairline-light space-y-4 shadow-xs">
+              <div className="font-mono text-xs font-bold text-blue-600">PARAGRAPH 02 // PRACTICE</div>
+              <h3 className="font-display font-bold text-xl text-navy-900">
+                DevOps as Continuous Discipline
+              </h3>
+              <p className="font-body text-sm text-slate-700 leading-relaxed">
+                In production, hope is not an operational strategy. I build delivery pipelines using GitHub Actions with OIDC federation, multi-region AWS architectures, and Kubernetes platforms where releases are automated, rollbacks are immediate, and observability alerts strictly on user-facing SLOs.
+              </p>
+            </div>
+
+            <div className="p-6 md:p-8 rounded-2xl bg-white border border-hairline-light space-y-4 shadow-xs">
+              <div className="font-mono text-xs font-bold text-blue-600">PARAGRAPH 03 // ENGAGEMENT</div>
+              <h3 className="font-display font-bold text-xl text-navy-900">
+                What I Am Looking For
+              </h3>
+              <p className="font-body text-sm text-slate-700 leading-relaxed">
+                I am actively considering remote full-time infrastructure/DevOps roles, high-impact contract engineering, and cloud advisory engagements. I thrive in teams that prioritize structural integrity over short-term hacks and value engineers who document every architectural trade-off.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 003 // VERIFIED STACK & PRIMITIVES (Paper) */}
+      <section className="py-20 md:py-28 bg-white border-b border-hairline-light">
+        <div className="max-w-container mx-auto px-4 md:px-8 space-y-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-hairline-light">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <span className="font-mono text-xs text-blue-600 tracking-mono font-bold">003 // VERIFIED STACK</span>
+                <span className="w-8 h-px bg-hairline-light"></span>
+                <span className="font-mono text-xs text-muted-on-light uppercase tracking-mono">
+                  PRODUCTION-PROVEN PRIMITIVES
+                </span>
+              </div>
+              <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-navy-900 tracking-tight">
+                Tools &amp; Infrastructure Primitives
+              </h2>
+            </div>
+            <div className="font-mono text-xs text-muted-on-light">
+              STRICT VERIFICATION: ONLY TOOLS ACTIVELY OPERATED
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {verifiedStack.map((cat, idx) => (
+              <div
+                key={idx}
+                className="p-6 rounded-2xl bg-paper border border-hairline-light space-y-4 hover:border-blue-600/30 transition-all"
               >
-                Request Audit
-              </button>
-              <Link to="/project/48-hour-mastery" className="border border-primary/30 text-primary px-xl py-md rounded-lg font-code-label text-code-label hover:bg-primary/10 transition-all inline-block text-center">
-                View System Logs
-              </Link>
+                <div className="font-mono text-xs font-bold text-blue-600 uppercase tracking-mono">
+                  {cat.category}
+                </div>
+                <div className="space-y-2">
+                  {cat.tools.map((tool, tIdx) => (
+                    <div key={tIdx} className="flex items-center gap-2 font-mono text-xs text-slate-700">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0"></span>
+                      <span>{tool}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 004 // BLUEPRINT METHODOLOGY (Navy-900) */}
+      <section className="py-20 md:py-28 bg-navy-900 text-white border-b border-hairline-dark">
+        <div className="max-w-container mx-auto px-4 md:px-8 space-y-12">
+          <div className="space-y-2">
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-xs text-blue-400 tracking-mono font-bold">004 // METHODOLOGY</span>
+              <span className="w-8 h-px bg-hairline-dark"></span>
+              <span className="font-mono text-xs text-muted-on-dark uppercase tracking-mono">
+                THE EXECUTION BLUEPRINT
+              </span>
             </div>
+            <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
+              From Architectural Audit to Continuous Zero-Downtime Operation
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {methodologySteps.map((step) => (
+              <div
+                key={step.num}
+                className="p-6 md:p-8 rounded-2xl bg-navy-950/80 border border-hairline-dark space-y-3 backdrop-blur-xl"
+              >
+                <span className="font-mono text-xs font-bold text-blue-400 px-2 py-0.5 rounded bg-blue-600/10 border border-blue-400/20">
+                  PHASE {step.num}
+                </span>
+                <h3 className="font-display font-bold text-xl text-white">
+                  {step.title}
+                </h3>
+                <p className="font-body text-sm text-muted-on-dark leading-relaxed">
+                  {step.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 005 // ADVISORY INTAKE & SCHEDULING (Navy-950) */}
+      <section className="py-20 md:py-24 bg-navy-950 text-white">
+        <div className="max-w-3xl mx-auto px-4 text-center space-y-6">
+          <span className="font-mono text-xs text-blue-400 uppercase tracking-mono">
+            ENGAGEMENT // DIRECT ADVISORY
+          </span>
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
+            Ready to review your cloud topology?
+          </h2>
+          <p className="font-body text-sm md:text-base text-muted-on-dark leading-relaxed max-w-xl mx-auto">
+            Whether preparing for a migration, diagnosing recurring production incidents, or automating a CI/CD platform, let’s schedule a technical discovery call.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+            <a
+              href={CAL_DISCOVERY}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={playTechClick}
+              className="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-mono text-xs font-bold uppercase tracking-mono transition-colors shadow-lg shadow-blue-600/20"
+            >
+              Schedule 30-Min Discovery &rarr;
+            </a>
+
+            <Link
+              to="/#contact"
+              onClick={playTechClick}
+              className="px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 text-white border border-hairline-dark font-mono text-xs uppercase tracking-mono transition-colors"
+            >
+              Direct Message
+            </Link>
           </div>
         </div>
       </section>

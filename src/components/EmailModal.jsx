@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import confetti from 'canvas-confetti'
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'
 
@@ -18,6 +19,14 @@ export default function EmailModal({ isOpen, onClose }) {
       const json = await res.json()
       if (res.ok && json.ok) {
         setState({ status: 'success', message: 'Message transmitted successfully. Expect a response within 24 hours.' })
+        try {
+          confetti({
+            particleCount: 90,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#b9c7e4', '#b4c5ff', '#ffffff']
+          })
+        } catch {}
         e.target.reset()
       } else {
         setState({ status: 'error', message: json.error || 'Transmission failed. Please try again.' })
