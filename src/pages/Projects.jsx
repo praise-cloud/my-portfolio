@@ -25,7 +25,7 @@ export default function Projects({ onOpenDrawer }) {
   return (
     <div className="w-full flex flex-col bg-paper text-navy-900 select-none space-y-16 pb-24">
       {/* Agency Projects Hero */}
-      <section className="relative pt-12 pb-16 md:py-24 border-b-2 border-navy-900 bg-white overflow-hidden">
+      <section className="relative pt-12 pb-16 md:py-24 border-b-2 border-navy-900 bg-paper overflow-hidden">
         {/* Colorful Brutalist Accent Ribbon */}
         <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-600 via-[#FF4D00] to-[#FFE600]"></div>
 

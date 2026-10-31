@@ -8,13 +8,14 @@
   --slate-700: #334155;
   --blue-600: #2563EB;
   --blue-400: #60A5FA;
-  --paper: #F8FAFC;
+  --paper: #F7F5F0;
+  --paper-milky: #F7F5F0;
   --white: #FFFFFF;
   --text-on-light: #0A192F;
-  --text-on-dark: #F8FAFC;
+  --text-on-dark: #F7F5F0;
   --muted-on-light: #64748B;
   --muted-on-dark: #94A3B8;
-  --hairline-light: #E2E8F0;
+  --hairline-light: #E5E1D8;
   --hairline-dark: rgba(148, 163, 184, 0.18);
 }
 
@@ -29,7 +30,7 @@ body {
 
 /* Custom Editorial Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #F8FAFC; }
+::-webkit-scrollbar-track { background: #F7F5F0; }
 ::-webkit-scrollbar-thumb { background: #0A192F; border: 1px solid #FFFFFF; }
 ::-webkit-scrollbar-thumb:hover { background: #2563EB; }
 

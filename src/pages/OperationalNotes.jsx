@@ -208,7 +208,7 @@ export default function OperationalNotes() {
   return (
     <div className="w-full flex flex-col bg-paper text-navy-900 select-none min-h-screen">
       {/* Brutalist Header Hero */}
-      <section className="relative pt-12 pb-16 md:py-24 border-b-2 border-navy-900 bg-white overflow-hidden">
+      <section className="relative pt-12 pb-16 md:py-24 border-b-2 border-navy-900 bg-paper overflow-hidden">
         {/* Colorful Brutalist Accent Bars */}
         <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-600 via-[#FF4D00] to-[#FFE600]"></div>
 
@@ -242,7 +242,7 @@ export default function OperationalNotes() {
             </div>
 
             {/* Quick Metrics Badge */}
-            <div className="lg:col-span-4 bg-paper border-2 border-navy-900 p-6 shadow-[5px_5px_0px_#0A192F] space-y-3">
+            <div className="lg:col-span-4 bg-white border-2 border-navy-900 p-6 shadow-[5px_5px_0px_#0A192F] space-y-3">
               <div className="font-mono text-xs font-black text-navy-900 uppercase tracking-mono border-b border-navy-900/20 pb-2 flex justify-between">
                 <span>ARCHIVE STATUS</span>
                 <span className="text-emerald-600">[ 6 VERIFIED CASES ]</span>
@@ -465,9 +465,9 @@ export default function OperationalNotes() {
       </section>
 
       {/* Direct Peer Review / Consultation Brutalist Callout */}
-      <section className="py-16 md:py-24 bg-white text-navy-900 border-t-2 border-navy-900">
+      <section className="py-16 md:py-24 bg-paper text-navy-900 border-t-2 border-navy-900">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="bg-paper border-2 border-navy-900 shadow-[8px_8px_0px_#0A192F] p-8 md:p-12 text-center space-y-6 relative">
+          <div className="bg-white border-2 border-navy-900 shadow-[8px_8px_0px_#0A192F] p-8 md:p-12 text-center space-y-6 relative">
             <span className="absolute -top-3 -left-3 font-mono text-navy-900 font-black text-lg select-none">+</span>
             <span className="absolute -top-3 -right-3 font-mono text-navy-900 font-black text-lg select-none">+</span>
             <span className="absolute -bottom-3 -left-3 font-mono text-navy-900 font-black text-lg select-none">+</span>

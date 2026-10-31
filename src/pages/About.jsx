@@ -196,8 +196,8 @@ export default function About() {
         </div>
       </section>
 
-      {/* 003 // VERIFIED STACK & PRIMITIVES (White) */}
-      <section className="py-20 md:py-28 bg-white border-b-2 border-navy-900">
+      {/* 003 // VERIFIED STACK & PRIMITIVES (Milky Paper) */}
+      <section className="py-20 md:py-28 bg-paper border-b-2 border-navy-900">
         <div className="max-w-container mx-auto px-4 md:px-8 space-y-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b-2 border-navy-900">
             <div>
@@ -222,7 +222,7 @@ export default function About() {
             {verifiedStack.map((cat, idx) => (
               <div
                 key={idx}
-                className="p-6 bg-paper border-2 border-navy-900 shadow-[5px_5px_0px_#0A192F] space-y-4 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[7px_7px_0px_#0A192F] transition-all"
+                className="p-6 bg-white border-2 border-navy-900 shadow-[5px_5px_0px_#0A192F] space-y-4 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[7px_7px_0px_#0A192F] transition-all"
               >
                 <div className="font-mono text-xs font-black text-blue-600 uppercase tracking-mono border-b border-navy-900/20 pb-2">
                   [ {cat.category} ]
@@ -279,10 +279,10 @@ export default function About() {
         </div>
       </section>
 
-      {/* 005 // ADVISORY INTAKE & SCHEDULING (Paper with Brutalist Box) */}
-      <section className="py-20 md:py-28 bg-white text-navy-900">
+      {/* 005 // ADVISORY INTAKE & SCHEDULING (Milky Paper with Brutalist Box) */}
+      <section className="py-20 md:py-28 bg-paper text-navy-900">
         <div className="max-w-3xl mx-auto px-4">
-          <div className="bg-paper border-2 border-navy-900 shadow-[8px_8px_0px_#0A192F] p-8 md:p-12 text-center space-y-6 relative">
+          <div className="bg-white border-2 border-navy-900 shadow-[8px_8px_0px_#0A192F] p-8 md:p-12 text-center space-y-6 relative">
             {/* Corner Crosshairs */}
             <span className="absolute -top-3 -left-3 font-mono text-navy-900 font-black text-lg select-none">+</span>
             <span className="absolute -top-3 -right-3 font-mono text-navy-900 font-black text-lg select-none">+</span>
