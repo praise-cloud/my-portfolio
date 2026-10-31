@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { playTechClick } from '../utils/sound'
 
 const buildLogArticles = [
@@ -208,6 +209,35 @@ export default function BuildLogSection() {
               </div>
             )
           })}
+        </div>
+
+        {/* Bottom Navigation CTA to dedicated Operational Notes page */}
+        <div className="pt-6">
+          <div className="p-6 md:p-8 bg-white border-2 border-navy-900 shadow-[6px_6px_0px_#0A192F] flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative">
+            {/* Corner Crosshairs */}
+            <span className="absolute top-1 left-2 font-mono text-navy-900 font-black text-xs select-none">+</span>
+            <span className="absolute top-1 right-2 font-mono text-navy-900 font-black text-xs select-none">+</span>
+
+            <div className="space-y-1">
+              <span className="font-mono text-xs font-black text-blue-600 uppercase tracking-mono">
+                [ DEDICATED ARCHIVE // EXTENDED REPOSITORY ]
+              </span>
+              <h3 className="font-display font-black text-xl md:text-2xl text-navy-900 uppercase tracking-tight">
+                Inspect All Operational Post-Mortems &amp; IaC Manifests
+              </h3>
+              <p className="font-body text-sm text-slate-700 font-medium max-w-xl">
+                Browse our complete archive covering Kubernetes Karpenter, Cilium eBPF microsegmentation, and FinOps automated garbage collection.
+              </p>
+            </div>
+
+            <Link
+              to="/notes"
+              onClick={playTechClick}
+              className="bg-[#FF4D00] hover:bg-[#E04400] text-white px-7 py-3.5 font-mono text-xs font-black uppercase tracking-mono border-2 border-navy-900 shadow-[4px_4px_0px_#0A192F] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all whitespace-nowrap shrink-0"
+            >
+              OPEN FULL OPERATIONAL ARCHIVE &rarr;
+            </Link>
+          </div>
         </div>
       </div>
     </section>

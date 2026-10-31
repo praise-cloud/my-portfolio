@@ -24,8 +24,8 @@ export default function Home({ onOpenDrawer }) {
       {/* 001 // HERO (Navy-900 with oversized cropped wordmark) */}
       <HeroSection />
 
-      {/* Marquee Band (Ref 4/5 Monospace Stream) */}
-      <MarqueeBand />
+      {/* Marquee Band (Vibrant International Orange Ribbon) */}
+      <MarqueeBand variant="orange" />
 
       {/* 002 // POSITIONING (Paper background) */}
       <PositioningSection />
@@ -33,8 +33,8 @@ export default function Home({ onOpenDrawer }) {
       {/* 003 // CURRENT FOCUS (Paper background, 4 staggered bento cards) */}
       <CurrentFocusSection />
 
-      {/* Editorial Marquee Interlude */}
-      <MarqueeBand items={marqueeInterlude} />
+      {/* Editorial Marquee Interlude (Radiant Acid Yellow Ribbon) */}
+      <MarqueeBand items={marqueeInterlude} variant="yellow" />
 
       {/* 004 // PROOF OF WORK (Navy-900, 3-mode showcase, cluster simulator, interactive diff, ROI model) */}
       <ProofOfWorkSection onOpenDrawer={onOpenDrawer} />

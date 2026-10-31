@@ -71,7 +71,7 @@ export default function ParticleBackground() {
       draw() {
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(185, 199, 228, ${this.baseAlpha})`
+        ctx.fillStyle = `rgba(37, 99, 235, ${this.baseAlpha * 0.45})`
         ctx.fill()
       }
     }
@@ -91,12 +91,12 @@ export default function ParticleBackground() {
           const distance = Math.hypot(dx, dy)
 
           if (distance < maxDistance) {
-            const alpha = (1 - distance / maxDistance) * 0.15
+            const alpha = (1 - distance / maxDistance) * 0.18
             ctx.beginPath()
             ctx.moveTo(particles[i].x, particles[i].y)
             ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = `rgba(185, 199, 228, ${alpha})`
-            ctx.lineWidth = 0.6
+            ctx.strokeStyle = `rgba(37, 99, 235, ${alpha})`
+            ctx.lineWidth = 0.7
             ctx.stroke()
           }
         }

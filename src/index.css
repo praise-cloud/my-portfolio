@@ -19,8 +19,8 @@
 }
 
 body {
-  background-color: var(--navy-950);
-  color: var(--text-on-dark);
+  background-color: var(--paper);
+  color: var(--text-on-light);
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
@@ -28,9 +28,9 @@ body {
 }
 
 /* Custom Editorial Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #060F1D; }
-::-webkit-scrollbar-thumb { background: #1E3A6B; border-radius: 999px; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #F8FAFC; }
+::-webkit-scrollbar-thumb { background: #0A192F; border: 1px solid #FFFFFF; }
 ::-webkit-scrollbar-thumb:hover { background: #2563EB; }
 
 /* Neo-Brutalist & Engineering Brutalism Utilities */

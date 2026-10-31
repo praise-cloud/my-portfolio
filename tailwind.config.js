@@ -21,13 +21,28 @@ export default {
           500: "#3B82F6",
           400: "#60A5FA", // accent on dark
         },
+        // Vibrant Neo-Brutalist Color Palette (from ref4-brutal & ref5-formshift)
+        brutal: {
+          orange: "#FF4D00",
+          yellow: "#FFE600",
+          amber: "#F59E0B",
+          lime: "#D4FF00",
+          emerald: "#10B981",
+          blue: "#2563EB",
+          cyan: "#06B6D4",
+          purple: "#8B5CF6",
+          pink: "#EC4899",
+          red: "#EF4444",
+          paper: "#F8FAFC",
+          black: "#0A192F",
+        },
         paper: "#F8FAFC",
         white: "#FFFFFF",
         "text-on-light": "#0A192F",
         "text-on-dark": "#F8FAFC",
         "muted-on-light": "#64748B",
         "muted-on-dark": "#94A3B8",
-        "hairline-light": "#E2E8F0",
+        "hairline-light": "#CBD5E1",
         "hairline-dark": "rgba(148, 163, 184, 0.18)",
 
         // Compat aliases
@@ -50,7 +65,13 @@ export default {
         'brutal-white': '4px 4px 0px 0px #FFFFFF',
         'brutal-sm': '2px 2px 0px 0px #0A192F',
         'brutal-lg': '6px 6px 0px 0px #0A192F',
+        'brutal-xl': '8px 8px 0px 0px #0A192F',
         'brutal-blue': '4px 4px 0px 0px #60A5FA',
+        'brutal-orange': '4px 4px 0px 0px #FF4D00',
+        'brutal-yellow': '4px 4px 0px 0px #FFE600',
+        'brutal-lime': '4px 4px 0px 0px #D4FF00',
+        'brutal-emerald': '4px 4px 0px 0px #10B981',
+        'brutal-purple': '4px 4px 0px 0px #8B5CF6',
         'brutal-neon': '4px 4px 0px 0px #3B82F6',
       },
       borderRadius: {

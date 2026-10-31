@@ -13,6 +13,7 @@ import About from './pages/About'
 import Projects from './pages/Projects'
 import ProjectDetail from './pages/ProjectDetail'
 import Services from './pages/Services'
+import OperationalNotes from './pages/OperationalNotes'
 
 export default function App() {
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false)
@@ -61,7 +62,7 @@ export default function App() {
   }
 
   return (
-    <div className="bg-background text-on-surface font-body-md selection:bg-primary selection:text-primary-container min-h-screen relative overflow-x-hidden">
+    <div className="bg-paper text-navy-900 font-body-md selection:bg-blue-600 selection:text-white min-h-screen relative overflow-x-hidden">
       {/* Interactive Agency Visual Canvas */}
       <ParticleBackground />
 
@@ -76,6 +77,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home onOpenDrawer={handleOpenDrawer} />} />
           <Route path="/about" element={<About />} />
+          <Route path="/notes" element={<OperationalNotes />} />
+          <Route path="/build-log" element={<OperationalNotes />} />
           <Route path="/projects" element={<Projects onOpenDrawer={handleOpenDrawer} />} />
           <Route path="/project/:slug" element={<ProjectDetail />} />
           <Route path="/services" element={<Services />} />
