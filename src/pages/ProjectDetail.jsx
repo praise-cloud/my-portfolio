@@ -108,10 +108,10 @@ export default function ProjectDetail() {
   }
 
   return (
-    <div>
+    <div className="w-full flex flex-col bg-paper text-navy-900 select-none space-y-16 pb-24">
       <style>{`
         .grid-pattern { background-image: radial-gradient(circle, #334155 1px, transparent 1px); background-size: 32px 32px; }
-        .glass-panel { background: rgba(16, 20, 21, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(143, 144, 151, 0.15); }
+        .glass-panel { background: #FFFFFF; border: 2px solid #0A192F; box-shadow: 6px 6px 0px #0A192F; }
         @keyframes pulse-slow { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.7; } }
         .animate-pulse-slow { animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
         .tech-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }

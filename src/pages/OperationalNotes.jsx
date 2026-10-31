@@ -465,36 +465,43 @@ export default function OperationalNotes() {
       </section>
 
       {/* Direct Peer Review / Consultation Brutalist Callout */}
-      <section className="py-16 md:py-20 bg-navy-950 text-white border-t-2 border-navy-900">
-        <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
-          <div className="inline-block bg-[#FF4D00] text-black font-mono font-black text-xs px-3 py-1 border-2 border-white uppercase shadow-[3px_3px_0px_#2563EB]">
-            TECHNICAL COLLABORATION
-          </div>
-          <h2 className="font-display font-black text-3xl sm:text-5xl text-white uppercase tracking-tight">
-            Diagnosing a production bottleneck or scaling limit?
-          </h2>
-          <p className="font-body text-base text-muted-on-dark leading-relaxed max-w-xl mx-auto">
-            I review distributed systems architectures, CI/CD pipeline reliability, and cloud cost regressions. Let’s conduct an engineering deep dive.
-          </p>
+      <section className="py-16 md:py-24 bg-white text-navy-900 border-t-2 border-navy-900">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="bg-paper border-2 border-navy-900 shadow-[8px_8px_0px_#0A192F] p-8 md:p-12 text-center space-y-6 relative">
+            <span className="absolute -top-3 -left-3 font-mono text-navy-900 font-black text-lg select-none">+</span>
+            <span className="absolute -top-3 -right-3 font-mono text-navy-900 font-black text-lg select-none">+</span>
+            <span className="absolute -bottom-3 -left-3 font-mono text-navy-900 font-black text-lg select-none">+</span>
+            <span className="absolute -bottom-3 -right-3 font-mono text-navy-900 font-black text-lg select-none">+</span>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-            <a
-              href={CAL_DISCOVERY}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={playTechClick}
-              className="bg-blue-600 hover:bg-blue-500 text-white px-7 py-3.5 font-mono text-xs font-black uppercase tracking-mono border-2 border-white shadow-[4px_4px_0px_#060F1D] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all"
-            >
-              SCHEDULE 30-MIN DISCOVERY &rarr;
-            </a>
+            <div className="inline-block bg-[#FF4D00] text-white font-mono font-black text-xs px-3 py-1 border-2 border-navy-900 uppercase shadow-[2px_2px_0px_#0A192F]">
+              TECHNICAL COLLABORATION
+            </div>
+            <h2 className="font-display font-black text-3xl sm:text-5xl text-navy-900 uppercase tracking-tight">
+              Diagnosing a production bottleneck or scaling limit?
+            </h2>
+            <p className="font-body text-base text-slate-700 leading-relaxed max-w-xl mx-auto font-medium">
+              I review distributed systems architectures, CI/CD pipeline reliability, and cloud cost regressions. Let’s conduct an engineering deep dive.
+            </p>
 
-            <Link
-              to="/#contact"
-              onClick={playTechClick}
-              className="bg-white text-navy-900 hover:bg-slate-100 px-7 py-3.5 font-mono text-xs font-black uppercase tracking-mono border-2 border-navy-900 shadow-[4px_4px_0px_#2563EB] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all"
-            >
-              TRANSMIT INCIDENT REPORT
-            </Link>
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+              <a
+                href={CAL_DISCOVERY}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={playTechClick}
+                className="bg-[#FF4D00] hover:bg-[#E04400] text-white px-7 py-3.5 font-mono text-xs font-black uppercase tracking-mono border-2 border-navy-900 shadow-[4px_4px_0px_#0A192F] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all"
+              >
+                SCHEDULE 30-MIN DISCOVERY &rarr;
+              </a>
+
+              <Link
+                to="/#contact"
+                onClick={playTechClick}
+                className="bg-white text-navy-900 hover:bg-slate-100 px-7 py-3.5 font-mono text-xs font-black uppercase tracking-mono border-2 border-navy-900 shadow-[4px_4px_0px_#0A192F] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all"
+              >
+                TRANSMIT INCIDENT REPORT
+              </Link>
+            </div>
           </div>
         </div>
       </section>

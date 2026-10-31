@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import SpotlightCard from './SpotlightCard'
@@ -29,29 +29,29 @@ export default function ProjectShowcaseAgency({ onOpenDrawer }) {
   }
 
   return (
-    <div className="relative space-y-xl">
+    <div className="relative space-y-8 select-none">
       {/* Agency Mode Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-md border-b border-outline-variant/15 pb-md">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-navy-900 pb-4">
         <div>
-          <span className="font-code-label text-xs text-primary uppercase tracking-[0.25em] block">
-            SELECTED_WORKS // {projects.length} CASE_STUDIES
+          <span className="font-mono text-xs text-blue-600 font-black uppercase tracking-mono block">
+            SELECTED_WORKS // {projects.length} PRODUCTION BLUEPRINTS
           </span>
-          <h2 className="font-headline-lg text-2xl md:text-4xl text-on-surface mt-1">
+          <h2 className="font-display font-black text-2xl md:text-3xl text-navy-900 uppercase tracking-tight mt-1">
             Engineered Deployments
           </h2>
         </div>
 
-        {/* View Mode Switcher */}
-        <div className="flex items-center gap-xs p-1 rounded-xl bg-surface-container border border-outline-variant/30 self-start sm:self-auto">
+        {/* View Mode Switcher with Brutalist Buttons */}
+        <div className="flex items-center gap-2 p-1 bg-white border-2 border-navy-900 shadow-[3px_3px_0px_#0A192F] self-start sm:self-auto">
           <button
             onClick={() => {
               playTechClick(600)
               setViewMode('reel')
             }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-code-label text-xs transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 font-mono text-xs font-black uppercase transition-all cursor-pointer ${
               viewMode === 'reel'
-                ? 'bg-primary text-on-primary font-bold shadow'
-                : 'text-on-surface-variant hover:text-on-surface'
+                ? 'bg-blue-600 text-white shadow-[2px_2px_0px_#0A192F]'
+                : 'text-navy-900 hover:bg-slate-100'
             }`}
           >
             <span className="material-symbols-outlined text-sm">view_carousel</span>
@@ -63,10 +63,10 @@ export default function ProjectShowcaseAgency({ onOpenDrawer }) {
               playTechClick(600)
               setViewMode('matrix')
             }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-code-label text-xs transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 font-mono text-xs font-black uppercase transition-all cursor-pointer ${
               viewMode === 'matrix'
-                ? 'bg-primary text-on-primary font-bold shadow'
-                : 'text-on-surface-variant hover:text-on-surface'
+                ? 'bg-blue-600 text-white shadow-[2px_2px_0px_#0A192F]'
+                : 'text-navy-900 hover:bg-slate-100'
             }`}
           >
             <span className="material-symbols-outlined text-sm">grid_view</span>
@@ -78,10 +78,10 @@ export default function ProjectShowcaseAgency({ onOpenDrawer }) {
               playTechClick(600)
               setViewMode('index')
             }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-code-label text-xs transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 font-mono text-xs font-black uppercase transition-all cursor-pointer ${
               viewMode === 'index'
-                ? 'bg-primary text-on-primary font-bold shadow'
-                : 'text-on-surface-variant hover:text-on-surface'
+                ? 'bg-blue-600 text-white shadow-[2px_2px_0px_#0A192F]'
+                : 'text-navy-900 hover:bg-slate-100'
             }`}
           >
             <span className="material-symbols-outlined text-sm">format_list_bulleted</span>
@@ -98,42 +98,44 @@ export default function ProjectShowcaseAgency({ onOpenDrawer }) {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentReel.id}
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
             >
-              <SpotlightCard className="p-lg md:p-2xl shadow-2xl overflow-hidden relative border-primary/30">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
+              <SpotlightCard className="p-6 md:p-10 shadow-[8px_8px_0px_#0A192F] overflow-hidden relative border-2 border-navy-900 bg-white">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                   {/* Left: Project Narrative */}
-                  <div className="lg:col-span-7 space-y-lg">
-                    <div className="flex items-center gap-sm">
-                      <span className="font-technical-sm text-xs text-primary uppercase font-bold tracking-widest px-2.5 py-1 rounded bg-primary/10 border border-primary/20">
+                  <div className="lg:col-span-7 space-y-6">
+                    <div className="flex items-center gap-3">
+                      <span className="font-mono text-xs text-white bg-blue-600 uppercase font-black tracking-mono px-2.5 py-1 border border-navy-900 shadow-[2px_2px_0px_#0A192F]">
                         CASE_STUDY {String(activeReelIndex + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
                       </span>
-                      <span className="font-technical-sm text-xs text-outline uppercase">{currentReel.sector}</span>
+                      <span className="font-mono text-xs text-slate-700 font-bold uppercase tracking-mono">
+                        {currentReel.sector}
+                      </span>
                     </div>
 
-                    <h3 className="font-display-xl text-3xl md:text-5xl text-on-surface tracking-tight font-extrabold leading-tight">
+                    <h3 className="font-display font-black text-2xl sm:text-4xl md:text-5xl text-navy-900 tracking-[-0.03em] uppercase leading-tight">
                       {currentReel.title}
                     </h3>
 
-                    <p className="font-body-lg text-on-surface-variant text-base md:text-lg leading-relaxed opacity-85">
+                    <p className="font-body text-slate-800 text-sm md:text-base leading-relaxed font-medium">
                       {currentReel.shortDesc}
                     </p>
 
                     {/* Key Benchmarks Bar */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-md pt-sm">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
                       {currentReel.impact?.slice(0, 3).map((im, i) => (
-                        <div key={i} className="p-md rounded-xl bg-surface-container border border-outline-variant/20">
-                          <span className="font-technical-sm text-[10px] text-outline uppercase block truncate">
+                        <div key={i} className="p-4 bg-paper border-2 border-navy-900 shadow-[3px_3px_0px_#0A192F]">
+                          <span className="font-mono text-[10px] text-slate-600 font-bold uppercase block truncate">
                             {im.label}
                           </span>
-                          <div className="font-display-xl text-2xl md:text-3xl font-extrabold text-primary mt-1">
+                          <div className="font-display font-black text-xl md:text-2xl text-blue-600 mt-1">
                             {im.value}
                             {im.suffix || ''}
                           </div>
-                          <span className="font-technical-sm text-[10px] text-on-surface-variant/80 block mt-1 truncate">
+                          <span className="font-mono text-[10px] text-slate-600 font-medium block mt-1 truncate">
                             {im.sub}
                           </span>
                         </div>
@@ -141,13 +143,13 @@ export default function ProjectShowcaseAgency({ onOpenDrawer }) {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex flex-wrap gap-md pt-md items-center">
+                    <div className="flex flex-wrap gap-4 pt-2 items-center">
                       <Link
                         to={`/project/${currentReel.slug}`}
-                        className="bg-primary text-on-primary px-xl py-md rounded-xl font-headline-md text-sm font-bold hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-primary/20 flex items-center gap-2"
+                        className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 font-mono text-xs font-black uppercase tracking-mono border-2 border-navy-900 shadow-[4px_4px_0px_#0A192F] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
                       >
-                        <span>Inspect Full Blueprint</span>
-                        <span className="material-symbols-outlined text-base">arrow_forward</span>
+                        <span>INSPECT BLUEPRINT</span>
+                        <span className="font-mono text-sm">&rarr;</span>
                       </Link>
 
                       <button
@@ -155,35 +157,30 @@ export default function ProjectShowcaseAgency({ onOpenDrawer }) {
                           playTechClick(650)
                           onOpenDrawer(currentReel)
                         }}
-                        className="border border-outline-variant/30 text-on-surface px-lg py-md rounded-xl font-code-label text-sm hover:border-primary/50 hover:bg-surface-variant transition-all cursor-pointer flex items-center gap-2"
+                        className="border-2 border-navy-900 text-navy-900 bg-white hover:bg-slate-100 px-6 py-3 font-mono text-xs font-black uppercase tracking-mono shadow-[4px_4px_0px_#0A192F] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer flex items-center gap-2"
                       >
-                        <span className="material-symbols-outlined text-sm text-primary">visibility</span>
-                        <span>Quick Spec Drawer</span>
+                        <span className="material-symbols-outlined text-sm text-blue-600">visibility</span>
+                        <span>QUICK SPEC</span>
                       </button>
                     </div>
                   </div>
 
                   {/* Right: Interactive Graphic / Topology Visualizer Card */}
                   <div className="lg:col-span-5 relative">
-                    <div className="w-full aspect-[4/3] rounded-2xl bg-surface-container-highest/80 border border-primary/20 p-lg relative overflow-hidden flex flex-col justify-between shadow-2xl">
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-surface-container-highest/90"></div>
-                      <span className="material-symbols-outlined text-primary/10 text-9xl absolute right-4 bottom-4 pointer-events-none">
-                        deployed_code
-                      </span>
-
+                    <div className="w-full aspect-[4/3] bg-paper border-2 border-navy-900 p-6 relative overflow-hidden flex flex-col justify-between shadow-[6px_6px_0px_#0A192F]">
                       {/* Header status */}
-                      <div className="relative z-10 flex justify-between items-center text-xs font-technical-sm">
-                        <span className="text-primary font-bold">{currentReel.id} // ACTIVE</span>
-                        <span className="text-emerald-400 flex items-center gap-1">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                      <div className="relative z-10 flex justify-between items-center text-xs font-mono">
+                        <span className="text-navy-900 font-black">{currentReel.id} // ACTIVE</span>
+                        <span className="text-emerald-700 font-black flex items-center gap-1.5 bg-emerald-50 px-2 py-0.5 border border-emerald-500">
+                          <span className="w-2 h-2 bg-emerald-500 animate-pulse border border-navy-900"></span>
                           PROD LIVE
                         </span>
                       </div>
 
                       {/* Schematic Graphic */}
-                      <div className="relative z-10 my-auto text-center py-md space-y-sm">
-                        <div className="w-16 h-16 rounded-2xl border border-primary/40 bg-primary/10 flex items-center justify-center mx-auto shadow-lg shadow-primary/20">
-                          <span className="material-symbols-outlined text-3xl text-primary">
+                      <div className="relative z-10 my-auto text-center py-4 space-y-2">
+                        <div className="w-16 h-16 border-2 border-navy-900 bg-white flex items-center justify-center mx-auto shadow-[3px_3px_0px_#0A192F]">
+                          <span className="material-symbols-outlined text-3xl text-blue-600">
                             {currentReel.slug.includes('auth')
                               ? 'lock'
                               : currentReel.slug.includes('quantum')
@@ -193,20 +190,20 @@ export default function ProjectShowcaseAgency({ onOpenDrawer }) {
                               : 'dns'}
                           </span>
                         </div>
-                        <div className="font-code-label text-sm text-on-surface font-semibold">
+                        <div className="font-mono text-sm text-navy-900 font-black uppercase">
                           {currentReel.uptime} Commitment
                         </div>
-                        <p className="font-technical-sm text-xs text-outline">
+                        <p className="font-mono text-xs text-slate-600 font-bold">
                           Multi-Region Fault Isolation &bull; Zero Trust
                         </p>
                       </div>
 
                       {/* Bottom Tech Pills */}
-                      <div className="relative z-10 flex flex-wrap gap-xs">
+                      <div className="relative z-10 flex flex-wrap gap-1.5">
                         {currentReel.tags?.slice(0, 3).map((t) => (
                           <span
                             key={t}
-                            className="px-2 py-0.5 rounded bg-surface/80 border border-outline-variant/30 text-on-surface text-[10px] font-technical-sm"
+                            className="px-2.5 py-1 bg-white border border-navy-900 text-navy-900 text-[10px] font-mono font-bold uppercase shadow-[1px_1px_0px_#0A192F]"
                           >
                             {t}
                           </span>
@@ -220,9 +217,9 @@ export default function ProjectShowcaseAgency({ onOpenDrawer }) {
           </AnimatePresence>
 
           {/* Carousel Controls */}
-          <div className="flex items-center justify-between mt-md px-xs">
+          <div className="flex items-center justify-between mt-6 px-1">
             {/* Progress Indicators */}
-            <div className="flex items-center gap-xs">
+            <div className="flex items-center gap-2">
               {projects.map((_, idx) => (
                 <button
                   key={idx}
@@ -230,8 +227,10 @@ export default function ProjectShowcaseAgency({ onOpenDrawer }) {
                     playTechClick(500)
                     setActiveReelIndex(idx)
                   }}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    idx === activeReelIndex ? 'w-10 bg-primary' : 'w-2 bg-outline-variant/30 hover:bg-outline-variant'
+                  className={`h-2 transition-all duration-200 border border-navy-900 cursor-pointer ${
+                    idx === activeReelIndex
+                      ? 'w-10 bg-blue-600 shadow-[2px_2px_0px_#0A192F]'
+                      : 'w-3 bg-white hover:bg-slate-200'
                   }`}
                   aria-label={`Jump to project ${idx + 1}`}
                 />
@@ -239,11 +238,11 @@ export default function ProjectShowcaseAgency({ onOpenDrawer }) {
             </div>
 
             {/* Prev / Next Buttons */}
-            <div className="flex items-center gap-sm">
+            <div className="flex items-center gap-2">
               <button
                 onClick={prevReel}
                 onMouseEnter={() => playTechHover()}
-                className="w-11 h-11 rounded-xl border border-outline-variant/30 hover:border-primary/50 text-on-surface flex items-center justify-center hover:bg-surface-variant transition-all cursor-pointer"
+                className="w-10 h-10 border-2 border-navy-900 bg-white hover:bg-slate-100 text-navy-900 flex items-center justify-center shadow-[3px_3px_0px_#0A192F] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all cursor-pointer"
                 aria-label="Previous Project"
               >
                 <span className="material-symbols-outlined text-lg">arrow_back</span>
@@ -251,7 +250,7 @@ export default function ProjectShowcaseAgency({ onOpenDrawer }) {
               <button
                 onClick={nextReel}
                 onMouseEnter={() => playTechHover()}
-                className="w-11 h-11 rounded-xl border border-outline-variant/30 hover:border-primary/50 text-on-surface flex items-center justify-center hover:bg-surface-variant transition-all cursor-pointer"
+                className="w-10 h-10 border-2 border-navy-900 bg-white hover:bg-slate-100 text-navy-900 flex items-center justify-center shadow-[3px_3px_0px_#0A192F] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all cursor-pointer"
                 aria-label="Next Project"
               >
                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
@@ -265,12 +264,15 @@ export default function ProjectShowcaseAgency({ onOpenDrawer }) {
       {/* MODE 2: BLUEPRINT MATRIX (Interactive Bento Grid)       */}
       {/* ======================================================== */}
       {viewMode === 'matrix' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((p) => (
-            <SpotlightCard key={p.id} className="p-lg flex flex-col justify-between group h-full">
+            <div
+              key={p.id}
+              className="bg-white border-2 border-navy-900 shadow-[6px_6px_0px_#0A192F] p-6 flex flex-col justify-between group hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[8px_8px_0px_#0A192F] transition-all"
+            >
               <div>
-                <div className="flex justify-between items-start mb-md">
-                  <span className="font-technical-sm text-xs text-primary font-bold uppercase tracking-wider">
+                <div className="flex justify-between items-start mb-4">
+                  <span className="font-mono text-xs text-white bg-blue-600 px-2 py-0.5 border border-navy-900 font-black uppercase shadow-[2px_2px_0px_#0A192F]">
                     {p.id}
                   </span>
                   <button
@@ -278,38 +280,40 @@ export default function ProjectShowcaseAgency({ onOpenDrawer }) {
                       playTechClick(600)
                       onOpenDrawer(p)
                     }}
-                    className="w-7 h-7 rounded-lg border border-outline-variant/30 flex items-center justify-center text-outline hover:text-primary hover:border-primary/50 transition-colors"
+                    className="w-7 h-7 border border-navy-900 bg-paper flex items-center justify-center text-navy-900 hover:bg-blue-600 hover:text-white transition-colors shadow-[1px_1px_0px_#0A192F] cursor-pointer"
                     title="Quick Spec"
                   >
                     <span className="material-symbols-outlined text-sm">visibility</span>
                   </button>
                 </div>
 
-                <h3 className="font-headline-md text-xl text-on-surface mb-xs group-hover:text-primary transition-colors">
+                <h3 className="font-display font-black text-xl text-navy-900 mb-1 group-hover:text-blue-600 transition-colors uppercase tracking-tight">
                   {p.title}
                 </h3>
-                <span className="font-technical-sm text-xs text-outline uppercase block mb-md">{p.sector}</span>
+                <span className="font-mono text-xs text-slate-600 uppercase font-bold block mb-3">
+                  {p.sector}
+                </span>
 
-                <p className="font-body-md text-sm text-on-surface-variant leading-relaxed mb-lg opacity-80">
+                <p className="font-body text-sm text-slate-700 leading-relaxed mb-6 font-medium">
                   {p.shortDesc}
                 </p>
               </div>
 
               <div>
-                <div className="pt-md border-t border-outline-variant/15 flex items-center justify-between">
-                  <span className="font-code-label text-xs text-primary font-bold">
+                <div className="pt-4 border-t-2 border-navy-900/10 flex items-center justify-between">
+                  <span className="font-mono text-xs text-blue-600 font-black">
                     {p.impact?.[0]?.value ? `${p.impact[0].value}${p.impact[0].suffix || ''} Impact` : p.uptime}
                   </span>
                   <Link
                     to={`/project/${p.slug}`}
-                    className="font-code-label text-xs text-on-surface hover:text-primary flex items-center gap-1 group-hover:translate-x-1 transition-all"
+                    className="font-mono text-xs font-black uppercase text-navy-900 hover:text-blue-600 flex items-center gap-1 group-hover:translate-x-1 transition-all"
                   >
-                    <span>View Blueprint</span>
-                    <span className="material-symbols-outlined text-xs">arrow_forward</span>
+                    <span>Blueprint</span>
+                    <span className="font-mono">&rarr;</span>
                   </Link>
                 </div>
               </div>
-            </SpotlightCard>
+            </div>
           ))}
         </div>
       )}
@@ -319,40 +323,40 @@ export default function ProjectShowcaseAgency({ onOpenDrawer }) {
       {/* ======================================================== */}
       {viewMode === 'index' && (
         <div
-          className="relative rounded-2xl border border-outline-variant/20 bg-surface-container-low overflow-hidden shadow-2xl"
+          className="relative border-2 border-navy-900 bg-white shadow-[6px_6px_0px_#0A192F] overflow-hidden"
           onMouseMove={handleTableMouseMove}
         >
           {/* Floating Cursor Preview Frame */}
           {hoveredProject && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.15 }}
-              className="fixed pointer-events-none z-50 w-72 p-md rounded-2xl bg-surface-container-high/95 border border-primary/40 backdrop-blur-xl shadow-2xl hidden md:block"
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.12 }}
+              className="fixed pointer-events-none z-50 w-80 p-5 bg-white border-2 border-navy-900 shadow-[8px_8px_0px_#0A192F] hidden md:block"
               style={{
                 left: mousePos.x + 24,
                 top: mousePos.y - 120,
               }}
             >
-              <div className="flex justify-between items-center font-technical-sm text-[10px] text-primary uppercase mb-xs">
+              <div className="flex justify-between items-center font-mono text-[10px] text-blue-600 font-black uppercase mb-1">
                 <span>{hoveredProject.id}</span>
                 <span>{hoveredProject.timeline}</span>
               </div>
-              <div className="font-headline-md text-sm text-on-surface font-bold">{hoveredProject.title}</div>
-              <div className="font-body-md text-xs text-on-surface-variant mt-1 line-clamp-2">
+              <div className="font-display font-black text-sm text-navy-900 uppercase">{hoveredProject.title}</div>
+              <div className="font-body text-xs text-slate-700 mt-1 line-clamp-2 font-medium">
                 {hoveredProject.shortDesc}
               </div>
-              <div className="mt-sm pt-xs border-t border-outline-variant/20 flex justify-between items-center text-[11px] font-technical-sm text-emerald-400">
+              <div className="mt-3 pt-2 border-t border-navy-900/10 flex justify-between items-center text-[10px] font-mono text-emerald-700 font-black">
                 <span>SLA: {hoveredProject.uptime}</span>
-                <span className="text-primary font-bold">CLICK TO INSPECT &rarr;</span>
+                <span className="text-blue-600 font-black">CLICK TO INSPECT &rarr;</span>
               </div>
             </motion.div>
           )}
 
-          <div className="divide-y divide-outline-variant/15">
+          <div className="divide-y-2 border-navy-900/10">
             {/* Table Header */}
-            <div className="grid grid-cols-12 gap-md p-md font-technical-sm text-[11px] text-outline uppercase tracking-wider bg-surface-container">
+            <div className="grid grid-cols-12 gap-4 p-4 font-mono text-xs text-navy-900 uppercase font-black tracking-mono bg-paper border-b-2 border-navy-900">
               <div className="col-span-2">ID</div>
               <div className="col-span-4">System / Project</div>
               <div className="col-span-2 hidden sm:block">Sector</div>
@@ -369,31 +373,31 @@ export default function ProjectShowcaseAgency({ onOpenDrawer }) {
                   setHoveredProject(p)
                 }}
                 onMouseLeave={() => setHoveredProject(null)}
-                className="grid grid-cols-12 gap-md p-md items-center hover:bg-primary/5 transition-colors group cursor-pointer"
+                className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-blue-50/70 transition-colors group cursor-pointer"
                 onClick={() => {
                   playTechClick(650)
                   onOpenDrawer(p)
                 }}
               >
-                <div className="col-span-2 font-technical-sm text-xs text-primary font-bold">{p.id}</div>
+                <div className="col-span-2 font-mono text-xs text-blue-600 font-black">{p.id}</div>
                 <div className="col-span-4 min-w-0">
-                  <div className="font-headline-md text-sm text-on-surface font-semibold truncate group-hover:text-primary transition-colors">
+                  <div className="font-display font-black text-sm text-navy-900 uppercase truncate group-hover:text-blue-600 transition-colors">
                     {p.title}
                   </div>
-                  <div className="font-technical-sm text-[11px] text-outline truncate">{p.tags?.join(' &bull; ')}</div>
+                  <div className="font-mono text-[11px] text-slate-600 truncate">{p.tags?.join(' • ')}</div>
                 </div>
-                <div className="col-span-2 hidden sm:block font-body-md text-xs text-on-surface-variant truncate">
+                <div className="col-span-2 hidden sm:block font-body text-xs text-slate-700 truncate font-medium">
                   {p.sector}
                 </div>
-                <div className="col-span-2 hidden md:block font-technical-sm text-xs text-emerald-400 font-mono">
+                <div className="col-span-2 hidden md:block font-mono text-xs text-emerald-700 font-bold">
                   {p.uptime}
                 </div>
-                <div className="col-span-2 text-right flex items-center justify-end gap-sm">
+                <div className="col-span-2 text-right flex items-center justify-end gap-2">
                   <Link
                     to={`/project/${p.slug}`}
                     onClick={(e) => e.stopPropagation()}
-                    className="p-1.5 rounded-lg border border-outline-variant/30 text-on-surface hover:text-primary hover:border-primary/50 transition-colors"
-                    title="Full Page"
+                    className="p-1.5 border border-navy-900 bg-white hover:bg-blue-600 hover:text-white transition-colors shadow-[1px_1px_0px_#0A192F]"
+                    title="Full Blueprint"
                   >
                     <span className="material-symbols-outlined text-sm">open_in_new</span>
                   </Link>
@@ -403,7 +407,7 @@ export default function ProjectShowcaseAgency({ onOpenDrawer }) {
                       playTechClick(600)
                       onOpenDrawer(p)
                     }}
-                    className="px-2.5 py-1 rounded-lg bg-surface border border-outline-variant/30 text-xs font-code-label text-outline group-hover:text-primary group-hover:border-primary/50 transition-colors hidden sm:block"
+                    className="px-2.5 py-1 bg-paper border border-navy-900 text-xs font-mono font-bold text-navy-900 hover:bg-blue-600 hover:text-white transition-colors hidden sm:block shadow-[1px_1px_0px_#0A192F]"
                   >
                     Spec
                   </button>

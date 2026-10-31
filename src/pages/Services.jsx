@@ -12,7 +12,7 @@ export default function Services() {
   const parallaxBg = useParallax(0.15)
 
   return (
-    <div>
+    <div className="w-full flex flex-col bg-paper text-navy-900 select-none pb-24">
       {/* Hero */}
       <header className="relative pt-xl pb-lg px-gutter overflow-hidden border-b border-outline-variant/20">
         <div

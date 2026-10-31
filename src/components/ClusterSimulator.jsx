@@ -50,55 +50,53 @@ export default function ClusterSimulator() {
   }, [mode])
 
   return (
-    <div className="relative rounded-2xl border border-primary/30 bg-surface-container-low p-md md:p-xl overflow-hidden shadow-2xl backdrop-blur-xl">
-      {/* Corner Brackets */}
-      <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-primary"></div>
-      <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-primary"></div>
-      <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-primary"></div>
-      <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-primary"></div>
+    <div className="relative bg-white border-2 border-navy-900 shadow-[6px_6px_0px_#0A192F] text-navy-900 p-6 md:p-8 overflow-hidden select-none">
+      {/* Corner Crosshairs */}
+      <span className="absolute top-1 left-2 font-mono text-navy-900 font-black text-xs select-none">+</span>
+      <span className="absolute top-1 right-2 font-mono text-navy-900 font-black text-xs select-none">+</span>
 
       {/* Simulator Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-md border-b border-outline-variant/15 pb-md mb-lg">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-2 border-navy-900/10 pb-4 mb-6">
         <div>
-          <div className="flex items-center gap-sm">
-            <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-            <span className="font-code-label text-xs text-primary uppercase tracking-[0.25em]">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 bg-blue-600 border border-navy-900 animate-pulse"></span>
+            <span className="font-mono text-xs text-blue-600 font-black uppercase tracking-mono">
               LIVE_TOPOLOGY_SIMULATOR // PROD_MESH
             </span>
           </div>
-          <h3 className="font-headline-md text-xl md:text-2xl text-on-surface mt-xs">
+          <h3 className="font-display font-black text-xl md:text-2xl text-navy-900 uppercase tracking-tight mt-1">
             Interactive Multi-Region Resilience
           </h3>
         </div>
 
         {/* Scenario Controls */}
-        <div className="flex flex-wrap items-center gap-xs p-1 bg-surface-container rounded-lg border border-outline-variant/20">
+        <div className="flex flex-wrap items-center gap-2 p-1 bg-paper border-2 border-navy-900">
           <button
             onClick={() => setMode('nominal')}
-            className={`px-sm py-xs rounded font-code-label text-xs transition-all ${
+            className={`px-3 py-1 font-mono text-xs uppercase font-black transition-all ${
               mode === 'nominal'
-                ? 'bg-primary text-on-primary font-bold shadow-md'
-                : 'text-on-surface-variant hover:text-on-surface'
+                ? 'bg-blue-600 text-white shadow-[2px_2px_0px_#0A192F]'
+                : 'text-navy-900 hover:bg-slate-200'
             }`}
           >
             Nominal (15k RPS)
           </button>
           <button
             onClick={() => setMode('surge')}
-            className={`px-sm py-xs rounded font-code-label text-xs transition-all ${
+            className={`px-3 py-1 font-mono text-xs uppercase font-black transition-all ${
               mode === 'surge'
-                ? 'bg-secondary text-on-secondary font-bold shadow-md'
-                : 'text-on-surface-variant hover:text-on-surface'
+                ? 'bg-[#FF4D00] text-white shadow-[2px_2px_0px_#0A192F]'
+                : 'text-navy-900 hover:bg-slate-200'
             }`}
           >
             10x Surge (125k RPS)
           </button>
           <button
             onClick={() => setMode('chaos')}
-            className={`px-sm py-xs rounded font-code-label text-xs transition-all ${
+            className={`px-3 py-1 font-mono text-xs uppercase font-black transition-all ${
               mode === 'chaos'
-                ? 'bg-error text-on-error font-bold shadow-md'
-                : 'text-on-surface-variant hover:text-error'
+                ? 'bg-rose-600 text-white shadow-[2px_2px_0px_#0A192F]'
+                : 'text-navy-900 hover:text-rose-600 hover:bg-slate-200'
             }`}
           >
             Inject Failure (EU Node)
@@ -107,81 +105,81 @@ export default function ClusterSimulator() {
       </div>
 
       {/* Live Topology Canvas */}
-      <div className="relative py-md">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-md relative z-10 items-center">
+      <div className="relative py-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative z-10 items-center">
           {/* Node 1: Edge Router */}
-          <div className="p-md rounded-xl border border-outline-variant/30 bg-surface-container/80 flex flex-col items-center text-center relative group">
-            <div className="w-12 h-12 rounded-full border border-primary/40 bg-primary/10 flex items-center justify-center mb-sm">
-              <span className="material-symbols-outlined text-primary text-2xl">public</span>
+          <div className="p-4 bg-paper border-2 border-navy-900 shadow-[3px_3px_0px_#0A192F] flex flex-col items-center text-center relative group">
+            <div className="w-12 h-12 bg-blue-100 border-2 border-navy-900 flex items-center justify-center mb-2 shadow-[2px_2px_0px_#0A192F]">
+              <span className="material-symbols-outlined text-blue-600 text-2xl">public</span>
             </div>
-            <span className="font-code-label text-xs text-on-surface font-semibold">Global Route 53</span>
-            <span className="font-technical-sm text-[10px] text-outline uppercase mt-0.5">Anycast DNS / WAF</span>
-            <div className="mt-sm px-2 py-0.5 rounded bg-primary/10 border border-primary/20 text-primary font-technical-sm text-[10px]">
+            <span className="font-mono text-xs text-navy-900 font-black">Global Route 53</span>
+            <span className="font-mono text-[10px] text-slate-600 font-bold uppercase mt-0.5">Anycast DNS / WAF</span>
+            <div className="mt-2 px-2 py-0.5 bg-blue-600 text-white font-mono text-[10px] font-black border border-navy-900">
               Active Shielding
             </div>
           </div>
 
           {/* Node 2 & 3 & 4: Multi-Region EKS Nodes */}
-          <div className="md:col-span-2 space-y-sm">
+          <div className="md:col-span-2 space-y-2">
             {/* US Region */}
-            <div className="p-sm md:p-md rounded-xl border border-outline-variant/20 bg-surface-container flex items-center justify-between transition-all">
-              <div className="flex items-center gap-sm">
-                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <div className="p-3 bg-paper border-2 border-navy-900 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 bg-emerald-500 border border-navy-900"></span>
                 <div>
-                  <div className="font-code-label text-xs text-on-surface font-medium">us-east-1 (Virginia)</div>
-                  <div className="font-technical-sm text-[10px] text-outline">EKS v1.28 &bull; {mode === 'surge' ? '30 Pods' : '9 Pods'}</div>
+                  <div className="font-mono text-xs text-navy-900 font-bold">us-east-1 (Virginia)</div>
+                  <div className="font-mono text-[10px] text-slate-600">EKS v1.28 &bull; {mode === 'surge' ? '30 Pods' : '9 Pods'}</div>
                 </div>
               </div>
-              <span className="font-technical-sm text-xs text-primary font-mono">{mode === 'chaos' ? '65% Load' : '33% Load'}</span>
+              <span className="font-mono text-xs text-blue-600 font-black">{mode === 'chaos' ? '65% Load' : '33% Load'}</span>
             </div>
 
             {/* EU Region (Fails in Chaos Mode) */}
             <div
-              className={`p-sm md:p-md rounded-xl border transition-all ${
+              className={`p-3 border-2 border-navy-900 transition-all ${
                 mode === 'chaos'
-                  ? 'border-error/80 bg-error-container/20 text-error'
-                  : 'border-outline-variant/20 bg-surface-container'
+                  ? 'bg-rose-50 text-rose-900 shadow-[3px_3px_0px_#E11D48]'
+                  : 'bg-paper text-navy-900'
               } flex items-center justify-between`}
             >
-              <div className="flex items-center gap-sm">
+              <div className="flex items-center gap-2">
                 <span
-                  className={`w-2 h-2 rounded-full ${mode === 'chaos' ? 'bg-error animate-ping' : 'bg-emerald-400'}`}
+                  className={`w-2.5 h-2.5 border border-navy-900 ${mode === 'chaos' ? 'bg-rose-600 animate-ping' : 'bg-emerald-500'}`}
                 ></span>
                 <div>
-                  <div className="font-code-label text-xs font-medium">
-                    eu-west-1 (London) {mode === 'chaos' && <span className="text-[10px] text-error font-bold">[SIMULATED FAILOVER]</span>}
+                  <div className="font-mono text-xs font-bold">
+                    eu-west-1 (London) {mode === 'chaos' && <span className="text-[10px] text-rose-600 font-black">[FAILOVER ACTIVE]</span>}
                   </div>
-                  <div className="font-technical-sm text-[10px] text-outline">
+                  <div className="font-mono text-[10px] text-slate-600 font-bold">
                     {mode === 'chaos' ? 'Traffic Rerouted' : mode === 'surge' ? 'EKS &bull; 16 Pods' : 'EKS &bull; 5 Pods'}
                   </div>
                 </div>
               </div>
-              <span className="font-technical-sm text-xs font-mono">
+              <span className="font-mono text-xs font-black">
                 {mode === 'chaos' ? '0% (Isolated)' : '33% Load'}
               </span>
             </div>
 
             {/* AP Region */}
-            <div className="p-sm md:p-md rounded-xl border border-outline-variant/20 bg-surface-container flex items-center justify-between transition-all">
-              <div className="flex items-center gap-sm">
-                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <div className="p-3 bg-paper border-2 border-navy-900 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 bg-emerald-500 border border-navy-900"></span>
                 <div>
-                  <div className="font-code-label text-xs text-on-surface font-medium">ap-south-1 (Singapore)</div>
-                  <div className="font-technical-sm text-[10px] text-outline">EKS v1.28 &bull; {mode === 'surge' ? '8 Pods' : '4 Pods'}</div>
+                  <div className="font-mono text-xs text-navy-900 font-bold">ap-south-1 (Singapore)</div>
+                  <div className="font-mono text-[10px] text-slate-600">EKS v1.28 &bull; {mode === 'surge' ? '8 Pods' : '4 Pods'}</div>
                 </div>
               </div>
-              <span className="font-technical-sm text-xs text-primary font-mono">{mode === 'chaos' ? '35% Load' : '34% Load'}</span>
+              <span className="font-mono text-xs text-blue-600 font-black">{mode === 'chaos' ? '35% Load' : '34% Load'}</span>
             </div>
           </div>
 
           {/* Node 4: Persistence Aurora Global */}
-          <div className="p-md rounded-xl border border-outline-variant/30 bg-surface-container/80 flex flex-col items-center text-center">
-            <div className="w-12 h-12 rounded-full border border-secondary/40 bg-secondary/10 flex items-center justify-center mb-sm">
-              <span className="material-symbols-outlined text-secondary text-2xl">database</span>
+          <div className="p-4 bg-paper border-2 border-navy-900 shadow-[3px_3px_0px_#0A192F] flex flex-col items-center text-center">
+            <div className="w-12 h-12 bg-amber-100 border-2 border-navy-900 flex items-center justify-center mb-2 shadow-[2px_2px_0px_#0A192F]">
+              <span className="material-symbols-outlined text-amber-600 text-2xl">database</span>
             </div>
-            <span className="font-code-label text-xs text-on-surface font-semibold">Aurora Serverless</span>
-            <span className="font-technical-sm text-[10px] text-outline uppercase mt-0.5">Global Multi-Master</span>
-            <div className="mt-sm px-2 py-0.5 rounded bg-secondary/10 border border-secondary/20 text-secondary font-technical-sm text-[10px]">
+            <span className="font-mono text-xs text-navy-900 font-black">Aurora Serverless</span>
+            <span className="font-mono text-[10px] text-slate-600 font-bold uppercase mt-0.5">Global Multi-Master</span>
+            <div className="mt-2 px-2 py-0.5 bg-amber-500 text-black font-mono text-[10px] font-black border border-navy-900">
               &lt;200ms Global Sync
             </div>
           </div>
@@ -189,7 +187,7 @@ export default function ClusterSimulator() {
 
         {/* Interactive Notice on Chaos Mode */}
         {mode === 'chaos' && (
-          <div className="mt-md p-sm rounded-lg bg-error-container/10 border border-error/30 flex items-center gap-sm text-xs font-body-md text-error animate-[fadeIn_0.3s_ease-out]">
+          <div className="mt-4 p-3 bg-rose-100 border-2 border-rose-600 flex items-center gap-3 text-xs font-mono text-rose-900 font-bold">
             <span className="material-symbols-outlined text-base">emergency_home</span>
             <span>
               <strong>Zero-Downtime Autonomous Self-Healing:</strong> Health check failed on eu-west-1. Route 53 BGP shifted European egress to Virginia and Singapore in 800ms. 0 dropped packets.
@@ -199,34 +197,34 @@ export default function ClusterSimulator() {
       </div>
 
       {/* Real-time Telemetry Dashboard Bar */}
-      <div className="mt-lg pt-md border-t border-outline-variant/15 grid grid-cols-2 sm:grid-cols-4 gap-md">
+      <div className="mt-6 pt-4 border-t-2 border-navy-900/10 grid grid-cols-2 sm:grid-cols-4 gap-4">
         <div>
-          <div className="font-technical-sm text-[10px] text-outline uppercase tracking-wider">Mesh Throughput</div>
-          <div className="font-display-xl text-xl md:text-2xl font-bold text-primary mt-0.5">
-            {metrics.rps.toLocaleString()} <span className="text-xs font-technical-sm text-outline">RPS</span>
+          <div className="font-mono text-[10px] text-slate-600 font-bold uppercase">Mesh Throughput</div>
+          <div className="font-display font-black text-xl md:text-2xl text-blue-600 mt-0.5">
+            {metrics.rps.toLocaleString()} <span className="text-xs font-mono text-slate-600">RPS</span>
           </div>
         </div>
 
         <div>
-          <div className="font-technical-sm text-[10px] text-outline uppercase tracking-wider">p99 Latency</div>
-          <div className="font-display-xl text-xl md:text-2xl font-bold text-emerald-400 mt-0.5">
-            {metrics.latency} <span className="text-xs font-technical-sm text-outline">ms</span>
+          <div className="font-mono text-[10px] text-slate-600 font-bold uppercase">p99 Latency</div>
+          <div className="font-display font-black text-xl md:text-2xl text-emerald-600 mt-0.5">
+            {metrics.latency} <span className="text-xs font-mono text-slate-600">ms</span>
           </div>
         </div>
 
         <div>
-          <div className="font-technical-sm text-[10px] text-outline uppercase tracking-wider">Compute Fleet</div>
-          <div className="font-display-xl text-xl md:text-2xl font-bold text-secondary mt-0.5">
-            {metrics.activePods} <span className="text-xs font-technical-sm text-outline">Pods</span>
+          <div className="font-mono text-[10px] text-slate-600 font-bold uppercase">Compute Fleet</div>
+          <div className="font-display font-black text-xl md:text-2xl text-navy-900 mt-0.5">
+            {metrics.activePods} <span className="text-xs font-mono text-slate-600">Pods</span>
           </div>
         </div>
 
         <div>
-          <div className="font-technical-sm text-[10px] text-outline uppercase tracking-wider">Global Status</div>
-          <div className="font-code-label text-xs md:text-sm font-bold text-on-surface mt-1.5 flex items-center gap-1.5">
+          <div className="font-mono text-[10px] text-slate-600 font-bold uppercase">Global Status</div>
+          <div className="font-mono text-xs md:text-sm font-black text-navy-900 mt-1 flex items-center gap-1.5">
             <span
-              className={`w-2 h-2 rounded-full ${
-                mode === 'chaos' ? 'bg-amber-400 animate-ping' : 'bg-emerald-400'
+              className={`w-2.5 h-2.5 border border-navy-900 ${
+                mode === 'chaos' ? 'bg-[#FF4D00] animate-ping' : 'bg-emerald-500'
               }`}
             ></span>
             {metrics.status}

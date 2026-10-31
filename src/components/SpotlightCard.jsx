@@ -3,8 +3,8 @@ import { useRef, useState, useCallback } from 'react'
 export default function SpotlightCard({
   children,
   className = '',
-  spotlightColor = 'rgba(185, 199, 228, 0.15)',
-  borderColor = 'rgba(185, 199, 228, 0.4)',
+  spotlightColor = 'rgba(37, 99, 235, 0.08)',
+  borderColor = 'rgba(10, 25, 47, 0.8)',
   ...props
 }) {
   const divRef = useRef(null)
@@ -44,7 +44,7 @@ export default function SpotlightCard({
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative rounded-2xl border border-outline-variant/20 bg-surface-container/60 backdrop-blur-xl overflow-hidden transition-all duration-300 hover:shadow-2xl ${className}`}
+      className={`relative bg-white border-2 border-navy-900 shadow-[6px_6px_0px_#0A192F] text-navy-900 overflow-hidden transition-all duration-300 ${className}`}
       {...props}
     >
       {/* Background Spotlight Glow */}

@@ -4,14 +4,12 @@ import { CAL_DISCOVERY } from '../data/cal'
 import StackOpsModal from '../components/StackOpsModal'
 import InteractiveDiff from '../components/InteractiveDiff'
 import ProjectShowcaseAgency from '../components/ProjectShowcaseAgency'
-import { useParallax } from '../hooks/useScrollProgress'
 import { metricBars } from '../data/projectsGrid'
 import { playTechClick } from '../utils/sound'
 
 export default function Projects({ onOpenDrawer }) {
   const { hash } = useLocation()
   const [stackModalOpen, setStackModalOpen] = useState(false)
-  const parallaxBg = useParallax(0.18)
 
   useEffect(() => {
     if (hash) {
@@ -19,93 +17,118 @@ export default function Projects({ onOpenDrawer }) {
       if (el) {
         setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100)
       }
+    } else {
+      window.scrollTo(0, 0)
     }
   }, [hash])
 
   return (
-    <div className="space-y-xl md:space-y-2xl">
-      <style>{`
-        .circuit-bg { background-image: radial-gradient(#334155 1px, transparent 1px); background-size: 32px 32px; }
-        .metric-bar-bg { background: linear-gradient(90deg, rgba(185, 199, 228, 0.1) 0%, rgba(185, 199, 228, 0) 100%); border-left: 2px solid #b9c7e4; }
-      `}</style>
-
+    <div className="w-full flex flex-col bg-paper text-navy-900 select-none space-y-16 pb-24">
       {/* Agency Projects Hero */}
-      <section className="relative px-gutter py-xl md:py-28 overflow-hidden border-b border-outline-variant/20">
-        <div
-          className="absolute inset-0 circuit-bg opacity-15 will-change-transform"
-          style={{ transform: `translateY(${parallaxBg}px)` }}
-        />
-        <div className="max-w-container-max mx-auto relative z-10">
-          <div className="inline-flex items-center gap-sm mb-md px-sm py-xs bg-surface-container border border-outline-variant/50 rounded-lg">
-            <span className="material-symbols-outlined text-primary text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>
-              terminal
-            </span>
-            <span className="font-technical-sm text-technical-sm uppercase tracking-widest text-primary-fixed-dim">
-              DEPLOYMENT_REGISTRY // ARCHITECTURAL MASTERY
-            </span>
+      <section className="relative pt-12 pb-16 md:py-24 border-b-2 border-navy-900 bg-white overflow-hidden">
+        {/* Colorful Brutalist Accent Ribbon */}
+        <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-600 via-[#FF4D00] to-[#FFE600]"></div>
+
+        <div className="max-w-container mx-auto px-4 md:px-8 relative z-10 space-y-6">
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b-2 border-navy-900 font-mono text-xs">
+            <div className="flex items-center gap-3">
+              <span className="bg-blue-600 text-white font-black px-2.5 py-1 border-2 border-navy-900 shadow-[2px_2px_0px_#0A192F]">
+                REGISTRY // 04
+              </span>
+              <span className="text-navy-900 font-black uppercase tracking-mono">
+                ENGINEERED OUTCOMES &bull; ARCHITECTURAL MASTERY
+              </span>
+            </div>
+            <div className="text-slate-700 font-bold">
+              [ 100% PRODUCTION VERIFIED ]
+            </div>
           </div>
 
-          <h1 className="font-display-xl text-3xl sm:text-5xl md:text-7xl max-w-4xl mb-lg font-black tracking-tight leading-tight">
+          <h1 className="font-display font-black text-4xl sm:text-6xl md:text-7xl max-w-5xl text-navy-900 tracking-[-0.04em] uppercase leading-[0.95]">
             Engineered Outcomes: <br />
-            <span className="text-primary font-bold">Proof of Architecture Mastery.</span>
+            <span className="text-blue-600 font-serif italic lowercase font-normal block sm:inline">
+              proof of architecture
+            </span>{' '}
+            mastery.
           </h1>
 
-          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl border-l-2 border-primary/30 pl-md text-base md:text-lg opacity-85">
-            Deploying high-availability systems, fault-isolated microservices meshes, and post-quantum databases for global enterprises. Explore the data-driven outcomes of our technical precision.
+          <p className="font-body text-base md:text-lg text-slate-800 font-medium max-w-2xl border-l-4 border-blue-600 pl-4 leading-relaxed">
+            Deploying high-availability systems, fault-isolated microservices meshes, and deterministic infrastructure for modern cloud architectures. Explore the verifiable data-driven outcomes below.
           </p>
         </div>
       </section>
 
       {/* Interactive 3-Mode Agency Showcase (Cinematic Reel, Matrix, Editorial Index) */}
-      <section className="px-gutter max-w-container-max mx-auto">
+      <section className="max-w-container mx-auto px-4 md:px-8 w-full">
         <ProjectShowcaseAgency onOpenDrawer={onOpenDrawer} />
       </section>
 
       {/* Interactive Infrastructure Diff Inspector */}
-      <section className="px-gutter max-w-container-max mx-auto">
-        <InteractiveDiff />
+      <section className="max-w-container mx-auto px-4 md:px-8 w-full">
+        <div className="space-y-4">
+          <div className="flex items-center gap-3 font-mono text-xs">
+            <span className="bg-navy-900 text-white font-black px-2 py-0.5 shadow-[2px_2px_0px_#2563EB]">
+              DIFF // 02
+            </span>
+            <span className="uppercase tracking-mono font-bold text-navy-900">
+              BEFORE &amp; AFTER INFRASTRUCTURE REFACTORING
+            </span>
+          </div>
+          <InteractiveDiff />
+        </div>
       </section>
 
       {/* System Evolution Metrics Dashboard */}
-      <section className="bg-surface-container-lowest/60 py-xl px-gutter border-y border-outline-variant/20">
-        <div className="max-w-container-max mx-auto">
-          <div className="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md border-b border-outline-variant/15 pb-md">
+      <section className="max-w-container mx-auto px-4 md:px-8 w-full">
+        <div className="bg-white border-2 border-navy-900 shadow-[6px_6px_0px_#0A192F] p-6 md:p-8 relative">
+          {/* Corner Crosshairs */}
+          <span className="absolute -top-3 -left-3 font-mono text-navy-900 font-black text-lg select-none">+</span>
+          <span className="absolute -top-3 -right-3 font-mono text-navy-900 font-black text-lg select-none">+</span>
+          <span className="absolute -bottom-3 -left-3 font-mono text-navy-900 font-black text-lg select-none">+</span>
+          <span className="absolute -bottom-3 -right-3 font-mono text-navy-900 font-black text-lg select-none">+</span>
+
+          <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b-2 border-navy-900/10 pb-4">
             <div>
-              <div className="flex items-center gap-sm mb-xs">
-                <span className="w-4 h-px bg-primary"></span>
-                <span className="font-technical-sm text-technical-sm text-primary tracking-widest">
-                  METRICS_DASHBOARD // PROD_BENCHMARKS
+              <div className="flex items-center gap-2 mb-1">
+                <span className="w-2.5 h-2.5 bg-blue-600 border border-navy-900"></span>
+                <span className="font-mono text-xs text-blue-600 font-black tracking-mono uppercase">
+                  METRICS_DASHBOARD // PRODUCTION_BENCHMARKS
                 </span>
               </div>
-              <h2 className="font-headline-lg text-2xl md:text-3xl font-bold">System Evolution Metrics</h2>
-              <p className="text-on-surface-variant font-body-md mt-xs max-w-xl text-sm">
+              <h2 className="font-display font-black text-2xl md:text-3xl text-navy-900 uppercase tracking-tight">
+                System Evolution Metrics
+              </h2>
+              <p className="text-slate-700 font-medium text-sm mt-1">
                 Quantifiable impact measured across multi-region architectural interventions.
               </p>
             </div>
-            <div className="flex gap-lg">
-              <div className="flex items-center gap-xs font-technical-sm text-[11px] text-outline uppercase tracking-widest">
-                <span className="w-2.5 h-2.5 border border-outline-variant bg-outline-variant/20"></span> LEGACY MONOLITH
+            <div className="flex gap-4 font-mono text-xs font-bold">
+              <div className="flex items-center gap-1.5 text-slate-500 uppercase">
+                <span className="w-3 h-3 border border-navy-900 bg-slate-200"></span> LEGACY
               </div>
-              <div className="flex items-center gap-xs font-technical-sm text-[11px] text-primary uppercase tracking-widest">
-                <span className="w-2.5 h-2.5 bg-primary shadow-[0_0_8px_#b9c7e4]"></span> OPTIMIZED MESH
+              <div className="flex items-center gap-1.5 text-blue-600 uppercase">
+                <span className="w-3 h-3 bg-blue-600 border border-navy-900"></span> OPTIMIZED
               </div>
             </div>
           </div>
 
-          <div className="space-y-lg mt-lg">
+          <div className="space-y-4">
             {metricBars.map((m) => (
-              <div key={m.label} className="grid grid-cols-1 md:grid-cols-4 gap-md items-center group">
-                <div className="font-code-label text-xs uppercase text-on-surface flex items-center gap-2 font-medium">
-                  <span className="material-symbols-outlined text-sm text-primary">{m.icon}</span>
+              <div key={m.label} className="grid grid-cols-1 md:grid-cols-4 gap-3 items-center">
+                <div className="font-mono text-xs uppercase text-navy-900 flex items-center gap-2 font-bold">
+                  <span className="material-symbols-outlined text-sm text-blue-600">{m.icon}</span>
                   {m.label}
                 </div>
                 <div className="md:col-span-3">
-                  <div className="relative h-12 flex items-center bg-surface-container-low border border-outline-variant/20 rounded-xl px-base overflow-hidden">
-                    <div className="absolute inset-y-2 left-base h-8 metric-bar-bg rounded" style={{ width: m.width }}></div>
-                    <div className="absolute left-[15%] ml-4 font-technical-sm text-technical-sm text-primary font-bold">
+                  <div className="relative h-11 flex items-center bg-paper border-2 border-navy-900 px-3 overflow-hidden">
+                    <div
+                      className="absolute inset-y-1.5 left-2 bg-blue-600/20 border-r-2 border-blue-600"
+                      style={{ width: m.width }}
+                    ></div>
+                    <div className="relative z-10 left-[15%] font-mono text-xs text-blue-800 font-black">
                       {m.current}
                     </div>
-                    <div className="absolute right-base font-technical-sm text-technical-sm text-outline/50 italic line-through">
+                    <div className="relative z-10 ml-auto font-mono text-xs text-slate-500 italic line-through">
                       {m.legacy}
                     </div>
                   </div>
@@ -117,40 +140,34 @@ export default function Projects({ onOpenDrawer }) {
       </section>
 
       {/* CTA Section */}
-      <section className="py-xl px-gutter max-w-container-max mx-auto text-center">
-        <div className="bg-surface-container border border-primary/30 p-xl rounded-2xl relative overflow-hidden shadow-2xl">
-          <div className="absolute inset-0 opacity-5 pointer-events-none">
-            <div className="grid grid-cols-12 h-full">
-              {Array.from({ length: 12 }).map((_, i) => (
-                <div key={i} className="border-r border-outline-variant h-full"></div>
-              ))}
-            </div>
-          </div>
-          <div className="relative z-10">
-            <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-md border border-primary/30 shadow-lg shadow-primary/20">
-              <span className="material-symbols-outlined text-primary text-2xl">analytics</span>
-            </div>
-            <h2 className="font-headline-lg text-2xl md:text-3xl mb-md font-bold text-on-surface">
+      <section className="max-w-container mx-auto px-4 md:px-8 w-full">
+        <div className="bg-white border-2 border-navy-900 shadow-[8px_8px_0px_#0A192F] p-8 md:p-12 text-center relative">
+          <div className="max-w-2xl mx-auto space-y-4">
+            <span className="font-mono text-xs text-blue-600 font-black uppercase tracking-mono">
+              [ DIRECT TECHNICAL ENGAGEMENT ]
+            </span>
+            <h2 className="font-display font-black text-2xl md:text-4xl text-navy-900 uppercase tracking-tight">
               Ready to Harden Your Infrastructure?
             </h2>
-            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-lg leading-relaxed text-sm md:text-base opacity-85">
-              Apply for a technical audit of your current stack. We isolate single points of failure, unmonitored egress waste, and security vectors before they impact your growth.
+            <p className="font-body text-sm md:text-base text-slate-700 leading-relaxed font-medium">
+              Schedule an architectural audit of your current stack. We isolate single points of failure, unmonitored egress waste, and security vectors before they impact your users.
             </p>
-            <div className="flex flex-col md:flex-row gap-md justify-center">
-              <button
-                data-cal-link={CAL_DISCOVERY}
-                data-cal-config='{"theme":"dark"}'
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+              <a
+                href={CAL_DISCOVERY}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => playTechClick(800)}
-                className="bg-primary text-on-primary px-xl py-md rounded-xl font-code-label text-sm hover:brightness-110 transition-all shadow-[0_0_20px_rgba(185,199,228,0.3)] cursor-pointer font-bold"
+                className="bg-[#FF4D00] hover:bg-[#E04400] text-white px-7 py-3.5 font-mono text-xs font-black uppercase tracking-mono border-2 border-navy-900 shadow-[4px_4px_0px_#0A192F] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer"
               >
-                REQUEST SYSTEM AUDIT
-              </button>
+                REQUEST SYSTEM AUDIT &rarr;
+              </a>
               <button
                 onClick={() => {
                   playTechClick(500)
                   setStackModalOpen(true)
                 }}
-                className="border border-outline-variant text-on-surface px-xl py-md rounded-xl font-code-label text-sm hover:bg-surface-variant transition-all cursor-pointer"
+                className="bg-white hover:bg-slate-100 text-navy-900 px-7 py-3.5 font-mono text-xs font-black uppercase tracking-mono border-2 border-navy-900 shadow-[4px_4px_0px_#0A192F] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer"
               >
                 INSPECT TECH STACK OPS
               </button>

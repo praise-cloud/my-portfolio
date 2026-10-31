@@ -44,72 +44,72 @@ export default function ProofOfWorkSection({ onOpenDrawer }) {
   const getStatusBadge = (status) => {
     switch (status) {
       case 'Building':
-        return 'text-amber-400 bg-amber-400/10 border-2 border-amber-400 shadow-[2px_2px_0px_#D97706]'
+        return 'text-white bg-[#FF4D00] border-2 border-navy-900 shadow-[2px_2px_0px_#0A192F]'
       case 'Deployed':
       case 'Published':
-        return 'text-emerald-400 bg-emerald-400/10 border-2 border-emerald-400 shadow-[2px_2px_0px_#059669]'
+        return 'text-white bg-[#10B981] border-2 border-navy-900 shadow-[2px_2px_0px_#0A192F]'
       default:
-        return 'text-muted-on-dark bg-navy-900 border border-white/20'
+        return 'text-navy-900 bg-slate-100 border-2 border-navy-900/30'
     }
   }
 
   return (
-    <section id="proof-of-work" className="py-20 md:py-28 bg-navy-900 text-white border-b-2 border-white/10 relative select-none">
+    <section id="proof-of-work" className="py-20 md:py-28 bg-paper text-navy-900 border-b-2 border-navy-900 relative select-none">
       <div className="max-w-container mx-auto px-4 md:px-8 space-y-16">
         {/* Section Header with Brutalist Stamp */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/15">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b-2 border-navy-900">
           <div>
             <div className="flex items-center gap-3 mb-2 font-mono text-xs">
-              <span className="bg-blue-600 text-white font-black px-2 py-0.5 shadow-[2px_2px_0px_#060F1D]">
+              <span className="bg-blue-600 text-white font-black px-2.5 py-1 border-2 border-navy-900 shadow-[2px_2px_0px_#0A192F]">
                 004 // PROOF
               </span>
-              <span className="uppercase tracking-mono font-bold text-blue-400">
+              <span className="uppercase tracking-mono font-bold text-navy-900">
                 SYSTEMS REGISTRY &bull; VERIFIED IMPLEMENTATION
               </span>
             </div>
-            <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-[-0.03em] uppercase">
+            <h2 className="font-display font-black text-3xl sm:text-5xl text-navy-900 tracking-[-0.03em] uppercase">
               Production Architectures &amp; Roadmap
             </h2>
           </div>
-          <div className="font-mono text-xs uppercase text-muted-on-dark max-w-sm">
+          <div className="font-mono text-xs uppercase text-slate-700 font-bold max-w-sm">
             [ ZERO INVENTED FACTS: ONLY DEPLOYED SYSTEMS CARRY LIVE ENDPOINTS ]
           </div>
         </div>
 
         {/* Roadmap Table: Brutalist Box with Hard Grid & Crosshairs */}
-        <div className="relative bg-navy-950 border-2 border-white/20 shadow-[6px_6px_0px_#2563EB] overflow-hidden">
+        <div className="relative bg-white border-2 border-navy-900 shadow-[6px_6px_0px_#0A192F] overflow-hidden">
           {/* Corner Crosshairs */}
-          <span className="absolute top-1 left-2 font-mono text-blue-400 font-black text-xs select-none">+</span>
-          <span className="absolute top-1 right-2 font-mono text-blue-400 font-black text-xs select-none">+</span>
+          <span className="absolute top-1 left-2 font-mono text-navy-900 font-black text-xs select-none">+</span>
+          <span className="absolute top-1 right-2 font-mono text-navy-900 font-black text-xs select-none">+</span>
 
-          <div className="p-4 bg-navy-900 border-b-2 border-white/10 font-mono text-xs text-white uppercase tracking-mono flex flex-wrap justify-between items-center gap-2">
-            <span className="font-bold">[ ROADMAP REGISTRY // ACTIVE AND PLANNED BUILDS ]</span>
-            <span className="text-muted-on-dark text-[10px]">VERIFICATION CRITERIA: PRODUCTION TESTED</span>
+          <div className="p-4 bg-paper border-b-2 border-navy-900 font-mono text-xs text-navy-900 uppercase tracking-mono flex flex-wrap justify-between items-center gap-2">
+            <span className="font-black">[ ROADMAP REGISTRY // ACTIVE AND PLANNED BUILDS ]</span>
+            <span className="text-slate-600 font-bold text-[10px]">VERIFICATION CRITERIA: PRODUCTION TESTED</span>
           </div>
 
-          <div className="divide-y-2 divide-white/10">
+          <div className="divide-y-2 border-navy-900/10">
             {roadmapEntries.map((item) => (
               <div
                 key={item.id}
-                className="p-5 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-white/[0.03] transition-colors group"
+                className="p-5 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50 transition-colors group"
               >
                 <div className="flex items-start md:items-center gap-4 min-w-0">
-                  <span className="font-mono text-xs text-white font-black px-2.5 py-1 bg-blue-600 border border-white/40 shadow-[2px_2px_0px_#060F1D]">
+                  <span className="font-mono text-xs text-white font-black px-3 py-1 bg-blue-600 border-2 border-navy-900 shadow-[2px_2px_0px_#0A192F]">
                     {item.id}
                   </span>
                   <div className="min-w-0">
-                    <h3 className="font-display font-black text-lg md:text-xl text-white group-hover:text-blue-400 transition-colors uppercase tracking-tight">
+                    <h3 className="font-display font-black text-lg md:text-xl text-navy-900 group-hover:text-blue-600 transition-colors uppercase tracking-tight">
                       {item.title}
                     </h3>
                     <div
-                      className="font-mono text-xs text-muted-on-dark mt-1 truncate"
+                      className="font-mono text-xs text-slate-700 font-medium mt-1 truncate"
                       dangerouslySetInnerHTML={{ __html: item.stack }}
                     />
                   </div>
                 </div>
 
                 <div className="flex items-center gap-4 self-start md:self-auto shrink-0">
-                  <span className="font-mono text-xs text-muted-on-dark font-bold">[ {item.year} ]</span>
+                  <span className="font-mono text-xs text-slate-800 font-black">[ {item.year} ]</span>
                   <span className={`px-3 py-1 font-mono text-[11px] uppercase font-black ${getStatusBadge(item.status)}`}>
                     {item.status}
                   </span>
@@ -127,10 +127,10 @@ export default function ProofOfWorkSection({ onOpenDrawer }) {
         {/* Interactive Topology & Chaos Failover Simulator */}
         <div className="pt-6">
           <div className="mb-6 space-y-1">
-            <span className="font-mono text-xs text-blue-400 uppercase tracking-mono font-bold">
+            <span className="font-mono text-xs text-blue-600 uppercase tracking-mono font-black">
               [ SIMULATION 01 // RESILIENCE TESTING ]
             </span>
-            <h3 className="font-display font-black text-2xl md:text-3xl text-white uppercase tracking-tight">
+            <h3 className="font-display font-black text-2xl md:text-3xl text-navy-900 uppercase tracking-tight">
               Autonomous Failover &amp; Auto-Healing Topology
             </h3>
           </div>

@@ -24,7 +24,7 @@ export default function EmailModal({ isOpen, onClose }) {
             particleCount: 90,
             spread: 70,
             origin: { y: 0.6 },
-            colors: ['#b9c7e4', '#b4c5ff', '#ffffff']
+            colors: ['#FF4D00', '#2563EB', '#FFE600']
           })
         } catch {}
         e.target.reset()
@@ -39,161 +39,122 @@ export default function EmailModal({ isOpen, onClose }) {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-md" onClick={onClose}>
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" onClick={onClose}>
+      <div className="absolute inset-0 bg-navy-900/60 backdrop-blur-sm"></div>
       <div
-        className="relative z-10 w-full max-w-xl bg-surface-container border border-outline-variant/20 rounded-2xl shadow-2xl animate-[fadeIn_0.2s_ease-out] overflow-hidden mx-sm md:mx-0"
+        className="relative z-10 w-full max-w-xl bg-white border-2 border-navy-900 shadow-[8px_8px_0px_#0A192F] overflow-hidden text-navy-900 select-none animate-[fadeIn_0.15s_ease-out]"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Corner accents */}
-        <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-primary/30"></div>
-        <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-primary/30"></div>
-        <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-primary/30"></div>
-        <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-primary/30"></div>
-
         {/* Header */}
-        <div className="relative px-lg md:px-xl pt-xl pb-lg border-b border-outline-variant/10">
-          <div className="flex items-center justify-between">
-            <div className="space-y-xs">
-              <div className="flex items-center gap-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-                <span className="font-code-label text-[10px] text-primary uppercase tracking-[0.3em]">SYSTEM_MESSAGE</span>
-              </div>
-              <h2 className="font-headline-md text-on-surface">Send a Transmission</h2>
+        <div className="px-6 py-5 border-b-2 border-navy-900 flex items-center justify-between bg-paper">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 bg-[#FF4D00] border border-navy-900 animate-pulse"></span>
+              <span className="font-mono text-xs font-black text-blue-600 uppercase tracking-mono">
+                [ DIRECT DISPATCH // ENCRYPTED INTAKE ]
+              </span>
             </div>
-            <button
-              onClick={onClose}
-              className="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant/20 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface hover:border-primary/30 transition-all"
-            >
-              <span className="material-symbols-outlined text-lg">close</span>
-            </button>
+            <h2 className="font-display font-black text-xl md:text-2xl text-navy-900 uppercase">
+              Send a Transmission
+            </h2>
           </div>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 flex items-center justify-center border-2 border-navy-900 bg-white hover:bg-slate-100 text-navy-900 font-black shadow-[2px_2px_0px_#0A192F]"
+          >
+            ✕
+          </button>
         </div>
 
         {/* Body */}
-        <div className="p-lg md:p-xl">
+        <div className="p-6 md:p-8">
           {state.status === 'success' ? (
-            <div className="text-center py-md space-y-sm">
-              <div className="w-16 h-16 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto">
-                <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+            <div className="text-center py-8 space-y-4">
+              <div className="w-16 h-16 bg-emerald-100 border-2 border-navy-900 flex items-center justify-center mx-auto shadow-[3px_3px_0px_#10B981]">
+                <span className="material-symbols-outlined text-4xl text-emerald-600">check_circle</span>
               </div>
-              <div className="space-y-xs">
-                <p className="font-headline-md text-on-surface">Transmission Sent</p>
-                <p className="font-body-md text-on-surface-variant max-w-sm mx-auto">{state.message}</p>
-              </div>
+              <h3 className="font-display font-black text-2xl text-navy-900 uppercase">
+                Transmission Received
+              </h3>
+              <p className="font-body text-sm text-slate-700 max-w-sm mx-auto font-medium">
+                {state.message}
+              </p>
               <button
                 onClick={onClose}
-                className="bg-primary text-on-primary px-xl py-sm rounded-lg font-headline-md hover:shadow-[0_0_20px_rgba(185,199,228,0.3)] transition-all"
+                className="bg-navy-900 text-white px-6 py-2.5 font-mono text-xs font-black uppercase border-2 border-navy-900 shadow-[3px_3px_0px_#2563EB]"
               >
                 Close Channel
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-lg">
+            <form onSubmit={handleSubmit} className="space-y-4">
               {/* Name */}
-              <div className="group">
-                <label htmlFor="name" className="font-code-label text-[11px] text-outline uppercase tracking-widest block mb-sm">Full Name</label>
-                <div className="relative">
-                  <span className="absolute left-md top-1/2 -translate-y-1/2 text-outline/40 group-focus-within:text-primary/60 transition-colors">
-                    <span className="material-symbols-outlined text-lg">person</span>
-                  </span>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    placeholder="Enter your name"
-                    className="w-full bg-background border border-outline-variant/20 rounded-lg pl-xl pr-md py-[14px] font-body-md text-on-surface placeholder:text-outline-variant/40 focus:outline-none focus:border-primary/50 focus:shadow-[0_0_12px_-4px_rgba(185,199,228,0.15)] transition-all"
-                  />
-                </div>
+              <div>
+                <label htmlFor="name" className="font-mono text-xs font-black uppercase text-navy-900 block mb-1">
+                  Full Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  placeholder="e.g. Alex Vance"
+                  className="w-full bg-paper border-2 border-navy-900 px-3 py-2.5 font-mono text-xs font-bold text-navy-900 placeholder:text-slate-400 focus:outline-none focus:bg-white shadow-[2px_2px_0px_#0A192F]"
+                />
               </div>
 
               {/* Email */}
-              <div className="group">
-                <label htmlFor="email" className="font-code-label text-[11px] text-outline uppercase tracking-widest block mb-sm">Email Address</label>
-                <div className="relative">
-                  <span className="absolute left-md top-1/2 -translate-y-1/2 text-outline/40 group-focus-within:text-primary/60 transition-colors">
-                    <span className="material-symbols-outlined text-lg">mail</span>
-                  </span>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="your@email.com"
-                    className="w-full bg-background border border-outline-variant/20 rounded-lg pl-xl pr-md py-[14px] font-body-md text-on-surface placeholder:text-outline-variant/40 focus:outline-none focus:border-primary/50 focus:shadow-[0_0_12px_-4px_rgba(185,199,228,0.15)] transition-all"
-                  />
-                </div>
-              </div>
-
-              {/* Contact */}
-              <div className="group">
-                <label htmlFor="contact" className="font-code-label text-[11px] text-outline uppercase tracking-widest block mb-sm">Contact Number</label>
-                <div className="relative">
-                  <span className="absolute left-md top-1/2 -translate-y-1/2 text-outline/40 group-focus-within:text-primary/60 transition-colors">
-                    <span className="material-symbols-outlined text-lg">call</span>
-                  </span>
-                  <input
-                    id="contact"
-                    name="contact"
-                    type="tel"
-                    placeholder="+44 7XXX XXXXXX"
-                    className="w-full bg-background border border-outline-variant/20 rounded-lg pl-xl pr-md py-[14px] font-body-md text-on-surface placeholder:text-outline-variant/40 focus:outline-none focus:border-primary/50 focus:shadow-[0_0_12px_-4px_rgba(185,199,228,0.15)] transition-all"
-                  />
-                </div>
+              <div>
+                <label htmlFor="email" className="font-mono text-xs font-black uppercase text-navy-900 block mb-1">
+                  Email Address
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="alex@company.com"
+                  className="w-full bg-paper border-2 border-navy-900 px-3 py-2.5 font-mono text-xs font-bold text-navy-900 placeholder:text-slate-400 focus:outline-none focus:bg-white shadow-[2px_2px_0px_#0A192F]"
+                />
               </div>
 
               {/* Message */}
-              <div className="group">
-                <label htmlFor="message" className="font-code-label text-[11px] text-outline uppercase tracking-widest block mb-sm">Message</label>
-                <div className="relative">
-                  <span className="absolute left-md top-3 text-outline/40 group-focus-within:text-primary/60 transition-colors">
-                    <span className="material-symbols-outlined text-lg">description</span>
-                  </span>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={4}
-                    placeholder="Describe your infrastructure requirements..."
-                    className="w-full bg-background border border-outline-variant/20 rounded-lg pl-xl pr-md py-[14px] font-body-md text-on-surface placeholder:text-outline-variant/40 focus:outline-none focus:border-primary/50 focus:shadow-[0_0_12px_-4px_rgba(185,199,228,0.15)] transition-all resize-none"
-                  />
-                </div>
+              <div>
+                <label htmlFor="message" className="font-mono text-xs font-black uppercase text-navy-900 block mb-1">
+                  Requirements / Architectural Overview
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  required
+                  placeholder="Tell me about your infrastructure challenges, cloud migration goals, or immediate production bottleneck..."
+                  className="w-full bg-paper border-2 border-navy-900 p-3 font-mono text-xs font-bold text-navy-900 placeholder:text-slate-400 focus:outline-none focus:bg-white shadow-[2px_2px_0px_#0A192F] resize-none"
+                />
               </div>
 
-              {/* Error */}
+              {/* Status Message */}
               {state.status === 'error' && (
-                <div className="flex items-center gap-sm p-md rounded-lg bg-error-container/10 border border-error/20">
-                  <span className="material-symbols-outlined text-error text-sm">error</span>
-                  <span className="font-body-md text-sm text-error">{state.message}</span>
+                <div className="p-3 bg-rose-100 border-2 border-rose-600 text-rose-900 font-mono text-xs font-bold">
+                  {state.message}
                 </div>
               )}
 
-              {/* Actions */}
-              <div className="flex flex-col sm:flex-row gap-md pt-sm">
-                <button
-                  type="submit"
-                  disabled={state.status === 'sending'}
-                  className="flex-1 bg-primary text-on-primary py-[14px] rounded-lg font-headline-md hover:shadow-[0_0_20px_rgba(185,199,228,0.25)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-sm active:scale-[0.98]"
-                >
-                  {state.status === 'sending' ? (
-                    <>
-                      <span className="w-4 h-4 border-2 border-on-primary border-t-transparent rounded-full animate-spin"></span>
-                      Transmitting...
-                    </>
-                  ) : (
-                    <>
-                      Send Transmission
-                      <span className="material-symbols-outlined text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>arrow_right_alt</span>
-                    </>
-                  )}
-                </button>
+              {/* Submit */}
+              <div className="pt-2 flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-xl py-[14px] rounded-lg border border-outline-variant/20 font-headline-md text-on-surface-variant hover:bg-surface-variant hover:border-primary/30 transition-all"
+                  className="px-5 py-2.5 bg-white border-2 border-navy-900 font-mono text-xs font-bold uppercase text-navy-900 shadow-[2px_2px_0px_#0A192F]"
                 >
                   Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={state.status === 'sending'}
+                  className="px-6 py-2.5 bg-[#FF4D00] hover:bg-[#E04400] text-white font-mono text-xs font-black uppercase border-2 border-navy-900 shadow-[3px_3px_0px_#0A192F] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all cursor-pointer"
+                >
+                  {state.status === 'sending' ? 'Transmitting...' : 'Dispatch Message →'}
                 </button>
               </div>
             </form>
